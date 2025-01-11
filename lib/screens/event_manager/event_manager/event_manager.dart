@@ -12,6 +12,7 @@ class ScreenEventManager extends StatefulWidget {
 
 class _ScreenEventManagerState extends State<ScreenEventManager> {
   List<String> dropDownList = ['Party', 'Catering', 'Decoration'];
+  var selectedTextFieldItem = 'All';
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,30 +70,59 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             DropdownButtonFormField(
-                onChanged: (value) {},
-                items: dropDownList.map(
-                  (e) {
-                    return DropdownMenuItem(
-                      value: e,
-                      child: Text(
-                        e,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    );
-                  },
-                ).toList(),
-                decoration: InputDecoration(
-                  hintText: 'Choose an option',
-                  // icon: Icon(Icons.arrow_drop_down),
-                  border: OutlineInputBorder(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color.fromRGBO(32, 34, 54, 1),
+                border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.transparent, width: 2),
-                  ),
-                ))
+                    borderSide: BorderSide(
+                        color: const Color.fromRGBO(32, 34, 54, 1), width: 2)),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                      color: Color.fromRGBO(32, 34, 54, 1),
+                      width: 2), // Border color when focused
+                ),
+              ),
+              dropdownColor: Color.fromRGBO(32, 34, 54, 1),
+              items: dropDownList.map((String item) {
+                return DropdownMenuItem(
+                    value: item,
+                    child: Text(
+                      item,
+                      style: TextStyle(color: Colors.white),
+                    ));
+              }).toList(),
+              onChanged: (String? value) {
+                setState(() {
+                  selectedTextFieldItem = value!;
+                });
+              },
+            )
           ],
         ),
       ),
     );
   }
+}
+
+Widget field(String label, double borderRadius, double borderWidth) {
+  return TextFormField(
+    decoration: InputDecoration(
+      hintText: label,
+      hintStyle: TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+        borderSide: BorderSide(
+          color: Color.fromRGBO(32, 34, 54, 1),
+          width: borderWidth,
+        ),
+      ),
+
+    ),
+  );
 }
