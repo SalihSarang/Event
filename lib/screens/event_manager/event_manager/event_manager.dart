@@ -11,7 +11,7 @@ class ScreenEventManager extends StatefulWidget {
 }
 
 class _ScreenEventManagerState extends State<ScreenEventManager> {
-  List<String> dropDownList = ['Party', 'Catering', 'Decoration'];
+  List<String> dropDownList = ['All', 'Party', 'Catering', 'Decoration'];
   var selectedTextFieldItem = 'All';
 
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                       color: Color.fromRGBO(32, 34, 54, 1),
-                      width: 2), // Border color when focused
+                      width: 2),
                 ),
               ),
               dropdownColor: Color.fromRGBO(32, 34, 54, 1),
@@ -110,19 +110,19 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
   }
 }
 
-Widget field(String label, double borderRadius, double borderWidth) {
-  return TextFormField(
-    decoration: InputDecoration(
-      hintText: label,
-      hintStyle: TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: BorderSide(
-          color: Color.fromRGBO(32, 34, 54, 1),
-          width: borderWidth,
-        ),
-      ),
+// Widget myField(String label, double borderRadius, double borderWidth) {
+//   return TextFormField(
+//     decoration: InputDecoration(
+//       hintText: label,
+//       hintStyle: TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
+//       enabledBorder: OutlineInputBorder(
+//         borderRadius: BorderRadius.circular(borderRadius),
+//         borderSide: BorderSide(
+//           color: Color.fromRGBO(32, 34, 54, 1),
+//           width: borderWidth,
+//         ),
+//       ),
 
-    ),
-  );
-}
+//     ),
+//   );
+// }

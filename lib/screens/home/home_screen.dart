@@ -1,3 +1,4 @@
+import 'package:event_vault/screens/add_event/add_event.dart';
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,7 @@ class _ScreenHomeState extends State<ScreenMain> {
   List<Widget> screenList = [
     HomeScreen(),
     ScreenEventManager(),
-    Center(
-        child: Text('New Event',
-            style: TextStyle(color: Colors.white, fontSize: 24))),
+    ScreenAddEvent(),
     Center(
         child: Text('Task Manager',
             style: TextStyle(color: Colors.white, fontSize: 24))),
