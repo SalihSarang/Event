@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-Widget dropDown(List<String> dropDownList, String selectedTextFieldItem,
-    Function(String?) onChanged) {
+Widget dropDown(
+    {required List<String> dropDownList,
+    required String selectedTextFieldItem,
+    required Function(String?) onChanged}) {
   return DropdownButtonFormField<String>(
+    value: selectedTextFieldItem,
     decoration: InputDecoration(
       filled: true,
       fillColor: const Color.fromRGBO(32, 34, 54, 1),
@@ -23,6 +26,7 @@ Widget dropDown(List<String> dropDownList, String selectedTextFieldItem,
     ),
     dropdownColor: const Color.fromRGBO(32, 34, 54, 1),
     items: dropDownList.map((String item) {
+      
       return DropdownMenuItem<String>(
         value: item,
         child: Text(

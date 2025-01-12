@@ -1,17 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-Widget myField(String label, double borderRadius, double borderWidth) {
-  return TextFormField(
-    decoration: InputDecoration(
-      hintText: label,
-      hintStyle: TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: BorderSide(
-          color: Color.fromRGBO(32, 34, 54, 1),
-          width: borderWidth,
+Widget myField({required String hint, required String fieldTitle}) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          fieldTitle,
+          style: GoogleFonts.roboto(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
+          ),
         ),
       ),
-    ),
+      SizedBox(
+        height: 10,
+      ),
+      TextFormField(
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color.fromRGBO(32, 34, 54, 1),
+          hintText: hint,
+          hintStyle: const TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: const Color.fromARGB(255, 81, 81, 81),
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: const Color.fromARGB(255, 81, 81, 81),
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 10,
+      ),
+    ],
   );
 }
+
+Widget myBigField({required String hint, required String fieldTitle}) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          fieldTitle,
+          style: GoogleFonts.roboto(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 10,
+      ),
+      TextFormField(
+        maxLines: 5,
+        minLines: 5,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          
+          filled: true,
+          fillColor: const Color.fromRGBO(32, 34, 54, 1),
+          hintText: hint,
+          hintStyle: const TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: const Color.fromARGB(255, 81, 81, 81),
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: const Color.fromARGB(255, 81, 81, 81),
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 10,
+      ),
+    ],
+  );
+}
+
+

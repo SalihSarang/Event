@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:event_vault/costum_widgets/catogory_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -73,33 +74,12 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
             SizedBox(
               height: 10,
             ),
-            DropdownButtonFormField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color.fromRGBO(32, 34, 54, 1),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                        color: const Color.fromRGBO(32, 34, 54, 1), width: 2)),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(32, 34, 54, 1),
-                      width: 2),
-                ),
-              ),
-              dropdownColor: Color.fromRGBO(32, 34, 54, 1),
-              items: dropDownList.map((String item) {
-                return DropdownMenuItem(
-                    value: item,
-                    child: Text(
-                      item,
-                      style: TextStyle(color: Colors.white),
-                    ));
-              }).toList(),
-              onChanged: (String? value) {
+            dropDown(
+              dropDownList: dropDownList,
+              selectedTextFieldItem: selectedTextFieldItem,
+              onChanged: (String? newValue) {
                 setState(() {
-                  selectedTextFieldItem = value!;
+                  selectedTextFieldItem = newValue!;
                 });
               },
             )
@@ -109,20 +89,3 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
     );
   }
 }
-
-// Widget myField(String label, double borderRadius, double borderWidth) {
-//   return TextFormField(
-//     decoration: InputDecoration(
-//       hintText: label,
-//       hintStyle: TextStyle(color: Color.fromRGBO(152, 152, 159, 1)),
-//       enabledBorder: OutlineInputBorder(
-//         borderRadius: BorderRadius.circular(borderRadius),
-//         borderSide: BorderSide(
-//           color: Color.fromRGBO(32, 34, 54, 1),
-//           width: borderWidth,
-//         ),
-//       ),
-
-//     ),
-//   );
-// }
