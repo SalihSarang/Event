@@ -1,10 +1,14 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
-Widget imgAddField(
-    {required String buttonTitle,
-    required Icon myIcon,
-    required Function(String?) onPressed}) {
+Widget imgAddField({
+  required String buttonTitle,
+  required Icon myIcon,
+  required VoidCallback onPressed,
+  XFile? imagePicked,
+}) {
   return Column(
     children: [
       ElevatedButton(
@@ -19,7 +23,7 @@ Widget imgAddField(
             backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
             minimumSize: Size(double.infinity, 60),
           ),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -47,6 +51,12 @@ Widget imgAddField(
       Container(
         height: 200,
         decoration: BoxDecoration(
+            image: imagePicked == null
+                ? null
+                : DecorationImage(
+                    image: FileImage(File(imagePicked.path)),
+                  ),
+            
             color: Color.fromRGBO(32, 34, 54, 1),
             borderRadius: BorderRadius.all(Radius.circular(10)),
             border: Border.all(

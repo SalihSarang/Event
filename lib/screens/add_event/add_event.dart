@@ -1,9 +1,13 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:event_vault/costum_widgets/catogory_dropdown.dart';
 import 'package:event_vault/costum_widgets/img_add_field.dart';
 import 'package:event_vault/costum_widgets/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ScreenAddEvent extends StatefulWidget {
   const ScreenAddEvent({super.key});
@@ -13,6 +17,43 @@ class ScreenAddEvent extends StatefulWidget {
 }
 
 class _ScreenAddEventState extends State<ScreenAddEvent> {
+  XFile? image;
+  final picker = ImagePicker();
+  getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(
+      () {
+        if (pickedFile != null) {
+          image = pickedFile;
+        }
+      },
+    );
+  }
+
+  final _forkey = GlobalKey<FormState>();
+  final _timectrl = TextEditingController();
+  final _eventName = TextEditingController();
+  final _date = TextEditingController();
+  final _location = TextEditingController();
+  final _budget = TextEditingController();
+  final _clietName = TextEditingController();
+  final _contactInfo = TextEditingController();
+
+  void validateForm() {
+    if (_forkey.currentState!.validate()) {
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Form is valid!')),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please correct the errors in the form'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
   List<String> addEventList = ['Select One', 'Party', 'Catering', 'Decoration'];
   String starting = 'Select One';
   @override
@@ -58,36 +99,114 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   selectedTextFieldItem: starting,
                   onChanged: (String? value) {
                     setState(() {
-                      starting = value!;
+                      starting = value ?? 'Select One';
                     });
                   },
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                myField(hint: 'Enter Event Name', fieldTitle: 'Event Name'),
-                myField(hint: 'Enter Enter Date', fieldTitle: 'Date'),
-                myField(hint: 'Enter Time', fieldTitle: 'Time'),
-                myField(hint: 'Enter Location', fieldTitle: 'Location'),
-                myBigField(
-                    hint: 'Enter Description', fieldTitle: 'Description'),
-                myField(hint: 'Enter Budget', fieldTitle: 'Budget'),
-                SizedBox(
-                  height: 10,
+                Form(
+                  key: _forkey,
+                  child: Column(
+                    children: [
+                      myField(
+                        controller: _eventName,
+                        hint: 'Enter Event Name',
+                        fieldTitle: 'Event Name',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      myField(
+                        controller: _date,
+                        hint: 'Enter Enter Date',
+                        fieldTitle: 'Date',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      myField(
+                        controller: _timectrl,
+                        hint: 'Enter Time',
+                        fieldTitle: 'Time',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      myField(
+                        controller: _location,
+                        hint: 'Enter Location',
+                        fieldTitle: 'Location',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      myBigField(
+                          hint: 'Enter Description', fieldTitle: 'Description'),
+                      myField(
+                        controller: _budget,
+                        hint: 'Enter Budget',
+                        fieldTitle: 'Budget',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      imgAddField(
+                        imagePicked: image,
+                        buttonTitle: 'Add Photo',
+                        myIcon: Icon(Icons.camera_alt_outlined),
+                        onPressed: getImageFromGallery,
+                      ),
+                      myField(
+                        controller: _clietName,
+                        hint: 'Enter Cliet Name',
+                        fieldTitle: 'Cliet Name',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                      myField(
+                        controller: _contactInfo,
+                        hint: 'Enter Contact Info',
+                        fieldTitle: 'Contact Information',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                imgAddField(
-                  buttonTitle: 'Add Photo',
-                  myIcon: Icon(Icons.camera_alt_outlined),
-                  onPressed: (value) {},
-                ),
-                myField(hint: 'Enter Cliet Name', fieldTitle: 'Cliet Name'),
-                myField(
-                    hint: 'Enter Contact Info',
-                    fieldTitle: 'Contact Information'),
                 saveCancel(
                   rightBtn: 'Next',
                   leftBtn: 'Cancel',
-                  onRightBtn: () {},
+                  onRightBtn: () {
+                    validateForm();
+                  },
                   onleftBtn: () {},
                 )
               ],
