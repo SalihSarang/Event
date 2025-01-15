@@ -41,17 +41,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
 
   void validateForm() {
     if (_forkey.currentState!.validate()) {
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Form is valid!')),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please correct the errors in the form'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    }
+    } else {}
   }
 
   List<String> addEventList = ['Select One', 'Party', 'Catering', 'Decoration'];
@@ -107,6 +97,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   height: 10,
                 ),
                 Form(
+                  autovalidateMode: AutovalidateMode.always,
                   key: _forkey,
                   child: Column(
                     children: [

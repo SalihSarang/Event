@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 Widget myField(
     {required String hint,
     required String fieldTitle,
@@ -43,6 +42,20 @@ Widget myField(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
               color: const Color.fromARGB(255, 81, 81, 81),
+              width: 2,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 1,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.red,
               width: 2,
             ),
           ),
