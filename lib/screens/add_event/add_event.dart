@@ -5,6 +5,7 @@ import 'package:event_vault/costum_widgets/catogory_dropdown.dart';
 import 'package:event_vault/costum_widgets/img_add_field.dart';
 import 'package:event_vault/costum_widgets/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field.dart';
+import 'package:event_vault/screens/add_catering_menu/add_catering_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,10 +40,10 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   final _clietName = TextEditingController();
   final _contactInfo = TextEditingController();
 
-  void validateForm() {
-    if (_forkey.currentState!.validate()) {
-    } else {}
-  }
+  // void validateForm() {
+  //   if (_forkey.currentState!.validate()) {
+  //   } else {}
+  // }
 
   List<String> addEventList = ['Select One', 'Party', 'Catering', 'Decoration'];
   String starting = 'Select One';
@@ -192,11 +193,14 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                     ],
                   ),
                 ),
-                saveCancel(
+                saveCancelRow(
                   rightBtn: 'Next',
                   leftBtn: 'Cancel',
                   onRightBtn: () {
-                    validateForm();
+                    // validateForm();
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddCateringMenu(),
+                    ));
                   },
                   onleftBtn: () {},
                 )
