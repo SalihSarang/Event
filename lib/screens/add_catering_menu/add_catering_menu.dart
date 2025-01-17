@@ -1,11 +1,22 @@
+import 'dart:io';
+
 import 'package:event_vault/costum_widgets/add_menu_btn.dart';
+import 'package:event_vault/costum_widgets/fiter_chips.dart';
 import 'package:event_vault/costum_widgets/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field.dart';
+import 'package:event_vault/screens/add_catering_menu/add_new_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddCateringMenu extends StatelessWidget {
-  const AddCateringMenu({super.key});
+  AddCateringMenu({super.key});
+  var chipList = [
+    "Chiken Biriyanni",
+    "Mutton Biriyanni",
+    "Beef Biriyanni",
+    "Chiken Curry",
+    "Ghee Rice"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +44,27 @@ class AddCateringMenu extends StatelessWidget {
         child: ListView(
           children: [
             myField(
-                hint: 'Enter Budget',
+                hint: 'Enter Budgeconst t',
                 fieldTitle: 'Budget',
                 validator: (p0) {},
                 controller: budgetCtrl),
+            SizedBox(
+              height: 20,
+            ),
+            MenuChip(
+              chipItems: chipList,
+              manuTitle: 'Select food menu',
+            ),
+            SizedBox(
+              height: 20,
+            ),
             addMenuBtn(
               btnText: 'Add Menu Item',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => AddNewItem(),
+                ));
+              },
             ),
             SizedBox(
               height: 20,
@@ -47,11 +72,16 @@ class AddCateringMenu extends StatelessWidget {
             myBigField(
                 hint: 'Special Requirements',
                 fieldTitle: "Enter Custom Requests"),
+            SizedBox(
+              height: 20,
+            ),
             saveCancelColumn(
-              rightBtn: 'cancel',
-              leftBtn: 'Save',
-              onRightBtn: () {},
-              onleftBtn: () {},
+              downBtn: 'Save',
+              upBtn: 'Cancel',
+              onDownBtn: () {},
+              onUpBtn: () {
+                Navigator.pop(context);
+              },
             )
           ],
         ),

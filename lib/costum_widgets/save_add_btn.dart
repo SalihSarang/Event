@@ -21,7 +21,7 @@ Widget saveCancelRow(
             backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
             minimumSize: Size(235, 60),
           ),
-          onPressed: () {},
+          onPressed: onleftBtn,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -71,11 +71,11 @@ Widget saveCancelRow(
 }
 
 Widget saveCancelColumn(
-    {required String rightBtn,
-    required String leftBtn,
-    required VoidCallback onRightBtn,
-    required VoidCallback onleftBtn}) {
-  return Row(
+    {required String downBtn,
+    required String upBtn,
+    required VoidCallback onDownBtn,
+    required VoidCallback onUpBtn}) {
+  return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       ElevatedButton(
@@ -90,15 +90,15 @@ Widget saveCancelColumn(
             backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
             minimumSize: Size(235, 60),
           ),
-          onPressed: () {},
-          child: Column(
+          onPressed: onUpBtn,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 10,
               ),
               Text(
-                leftBtn,
+                upBtn,
                 style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.w800,
@@ -107,6 +107,9 @@ Widget saveCancelColumn(
               )
             ],
           )),
+      SizedBox(
+        height: 15,
+      ),
       ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -118,7 +121,7 @@ Widget saveCancelColumn(
             backgroundColor: const Color.fromRGBO(30, 92, 228, 1),
             minimumSize: Size(235, 60),
           ),
-          onPressed: onRightBtn,
+          onPressed: onDownBtn,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -126,7 +129,7 @@ Widget saveCancelColumn(
                 width: 10,
               ),
               Text(
-                rightBtn,
+                downBtn,
                 style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.w800,

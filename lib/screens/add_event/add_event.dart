@@ -40,10 +40,13 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   final _clietName = TextEditingController();
   final _contactInfo = TextEditingController();
 
-  // void validateForm() {
-  //   if (_forkey.currentState!.validate()) {
-  //   } else {}
-  // }
+  void validateForm() {
+    if (_forkey.currentState!.validate()) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => AddCateringMenu(),
+      ));
+    } else {}
+  }
 
   List<String> addEventList = ['Select One', 'Party', 'Catering', 'Decoration'];
   String starting = 'Select One';
@@ -197,10 +200,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   rightBtn: 'Next',
                   leftBtn: 'Cancel',
                   onRightBtn: () {
-                    // validateForm();
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AddCateringMenu(),
-                    ));
+                    validateForm();
+                   
                   },
                   onleftBtn: () {},
                 )
