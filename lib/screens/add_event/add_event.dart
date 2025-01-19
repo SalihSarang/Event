@@ -1,17 +1,17 @@
-import 'dart:io';
-import 'dart:math';
-
-import 'package:event_vault/costum_widgets/catogory_dropdown.dart';
 import 'package:event_vault/costum_widgets/img_add_field.dart';
 import 'package:event_vault/costum_widgets/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field.dart';
 import 'package:event_vault/screens/add_catering_menu/add_catering_menu.dart';
+import 'package:event_vault/screens/add_decoration/add_decoration.dart';
+import 'package:event_vault/screens/add_party/add_party.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ScreenAddEvent extends StatefulWidget {
-  const ScreenAddEvent({super.key});
+  ScreenAddEvent({super.key, required this.selectedCatogory});
+
+  String selectedCatogory;
 
   @override
   State<ScreenAddEvent> createState() => _ScreenAddEventState();
@@ -42,14 +42,26 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
 
   void validateForm() {
     if (_forkey.currentState!.validate()) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCateringMenu(),
-      ));
-    } else {}
+      switch (widget.selectedCatogory) {
+        case "Party":
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddPartyScreen(),
+          ));
+          break;
+        case "Catering":
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddCateringMenu(),
+          ));
+          break;
+        case "Decoration":
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddDecorationMenu(),
+          ));
+          break;
+      }
+    }
   }
 
-  List<String> addEventList = ['Select One', 'Party', 'Catering', 'Decoration'];
-  String starting = 'Select One';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +78,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
             ),
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
           child: Padding(
@@ -74,29 +87,6 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
           children: [
             Column(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Select Catogory',
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                dropDown(
-                  dropDownList: addEventList,
-                  selectedTextFieldItem: starting,
-                  onChanged: (String? value) {
-                    setState(() {
-                      starting = value ?? 'Select One';
-                    });
-                  },
-                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -201,9 +191,10 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   leftBtn: 'Cancel',
                   onRightBtn: () {
                     validateForm();
-                   
                   },
-                  onleftBtn: () {},
+                  onleftBtn: () {
+                    Navigator.pop(context);
+                  },
                 )
               ],
             ),

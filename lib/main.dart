@@ -8,7 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Hive.initFlutter();
   Hive.registerAdapter(EventAddingModalAdapter());
-  await Hive.openBox<EventAddingModal>(ADD_EVENT);
+  // await Hive.openBox<EventAddingModal>(ADD_EVENT);
   runApp(MyApp());
 }
 

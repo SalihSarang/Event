@@ -141,3 +141,39 @@ Widget saveCancelColumn(
     ],
   );
 }
+Widget selectCatogory({required String titleBtn, required VoidCallback onBtn}) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(
+                color: Color.fromARGB(255, 81, 81, 81),
+                width: 0.1,
+              ),
+            ),
+            backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
+            minimumSize: Size(235, 60),
+          ),
+          onPressed: onBtn,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                titleBtn,
+                style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 20,
+                ),
+              )
+            ],
+          )),
+    ],
+  );
+}

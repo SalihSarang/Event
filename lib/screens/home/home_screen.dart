@@ -1,5 +1,6 @@
-import 'package:event_vault/screens/add_event/add_event.dart';
+import 'package:event_vault/screens/add_event/selecting_catogory.dart';
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
+import 'package:event_vault/screens/home/screen_home.dart';
 import 'package:flutter/material.dart';
 
 class ScreenMain extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ScreenHomeState extends State<ScreenMain> {
   List<Widget> screenList = [
     HomeScreen(),
     ScreenEventManager(),
-    ScreenAddEvent(),
+    SelectingCatogory(),
     Center(
         child: Text('Task Manager',
             style: TextStyle(color: Colors.white, fontSize: 24))),
@@ -57,25 +58,3 @@ class _ScreenHomeState extends State<ScreenMain> {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Center(
-            child: Text(
-              "Dashboard",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ),
-        ),
-        backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-      ),
-    );
-  }
-}
