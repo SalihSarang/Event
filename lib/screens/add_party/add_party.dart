@@ -29,64 +29,70 @@ class AddPartyScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            myField(
-                hint: 'Enter party type',
-                fieldTitle: 'Enter party',
-                validator: (p0) {},
-                controller: partyTypeCtrl),
-            SizedBox(
-              height: 20,
+          child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                myField(
+                    hint: 'Enter party type',
+                    fieldTitle: 'Party Name',
+                    validator: (p0) {},
+                    controller: partyTypeCtrl),
+                SizedBox(
+                  height: 20,
+                ),
+                myField(
+                    hint: 'Enter Number Of Gusts',
+                    fieldTitle: 'Guest Count',
+                    validator: (p0) {},
+                    controller: guestCountCtrl),
+                SizedBox(
+                  height: 20,
+                ),
+                myField(
+                    hint: 'Enter Budget',
+                    fieldTitle: 'Budget',
+                    validator: (p0) {},
+                    controller: budgetCtrl),
+                SizedBox(
+                  height: 20,
+                ),
+                selectCatogory(
+                  titleBtn: 'Catering',
+                  onBtn: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddCateringMenu(),
+                    ));
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                selectCatogory(
+                  titleBtn: 'Decoration',
+                  onBtn: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddDecorationMenu(),
+                    ));
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                saveCancelRow(
+                  rightBtn: 'Save',
+                  leftBtn: 'Cancel',
+                  onRightBtn: () {},
+                  onleftBtn: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
             ),
-            myField(
-                hint: 'Enter Number Of Gusts',
-                fieldTitle: 'Guest Count',
-                validator: (p0) {},
-                controller: guestCountCtrl),
-            SizedBox(
-              height: 20,
-            ),
-            myField(
-                hint: 'Enter Budget',
-                fieldTitle: 'Budget',
-                validator: (p0) {},
-                controller: budgetCtrl),
-            SizedBox(
-              height: 20,
-            ),
-            selectCatogory(
-              titleBtn: 'Catering',
-              onBtn: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddCateringMenu(),
-                ));
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            selectCatogory(
-              titleBtn: 'Decoration',
-              onBtn: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddDecorationMenu(),
-                ));
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            saveCancelRow(
-              rightBtn: 'Save',
-              leftBtn: 'Cancel',
-              onRightBtn: () {},
-              onleftBtn: () {},
-            )
-          ],
-        ),
+          ),
+        ],
       )),
     );
   }

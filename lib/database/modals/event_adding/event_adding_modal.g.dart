@@ -26,13 +26,15 @@ class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
       clientName: fields[6] as String,
       contactInfo: fields[7] as String,
       eventId: fields[8] as String,
+      cateringDetails: fields[9] as CataringMenuModel?,
+      decorationDetails: fields[10] as DecorationModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, EventAddingModal obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.catogory)
       ..writeByte(1)
@@ -50,7 +52,11 @@ class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
       ..writeByte(7)
       ..write(obj.contactInfo)
       ..writeByte(8)
-      ..write(obj.eventId);
+      ..write(obj.eventId)
+      ..writeByte(9)
+      ..write(obj.cateringDetails)
+      ..writeByte(10)
+      ..write(obj.decorationDetails);
   }
 
   @override
