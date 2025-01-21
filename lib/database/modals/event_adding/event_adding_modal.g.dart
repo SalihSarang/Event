@@ -6,17 +6,17 @@ part of 'event_adding_modal.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
+class EventAddModalAdapter extends TypeAdapter<EventAddModal> {
   @override
   final int typeId = 0;
 
   @override
-  EventAddingModal read(BinaryReader reader) {
+  EventAddModal read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return EventAddingModal(
+    return EventAddModal(
       catogory: fields[0] as String,
       eventName: fields[1] as String,
       date: fields[2] as String,
@@ -26,13 +26,13 @@ class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
       clientName: fields[6] as String,
       contactInfo: fields[7] as String,
       eventId: fields[8] as String,
-      cateringDetails: fields[9] as CataringMenuModel?,
-      decorationDetails: fields[10] as DecorationModel?,
+      catogories: fields[9] as CatogoryModel,
+      items: (fields[10] as List).cast<ItemModel>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, EventAddingModal obj) {
+  void write(BinaryWriter writer, EventAddModal obj) {
     writer
       ..writeByte(11)
       ..writeByte(0)
@@ -54,9 +54,9 @@ class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
       ..writeByte(8)
       ..write(obj.eventId)
       ..writeByte(9)
-      ..write(obj.cateringDetails)
+      ..write(obj.catogories)
       ..writeByte(10)
-      ..write(obj.decorationDetails);
+      ..write(obj.items);
   }
 
   @override
@@ -65,7 +65,7 @@ class EventAddingModalAdapter extends TypeAdapter<EventAddingModal> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EventAddingModalAdapter &&
+      other is EventAddModalAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

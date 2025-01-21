@@ -1,10 +1,10 @@
-import 'package:event_vault/database/modals/catogorys_model/catering_model/catering_model.dart';
-import 'package:event_vault/database/modals/catogorys_model/decoration_model/decoration_model.dart';
+import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
+import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:hive_flutter/adapters.dart';
 part 'event_adding_modal.g.dart';
 
 @HiveType(typeId: 0)
-class EventAddingModal {
+class EventAddModal {
   @HiveField(0)
   String catogory;
   @HiveField(1)
@@ -24,10 +24,11 @@ class EventAddingModal {
   @HiveField(8)
   String eventId;
   @HiveField(9)
-  CataringMenuModel? cateringDetails;
+  CatogoryModel catogories;
   @HiveField(10)
-  DecorationModel? decorationDetails;
-  EventAddingModal(
+  List<ItemModel> items;
+
+  EventAddModal(
       {required this.catogory,
       required this.eventName,
       required this.date,
@@ -37,6 +38,6 @@ class EventAddingModal {
       required this.clientName,
       required this.contactInfo,
       required this.eventId,
-      this.cateringDetails,
-      this.decorationDetails});
+      required this.catogories,
+      required this.items});
 }

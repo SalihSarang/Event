@@ -8,7 +8,6 @@ class SelectingCatogory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String party = "Party";
     const String catering = "Catering";
     const String decoration = "Decoration";
 
@@ -34,16 +33,6 @@ class SelectingCatogory extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            selectCatogory(
-              titleBtn: party,
-              onBtn: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ScreenAddEvent(
-                    selectedCatogory: party,
-                  ),
-                ));
-              },
-            ),
             SizedBox(
               height: 10,
             ),

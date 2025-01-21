@@ -1,38 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'catering_add_menu.dart';
+part of 'catogory_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CateringAddMenuAdapter extends TypeAdapter<CateringAddMenu> {
+class CatogoryModelAdapter extends TypeAdapter<CatogoryModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 1;
 
   @override
-  CateringAddMenu read(BinaryReader reader) {
+  CatogoryModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CateringAddMenu(
-      itemName: fields[0] as String,
-      price: fields[1] as String,
-      getEventId: fields[2] as EventAddingModal,
+    return CatogoryModel(
+      name: fields[0] as String,
+      catogoryId: fields[2] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, CateringAddMenu obj) {
+  void write(BinaryWriter writer, CatogoryModel obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.itemName)
-      ..writeByte(1)
-      ..write(obj.price)
       ..writeByte(2)
-      ..write(obj.getEventId);
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(2)
+      ..write(obj.catogoryId);
   }
 
   @override
@@ -41,7 +38,7 @@ class CateringAddMenuAdapter extends TypeAdapter<CateringAddMenu> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CateringAddMenuAdapter &&
+      other is CatogoryModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

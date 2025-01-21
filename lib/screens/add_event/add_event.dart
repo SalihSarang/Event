@@ -3,7 +3,6 @@ import 'package:event_vault/costum_widgets/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field.dart';
 import 'package:event_vault/screens/add_catering_menu/add_catering_menu.dart';
 import 'package:event_vault/screens/add_decoration/add_decoration.dart';
-import 'package:event_vault/screens/add_party/add_party.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -43,11 +42,6 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   void validateForm() {
     if (_forkey.currentState!.validate()) {
       switch (widget.selectedCatogory) {
-        case "Party":
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => AddPartyScreen(),
-          ));
-          break;
         case "Catering":
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => AddCateringMenu(),

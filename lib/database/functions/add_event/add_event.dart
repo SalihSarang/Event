@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 const ADD_EVENT = 'addevent';
-ValueNotifier<List<EventAddingModal>> eventListen = ValueNotifier([]);
+ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
 
-void addEvent(EventAddingModal value) {
-  var eventBox = Hive.box<EventAddingModal>(ADD_EVENT);
+void addEvent(EventAddModal value) {
+  var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
   eventBox.put(value.eventId, value);
   getAllEvents();
 }
 
 void getAllEvents() {
   eventListen.value.clear();
-  var eventBox = Hive.box<EventAddingModal>(ADD_EVENT);
-  eventListen.value.addAll(eventBox.values);
+  var getEventBox = Hive.box<EventAddModal>(ADD_EVENT);
+  eventListen.value.addAll(getEventBox.values);
   eventListen.notifyListeners();
 }
