@@ -18,7 +18,7 @@ class CatogoryModelAdapter extends TypeAdapter<CatogoryModel> {
     };
     return CatogoryModel(
       name: fields[0] as String,
-      catogoryId: fields[2] as int,
+      catogoryId: fields[2] as String,
     );
   }
 

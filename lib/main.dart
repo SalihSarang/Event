@@ -16,7 +16,7 @@ void main() async {
   await Hive.openBox<EventAddModal>(ADD_EVENT);
 
   Hive.registerAdapter(CatogoryModelAdapter());
-  await Hive.openBox<CatogoryModel>(CATOGORY);
+  await Hive.openBox<CatogoryModel>(CATEGORY);
     
   Hive.registerAdapter(ItemModelAdapter());
   await Hive.openBox<ItemModel>(ITEMS);

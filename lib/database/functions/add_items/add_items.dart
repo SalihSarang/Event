@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 const ITEMS = 'items';
 
-void addItems(ItemModel value) {
-  var addItem = Hive.box<ItemModel>(ITEMS);
-  addItem.put(value.itemId, value);
+void addItems(String catogoryName, ItemModel value) async {
+  var itemBox = Hive.box<ItemModel>('$ITEMS$catogoryName');
+  await itemBox.put(value.itemId, value);
 }

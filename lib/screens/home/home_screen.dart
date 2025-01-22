@@ -1,6 +1,7 @@
-import 'package:event_vault/screens/add_event/selecting_catogory.dart';
+import 'package:event_vault/screens/add_event/add_category_items/selecting_catogory.dart';
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
 import 'package:event_vault/screens/home/screen_home.dart';
+import 'package:event_vault/screens/settings_screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class ScreenMain extends StatefulWidget {
@@ -14,13 +15,12 @@ class _ScreenHomeState extends State<ScreenMain> {
   List<Widget> screenList = [
     HomeScreen(),
     ScreenEventManager(),
-    SelectingCatogory(),
+    SelectingCategory(),
     Center(
-        child: Text('Task Manager',
+        child:
+            Text('Task',
             style: TextStyle(color: Colors.white, fontSize: 24))),
-    Center(
-        child: Text('Settings',
-            style: TextStyle(color: Colors.white, fontSize: 24))),
+    SettingsScreen(),
   ];
   int myIndex = 0;
 
@@ -57,4 +57,3 @@ class _ScreenHomeState extends State<ScreenMain> {
     );
   }
 }
-

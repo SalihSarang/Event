@@ -12,7 +12,7 @@ class ScreenEventManager extends StatefulWidget {
 }
 
 class _ScreenEventManagerState extends State<ScreenEventManager> {
-  List<String> dropDownList = ['All', 'Party', 'Catering', 'Decoration'];
+  List<String> dropDownList = ['All', 'Catering', 'Decoration'];
   var selectedTextFieldItem = 'All';
 
   Widget build(BuildContext context) {

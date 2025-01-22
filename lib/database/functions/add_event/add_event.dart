@@ -5,9 +5,9 @@ import 'package:hive/hive.dart';
 const ADD_EVENT = 'addevent';
 ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
 
-void addEvent(EventAddModal value) {
+void addEvent(EventAddModal value) async {
   var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
-  eventBox.put(value.eventId, value);
+  await eventBox.put(value.eventId, value);
   getAllEvents();
 }
 

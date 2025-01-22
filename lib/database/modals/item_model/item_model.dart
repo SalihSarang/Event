@@ -9,6 +9,11 @@ class ItemModel {
   String itemPrice;
   @HiveField(2)
   int itemId;
+  @HiveField(3)
+  int catogoryId;
   ItemModel(
-      {required this.itemName, required this.itemPrice, required this.itemId});
+      {required this.itemName,
+      required this.itemPrice,
+      required this.itemId,
+      required this.catogoryId});
 }

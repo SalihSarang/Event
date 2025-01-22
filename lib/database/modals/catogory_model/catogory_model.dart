@@ -6,6 +6,6 @@ class CatogoryModel {
   @HiveField(0)
   String name;
   @HiveField(2)
-  int catogoryId;
+  String catogoryId;
   CatogoryModel({required this.name, required this.catogoryId});
 }

@@ -141,7 +141,12 @@ Widget saveCancelColumn(
     ],
   );
 }
-Widget selectCatogory({required String titleBtn, required VoidCallback onBtn}) {
+
+Widget selectCatogory(
+    {required String titleBtn,
+    required VoidCallback onBtn,
+    required VoidCallback deleteBtn,
+    required VoidCallback addItemButton}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -159,7 +164,6 @@ Widget selectCatogory({required String titleBtn, required VoidCallback onBtn}) {
           ),
           onPressed: onBtn,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 10,
@@ -171,9 +175,34 @@ Widget selectCatogory({required String titleBtn, required VoidCallback onBtn}) {
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
-              )
+              ),
+              Spacer(),
+              Row(
+                children: [
+                  TextButton(
+                      onPressed: addItemButton,
+                      child: Text(
+                        'add Item',
+                        style: GoogleFonts.roboto(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 15,
+                        ),
+                      )),
+                  IconButton(
+                    onPressed: deleteBtn,
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
             ],
           )),
+      SizedBox(
+        height: 20,
+      )
     ],
   );
 }

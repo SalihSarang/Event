@@ -20,19 +20,22 @@ class ItemModelAdapter extends TypeAdapter<ItemModel> {
       itemName: fields[0] as String,
       itemPrice: fields[1] as String,
       itemId: fields[2] as int,
+      catogoryId: fields[3] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ItemModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.itemName)
       ..writeByte(1)
       ..write(obj.itemPrice)
       ..writeByte(2)
-      ..write(obj.itemId);
+      ..write(obj.itemId)
+      ..writeByte(3)
+      ..write(obj.catogoryId);
   }
 
   @override
