@@ -1,3 +1,4 @@
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,7 @@ Widget settingsOptions({
             height: 80,
             width: 80,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(32, 34, 54, 1),
+              color: ColorPalette.secondary,
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             child: leadIcon,
@@ -31,7 +32,7 @@ Widget settingsOptions({
                 Text(
                   title,
                   style: GoogleFonts.roboto(
-                    color: Colors.white,
+                    color: ColorPalette.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 20,
                   ),
@@ -39,7 +40,7 @@ Widget settingsOptions({
                 Text(
                   subTitle,
                   style: GoogleFonts.roboto(
-                    color: Colors.white,
+                    color: ColorPalette.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 12,
                   ),
@@ -54,7 +55,7 @@ Widget settingsOptions({
         top: 20,
         child: Icon(
           Icons.arrow_forward_ios_rounded,
-          color: Colors.white,
+          color: ColorPalette.textW,
         ),
       ),
     ],

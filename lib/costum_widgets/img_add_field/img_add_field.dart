@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,11 +17,11 @@ Widget imgAddField({
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Color.fromARGB(255, 81, 81, 81),
+                color: ColorPalette.hint,
                 width: 1,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
+            backgroundColor: ColorPalette.secondary,
             minimumSize: Size(double.infinity, 60),
           ),
           onPressed: onPressed,
@@ -29,7 +30,7 @@ Widget imgAddField({
             children: [
               Icon(
                 Icons.camera_alt_outlined,
-                color: Colors.white,
+                color: ColorPalette.textW,
                 size: 30,
               ),
               SizedBox(
@@ -38,7 +39,7 @@ Widget imgAddField({
               Text(
                 buttonTitle,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -56,12 +57,11 @@ Widget imgAddField({
                 : DecorationImage(
                     image: FileImage(File(imagePicked.path)),
                   ),
-            
-            color: Color.fromRGBO(32, 34, 54, 1),
+            color: ColorPalette.secondary,
             borderRadius: BorderRadius.all(Radius.circular(10)),
             border: Border.all(
               width: 1,
-              color: Color.fromARGB(255, 81, 81, 81),
+              color: ColorPalette.hint,
             )),
       ),
       SizedBox(

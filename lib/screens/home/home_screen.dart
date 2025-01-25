@@ -1,17 +1,18 @@
-import 'package:event_vault/screens/add_event/add_category_items/selecting_catogory.dart';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/screens/add_category_items/selecting_catogory.dart';
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
 import 'package:event_vault/screens/home/screen_home.dart';
 import 'package:event_vault/screens/settings_screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
-class ScreenMain extends StatefulWidget {
-  const ScreenMain({super.key});
+class BottomNavigation extends StatefulWidget {
+  const BottomNavigation({super.key});
 
   @override
-  State<ScreenMain> createState() => _ScreenHomeState();
+  State<BottomNavigation> createState() => _ScreenHomeState();
 }
 
-class _ScreenHomeState extends State<ScreenMain> {
+class _ScreenHomeState extends State<BottomNavigation> {
   List<Widget> screenList = [
     HomeScreen(),
     ScreenEventManager(),
@@ -27,12 +28,11 @@ class _ScreenHomeState extends State<ScreenMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(25, 26, 37, 1),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromRGBO(32, 34, 54, 1),
-        selectedItemColor: Color.fromRGBO(59, 121, 255, 1),
-        unselectedItemColor: Color.fromRGBO(152, 152, 159, 1),
+        backgroundColor: ColorPalette.secondary,
+        selectedItemColor: ColorPalette.hilite,
+        unselectedItemColor: ColorPalette.hint,
         iconSize: 30,
         onTap: (index) {
           setState(() {

@@ -19,8 +19,8 @@ class ItemModelAdapter extends TypeAdapter<ItemModel> {
     return ItemModel(
       itemName: fields[0] as String,
       itemPrice: fields[1] as String,
-      itemId: fields[2] as int,
-      catogoryId: fields[3] as int,
+      itemId: fields[2] as String,
+      catogoryId: fields[3] as String,
     );
   }
 

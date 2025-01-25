@@ -8,9 +8,9 @@ class ItemModel {
   @HiveField(1)
   String itemPrice;
   @HiveField(2)
-  int itemId;
+  String itemId;
   @HiveField(3)
-  int catogoryId;
+  String catogoryId;
   ItemModel(
       {required this.itemName,
       required this.itemPrice,

@@ -1,3 +1,4 @@
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 
 Widget dropDown(
@@ -8,30 +9,29 @@ Widget dropDown(
     value: selectedTextFieldItem,
     decoration: InputDecoration(
       filled: true,
-      fillColor: const Color.fromRGBO(32, 34, 54, 1),
+      fillColor: ColorPalette.secondary,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
-          color: const Color.fromRGBO(32, 34, 54, 1),
+          color: ColorPalette.secondary,
           width: 2,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
-          color: const Color.fromRGBO(32, 34, 54, 1),
+          color: ColorPalette.secondary,
           width: 2,
         ),
       ),
     ),
-    dropdownColor: const Color.fromRGBO(32, 34, 54, 1),
+    dropdownColor: ColorPalette.secondary,
     items: dropDownList.map((String item) {
-      
       return DropdownMenuItem<String>(
         value: item,
         child: Text(
           item,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: ColorPalette.textW),
         ),
       );
     }).toList(),

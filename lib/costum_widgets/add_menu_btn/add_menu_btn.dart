@@ -1,3 +1,4 @@
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +12,7 @@ Widget addMenuBtn({required String btnText, required VoidCallback onPressed}) {
           width: 0,
         ),
       ),
-      backgroundColor: const Color.fromRGBO(30, 92, 228, 1),
+      backgroundColor: ColorPalette.hilite,
       minimumSize: Size(235, 60),
     ),
     child: Row(
@@ -19,7 +20,7 @@ Widget addMenuBtn({required String btnText, required VoidCallback onPressed}) {
       children: [
         Icon(
           Icons.add,
-          color: Colors.white,
+          color: ColorPalette.textW,
           size: 25,
         ),
         SizedBox(
@@ -28,7 +29,7 @@ Widget addMenuBtn({required String btnText, required VoidCallback onPressed}) {
         Text(
           btnText,
           style: GoogleFonts.roboto(
-            color: Colors.white,
+            color: ColorPalette.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),

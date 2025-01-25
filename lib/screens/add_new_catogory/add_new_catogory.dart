@@ -1,4 +1,7 @@
-import 'package:event_vault/costum_widgets/add_menu_btn.dart';
+import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
+import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,53 +15,31 @@ class AddCategoryScreen extends StatefulWidget {
 }
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
-  final TextEditingController categoryNameController = TextEditingController();
-  final List<TextEditingController> itemControllers = [];
+  final TextEditingController categoryNameCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Add New Category',
-            style: GoogleFonts.roboto(
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
-              fontSize: 25,
-            ),
-          ),
-        ),
-        backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-        iconTheme: IconThemeData(color: Colors.white),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: ColorPalette.mainBg,
+      appBar: CustomAppBar(title: 'Add New Category'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              TextField(
-                controller: categoryNameController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Category Name',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
+              myField(
+                  hint: 'Enter Category Name',
+                  fieldTitle: 'Category Name',
+                  validator: (p0) {
+                    return null;
+                  },
+                  controller: categoryNameCtrl),
+              
               SizedBox(height: 20),
               addMenuBtn(
                 btnText: 'Save Category',
                 onPressed: () async {
-                  final categoryName = categoryNameController.text;
+                  final categoryName = categoryNameCtrl.text;
                   if (categoryName.isNotEmpty) {
                     final newCategory = CatogoryModel(
                       name: categoryName,

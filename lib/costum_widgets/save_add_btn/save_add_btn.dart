@@ -1,3 +1,4 @@
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,11 +15,11 @@ Widget saveCancelRow(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Color.fromARGB(255, 81, 81, 81),
+                color: ColorPalette.hint,
                 width: 0.1,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
+            backgroundColor: ColorPalette.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onleftBtn,
@@ -31,7 +32,7 @@ Widget saveCancelRow(
               Text(
                 leftBtn,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -46,7 +47,7 @@ Widget saveCancelRow(
                 width: 0,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(30, 92, 228, 1),
+            backgroundColor: ColorPalette.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onRightBtn,
@@ -59,7 +60,7 @@ Widget saveCancelRow(
               Text(
                 rightBtn,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -83,11 +84,11 @@ Widget saveCancelColumn(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Color.fromARGB(255, 81, 81, 81),
+                color: ColorPalette.hint,
                 width: 0.1,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
+            backgroundColor: ColorPalette.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onUpBtn,
@@ -100,7 +101,7 @@ Widget saveCancelColumn(
               Text(
                 upBtn,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -118,7 +119,7 @@ Widget saveCancelColumn(
                 width: 0,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(30, 92, 228, 1),
+            backgroundColor: ColorPalette.hilite,
             minimumSize: Size(235, 60),
           ),
           onPressed: onDownBtn,
@@ -131,7 +132,7 @@ Widget saveCancelColumn(
               Text(
                 downBtn,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -155,11 +156,11 @@ Widget selectCatogory(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Color.fromARGB(255, 81, 81, 81),
+                color: ColorPalette.hint,
                 width: 0.1,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(32, 34, 54, 1),
+            backgroundColor: ColorPalette.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onBtn,
@@ -171,7 +172,7 @@ Widget selectCatogory(
               Text(
                 titleBtn,
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -182,9 +183,9 @@ Widget selectCatogory(
                   TextButton(
                       onPressed: addItemButton,
                       child: Text(
-                        'add Item',
+                        'Add Item',
                         style: GoogleFonts.roboto(
-                          color: Colors.white,
+                          color: ColorPalette.textW,
                           fontWeight: FontWeight.w800,
                           fontSize: 15,
                         ),
@@ -193,7 +194,7 @@ Widget selectCatogory(
                     onPressed: deleteBtn,
                     icon: Icon(
                       Icons.delete,
-                      color: Colors.red,
+                      color: ColorPalette.delete,
                     ),
                   ),
                 ],

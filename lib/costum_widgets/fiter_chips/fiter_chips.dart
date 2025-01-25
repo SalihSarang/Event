@@ -1,10 +1,11 @@
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MenuChip extends StatefulWidget {
   List<String> chipItems;
   String manuTitle;
-  MenuChip({required this.chipItems, required this.manuTitle});
+  MenuChip({super.key, required this.chipItems, required this.manuTitle});
 
   @override
   _MenuChipState createState() => _MenuChipState();
@@ -13,6 +14,7 @@ class MenuChip extends StatefulWidget {
 var chipList = [];
 
 class _MenuChipState extends State<MenuChip> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -21,7 +23,7 @@ class _MenuChipState extends State<MenuChip> {
           child: Text(
             widget.manuTitle,
             style: GoogleFonts.roboto(
-              color: Colors.white,
+              color: ColorPalette.textW,
               fontWeight: FontWeight.w800,
               fontSize: 15,
             ),
@@ -35,13 +37,13 @@ class _MenuChipState extends State<MenuChip> {
             children: widget.chipItems.map(
               (filterType) {
                 return FilterChip(
-                  selectedColor: Color.fromRGBO(30, 92, 228, 1),
-                  backgroundColor: Color.fromRGBO(32, 34, 54, 1),
-                  checkmarkColor: Colors.white,
+                  selectedColor: ColorPalette.hilite,
+                  backgroundColor: ColorPalette.secondary,
+                  checkmarkColor: ColorPalette.textW,
                   label: Text(
                     filterType,
                     style: GoogleFonts.roboto(
-                      color: Colors.white,
+                      color: ColorPalette.textW,
                       fontWeight: FontWeight.w800,
                       fontSize: 15,
                     ),

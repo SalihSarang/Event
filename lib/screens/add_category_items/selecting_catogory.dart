@@ -1,10 +1,12 @@
-import 'package:event_vault/costum_widgets/add_menu_btn.dart';
-import 'package:event_vault/costum_widgets/save_add_btn.dart';
+import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
+import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
-import 'package:event_vault/screens/add_event/add_category_items/add_category_items.dart';
+import 'package:event_vault/screens/add_category_items/add_item/add_category_items.dart';
+import 'package:event_vault/screens/add_event/add_event.dart';
 import 'package:event_vault/screens/add_new_catogory/add_new_catogory.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SelectingCategory extends StatefulWidget {
   const SelectingCategory({super.key});
@@ -23,22 +25,8 @@ class _SelectingCategoryState extends State<SelectingCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(25, 26, 37, 1),
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Select Category',
-            style: GoogleFonts.roboto(
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
-              fontSize: 25,
-            ),
-          ),
-        ),
-        backgroundColor: const Color.fromRGBO(25, 26, 37, 1),
-        iconTheme: const IconThemeData(color: Colors.white),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: ColorPalette.mainBg,
+      appBar: CustomAppBar(title: 'Select Category'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -55,13 +43,22 @@ class _SelectingCategoryState extends State<SelectingCategory> {
                         final category = categories[index];
                         return selectCatogory(
                           addItemButton: () {
+                            // print('Category Id : ${category.catogoryId}');
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AddCategoryItems(),
+                              builder: (context) => AddCategoryItems(
+                                categoryId: category.catogoryId,
+                              ),
                             ));
                           },
-                          deleteBtn: () {},
+                          deleteBtn: () {
+                            deleteCategory(category.catogoryId);
+                          },
                           titleBtn: category.name,
-                          onBtn: () {},
+                          onBtn: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ScreenAddEvent(
+                                    selectedCatogory: category.catogoryId)));
+                          },
                         );
                       },
                     ),

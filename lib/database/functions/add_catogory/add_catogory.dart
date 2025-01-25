@@ -7,9 +7,7 @@ ValueNotifier<List<CatogoryModel>> catogoryListener = ValueNotifier([]);
 
 void addCategory(CatogoryModel value) async {
   var categoryBox = Hive.box<CatogoryModel>(CATEGORY);
-
-  print(value.name);
-  print(value.catogoryId);
+  // print({value.name, value.catogoryId});
   await categoryBox.put(value.catogoryId, value);
   getAllCategories();
 }
@@ -20,3 +18,8 @@ void getAllCategories() {
   catogoryListener.notifyListeners();
 }
 
+void deleteCategory(String value) async {
+  var categoryBox = Hive.box<CatogoryModel>(CATEGORY);
+  await categoryBox.delete(value);
+  getAllCategories();
+}

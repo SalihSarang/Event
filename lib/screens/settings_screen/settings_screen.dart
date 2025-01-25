@@ -1,4 +1,6 @@
-import 'package:event_vault/costum_widgets/settings_options.dart';
+import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/costum_widgets/settings_options/settings_options.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,23 +10,8 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Center(
-            child: Text(
-              "Settings",
-              style: GoogleFonts.roboto(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: 40,
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Color.fromRGBO(25, 26, 37, 1),
-      ),
+      backgroundColor: ColorPalette.mainBg,
+      appBar: CustomAppBar(title: "Settings"),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SafeArea(
@@ -33,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
               Text(
                 "General Settings",
                 style: GoogleFonts.roboto(
-                  color: Colors.white,
+                  color: ColorPalette.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 30,
                 ),
