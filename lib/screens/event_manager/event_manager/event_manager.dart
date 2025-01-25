@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
 import 'package:event_vault/costum_widgets/catogory_dropdown/catogory_dropdown.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';

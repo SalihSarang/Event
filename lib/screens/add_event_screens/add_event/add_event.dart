@@ -3,7 +3,7 @@ import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/img_add_field/img_add_field.dart';
 import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
-import 'package:event_vault/screens/add_catogory_menu/add_catogory_menu.dart';
+import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,6 +38,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   final _budget = TextEditingController();
   final _clietName = TextEditingController();
   final _contactInfo = TextEditingController();
+  final _descriptionCtrl = TextEditingController();
 
   void validateForm() {
     if (_forkey.currentState!.validate()) {
@@ -112,7 +113,9 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         },
                       ),
                       myBigField(
-                          hint: 'Enter Description', fieldTitle: 'Description'),
+                          hint: 'Enter Description',
+                          fieldTitle: 'Description',
+                          controller: _descriptionCtrl),
                       myField(
                         controller: _budget,
                         hint: 'Enter Budget',

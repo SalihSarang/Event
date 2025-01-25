@@ -7,5 +7,10 @@ class CatogoryModel {
   String name;
   @HiveField(2)
   String catogoryId;
-  CatogoryModel({required this.name, required this.catogoryId});
+  @HiveField(3)
+  String description;
+  CatogoryModel(
+      {required this.name,
+      required this.catogoryId,
+      required this.description});
 }

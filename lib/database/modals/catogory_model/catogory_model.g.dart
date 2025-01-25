@@ -19,17 +19,20 @@ class CatogoryModelAdapter extends TypeAdapter<CatogoryModel> {
     return CatogoryModel(
       name: fields[0] as String,
       catogoryId: fields[2] as String,
+      description: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, CatogoryModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.catogoryId);
+      ..write(obj.catogoryId)
+      ..writeByte(3)
+      ..write(obj.description);
   }
 
   @override

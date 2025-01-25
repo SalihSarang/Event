@@ -6,7 +6,7 @@ import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/screens/add_catogory_menu/add_new_item.dart';
+import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
 import 'package:flutter/material.dart';
 
 class AddCategoryMenu extends StatelessWidget {
@@ -14,6 +14,7 @@ class AddCategoryMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final budgetCtrl = TextEditingController();
+    final specialRequirementsCtrl = TextEditingController();
 
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
@@ -30,7 +31,6 @@ class AddCategoryMenu extends StatelessWidget {
                     return null;
                   },
                   controller: budgetCtrl),
-             
               SizedBox(
                 height: 20,
               ),
@@ -59,7 +59,8 @@ class AddCategoryMenu extends StatelessWidget {
               ),
               myBigField(
                   hint: 'Special Requirements',
-                  fieldTitle: "Enter Custom Requests"),
+                  fieldTitle: "Enter Custom Requests",
+                  controller: specialRequirementsCtrl),
               SizedBox(
                 height: 20,
               ),

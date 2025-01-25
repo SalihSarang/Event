@@ -8,7 +8,7 @@ ValueNotifier<List<ItemModel>> itemListener = ValueNotifier([]);
 
 void addItems(ItemModel value) async {
   var itemBox = Hive.box<ItemModel>(ITEMS);
-  await itemBox.put(value.catogoryId, value);
+  await itemBox.put(value.itemId, value);
   getItems();
 }
 

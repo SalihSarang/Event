@@ -4,7 +4,6 @@ import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 
 class AddCategoryScreen extends StatefulWidget {
@@ -16,6 +15,7 @@ class AddCategoryScreen extends StatefulWidget {
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   final TextEditingController categoryNameCtrl = TextEditingController();
+  final TextEditingController descriptionCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +36,29 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                   controller: categoryNameCtrl),
               
               SizedBox(height: 20),
+              myBigField(
+                  hint: 'Description',
+                  fieldTitle: 'Description',
+                  controller: descriptionCtrl),
+              SizedBox(height: 20),
               addMenuBtn(
                 btnText: 'Save Category',
                 onPressed: () async {
-                  final categoryName = categoryNameCtrl.text;
-                  if (categoryName.isNotEmpty) {
+                  if (categoryNameCtrl.text.isNotEmpty &&
+                      descriptionCtrl.text.isNotEmpty) {
+
+
                     final newCategory = CatogoryModel(
-                      name: categoryName,
+                      name: categoryNameCtrl.text,
+                      
                       catogoryId:
                           DateTime.now().millisecondsSinceEpoch.toString(),
+
+                      description: descriptionCtrl.text,
                     );
+
+
+
                     addCategory(newCategory);
                     Navigator.pop(context);
                   }

@@ -69,7 +69,10 @@ Widget myField(
   );
 }
 
-Widget myBigField({required String hint, required String fieldTitle}) {
+Widget myBigField(
+    {required String hint,
+    required String fieldTitle,
+    required TextEditingController controller}) {
   return Column(
     children: [
       Align(
@@ -87,6 +90,7 @@ Widget myBigField({required String hint, required String fieldTitle}) {
         height: 10,
       ),
       TextFormField(
+        controller: controller,
         maxLines: 5,
         minLines: 5,
         style: TextStyle(color: ColorPalette.textW),
