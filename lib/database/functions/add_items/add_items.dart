@@ -18,3 +18,9 @@ void getItems() {
   itemListener.value.addAll(itemBox.values);
   itemListener.notifyListeners();
 }
+
+void deleteItem(String value) async {
+  var itemsBox = Hive.box<ItemModel>(ITEMS);
+  await itemsBox.delete(value);
+  getItems();
+}

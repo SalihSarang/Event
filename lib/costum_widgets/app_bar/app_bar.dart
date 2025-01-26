@@ -2,7 +2,6 @@ import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// Custom AppBar Widget
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 

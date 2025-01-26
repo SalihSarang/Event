@@ -1,74 +1,70 @@
-import 'package:event_vault/costum_widgets/alert_box/alert_box.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/screens/category_screen/select_category/selecting_catogory.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget saveCancelRow(
-    {required String rightBtn,
-    required String leftBtn,
-    required VoidCallback onRightBtn,
-    required VoidCallback onleftBtn}) {
+Widget saveCancelRow({
+  required String rightBtn,
+  required String leftBtn,
+  required VoidCallback onRightBtn,
+  required VoidCallback onleftBtn,
+  required BuildContext context,
+}) {
+  double screenWidth = MediaQuery.of(context).size.width;
+  double screenHeight = MediaQuery.of(context).size.height;
+
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      ElevatedButton(
+      
+      SizedBox(
+        width: screenWidth * 0.4,
+        height: screenHeight * 0.05,
+        child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(
-                color: ColorPalette.hint,
-                width: 0.1,
-              ),
+              side: BorderSide(width: 0),
             ),
             backgroundColor: ColorPalette.secondary,
-            minimumSize: Size(235, 60),
           ),
           onPressed: onleftBtn,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 10,
+          child: Center(
+            child: Text(
+              leftBtn,
+              style: GoogleFonts.roboto(
+                color: ColorPalette.textW,
+                fontWeight: FontWeight.w800,
+                fontSize: screenHeight * 0.020,
               ),
-              Text(
-                leftBtn,
-                style: GoogleFonts.roboto(
-                  color: ColorPalette.textW,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              )
-            ],
-          )),
-      ElevatedButton(
+            ),
+          ),
+        ),
+      ),
+      SizedBox(width: screenWidth * 0.05),
+      SizedBox(
+        width: screenWidth * 0.4,
+        height: screenHeight * 0.05,
+        child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(
-                width: 0,
-              ),
+              side: BorderSide(width: 0),
             ),
             backgroundColor: ColorPalette.secondary,
-            minimumSize: Size(235, 60),
           ),
           onPressed: onRightBtn,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 10,
+          child: Center(
+            child: Text(
+              rightBtn,
+              style: GoogleFonts.roboto(
+                color: ColorPalette.textW,
+                fontWeight: FontWeight.w800,
+                fontSize: screenHeight * 0.020,
               ),
-              Text(
-                rightBtn,
-                style: GoogleFonts.roboto(
-                  color: ColorPalette.textW,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              )
-            ],
-          )),
+            ),
+          ),
+        ),
+      ),
     ],
   );
 }

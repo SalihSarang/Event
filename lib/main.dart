@@ -9,7 +9,6 @@ import 'package:event_vault/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:flutter/services.dart'; // Import this package
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +31,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: ColorPalette.mainBg));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: BottomNavigation(),

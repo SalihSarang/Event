@@ -1,6 +1,5 @@
 import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/build_item_list/build_item_list.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
@@ -8,29 +7,31 @@ import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:flutter/material.dart';
 
-class AddCategoryItems extends StatefulWidget {
-  String categoryId;
+class ItemEdit extends StatefulWidget {
+  String itemID;
+  String itemName;
+  String itemPrice;
+  String categoryID;
 
-  AddCategoryItems({super.key, required this.categoryId});
+  ItemEdit(
+      {super.key,
+      required this.itemID,
+      required this.categoryID,
+      required this.itemName,
+      required this.itemPrice});
 
   @override
-  State<AddCategoryItems> createState() => _AddCategoryItemsState();
+  State<ItemEdit> createState() => _AddCategoryItemsState();
 }
 
 final itemName = TextEditingController();
 final price = TextEditingController();
 
-class _AddCategoryItemsState extends State<AddCategoryItems> {
-  @override
-  void initState() {
-    super.initState();
-    getItems();
-  }
-
+class _AddCategoryItemsState extends State<ItemEdit> {
   @override
   Widget build(BuildContext context) {
-    print('Category Id : ${widget.categoryId}');
-
+    itemName.text = widget.itemName;
+    price.text = widget.itemPrice;
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
       appBar: CustomAppBar(
@@ -41,6 +42,12 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
         child: addMenuBtn(
           btnText: 'Save',
           onPressed: () {
+            final items = ItemModel(
+                itemName: itemName.text,
+                itemPrice: price.text,
+                itemId: generateID(),
+                catogoryId: widget.categoryID);
+            addItems(items);
             Navigator.pop(context);
             itemName.clear();
             price.clear();
@@ -86,23 +93,6 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
                   },
                   controller: price),
               const SizedBox(height: 20),
-              addMenuBtn(
-                btnText: 'Add Item',
-                onPressed: () {
-                  final items = ItemModel(
-                      itemName: itemName.text,
-                      itemPrice: price.text,
-                      itemId: generateID(),
-                      catogoryId: widget.categoryId);
-                  addItems(items);
-                },
-              ),
-              Expanded(
-                child: buildItemsList(
-                    itemListener: itemListener,
-                    categoryId: widget.categoryId,
-                    context: context),
-              )
             ],
           ),
         ),

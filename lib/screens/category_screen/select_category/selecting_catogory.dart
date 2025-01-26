@@ -55,7 +55,7 @@ class _SelectingCategoryState extends State<SelectingCategory> {
                             ));
                           },
                           addItemButton: () {
-                            // print('Category Id : ${category.catogoryId}');
+                            print('Category Id : ${category.catogoryId}');
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AddCategoryItems(
                                 categoryId: category.catogoryId,
@@ -63,7 +63,6 @@ class _SelectingCategoryState extends State<SelectingCategory> {
                             ));
                           },
                           deleteBtn: () {
-                            // deleteFuction(context, category.catogoryId);
                             customAlertBox(context,
                                 icon: Icons.delete,
                                 message: 'You want to delete this category',

@@ -41,6 +41,7 @@ class AddNewItem extends StatelessWidget {
               height: 20,
             ),
             saveCancelRow(
+              context: context,
               rightBtn: 'Save',
               leftBtn: 'Cancel',
               onRightBtn: () {},

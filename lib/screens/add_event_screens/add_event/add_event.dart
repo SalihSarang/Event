@@ -162,6 +162,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   ),
                 ),
                 saveCancelRow(
+                  context: context,
                   rightBtn: 'Next',
                   leftBtn: 'Cancel',
                   onRightBtn: () {
