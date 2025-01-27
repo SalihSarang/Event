@@ -24,8 +24,6 @@ class EventAddModal {
   @HiveField(8)
   String eventId;
   @HiveField(9)
-  CatogoryModel catogories;
-  @HiveField(10)
   List<ItemModel> items;
 
   EventAddModal(
@@ -38,6 +36,5 @@ class EventAddModal {
       required this.clientName,
       required this.contactInfo,
       required this.eventId,
-      required this.catogories,
       required this.items});
 }

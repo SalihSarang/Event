@@ -19,8 +19,7 @@ class _ScreenHomeState extends State<BottomNavigation> {
     ScreenEventManager(),
     SelectingCategory(),
     Center(
-        child:
-            Text('Task',
+        child: Text('Task',
             style: TextStyle(
                 color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24))),
     SettingsScreen(),
@@ -29,8 +28,6 @@ class _ScreenHomeState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: ColorPalette.mainBg));
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

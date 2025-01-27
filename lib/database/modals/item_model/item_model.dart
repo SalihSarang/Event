@@ -11,9 +11,11 @@ class ItemModel {
   String itemId;
   @HiveField(3)
   String catogoryId;
+
   ItemModel(
       {required this.itemName,
       required this.itemPrice,
       required this.itemId,
       required this.catogoryId});
+
 }

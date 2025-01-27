@@ -1,25 +1,51 @@
 import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/custom_listenable_builder/filter_chip_builder/filter_chip_builder.dart';
+import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
-import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/database/modals/item_model/item_model.dart';
+import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
 import 'package:flutter/material.dart';
-import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/database/functions/add_items/add_items.dart';
 
-class AddCategoryMenu extends StatefulWidget {
-  String categotyId;
-  Map<String, dynamic> eventDetals;
-  AddCategoryMenu(
-      {super.key, required this.categotyId, required this.eventDetals});
+class ItemFilterChips extends StatelessWidget {
+  final List<ItemModel> filteredItems;
+  final List<ItemModel> selectedItems;
+  final Function(String itemId) onItemSelected;
+
+  const ItemFilterChips({
+    Key? key,
+    required this.filteredItems,
+    required this.selectedItems,
+    required this.onItemSelected,
+  }) : super(key: key);
 
   @override
-  State<AddCategoryMenu> createState() => _AddCategoryMenuState();
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8.0,
+      runSpacing: 4.0,
+      children: filteredItems.map((item) {
+        return FilterChip(
+          label: Text(
+            item.itemName,
+            style: TextStyle(color: ColorPalette.textW),
+          ),
+          selected: selectedItems
+              .any((selectedItem) => selectedItem.itemId == item.itemId),
+          onSelected: (isSelected) {
+            onItemSelected(item.itemId);
+          },
+          selectedColor: ColorPalette.hilite,
+          backgroundColor: ColorPalette.secondary,
+          checkmarkColor: Colors.white,
+        );
+      }).toList(),
+    );
+  }
 }
 
 class _AddCategoryMenuState extends State<AddCategoryMenu> {
@@ -29,8 +55,6 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
   @override
   void initState() {
     super.initState();
-    getItems();
-
     getItemsByCategory(widget.categotyId);
   }
 
@@ -89,8 +113,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                         builder: (context) => AddNewItem(
-                              categoryId: widget.eventDetals['CategoryID'],
-                            )),
+                            categoryId: widget.eventDetals['CategoryID'])),
                   );
                 },
               ),
@@ -105,8 +128,8 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                 downBtn: 'Save',
                 upBtn: 'Cancel',
                 onDownBtn: () {
-                  // print("Selected Items: ${selectedItems}");
-                  final event = EventAddModal(
+                  // print("Selected Items: ${selectedItems[0]}");
+                  EventAddModal(
                       catogory: widget.eventDetals['CategoryName'],
                       eventName: widget.eventDetals['EventName'],
                       date: widget.eventDetals['Date'],
@@ -117,8 +140,6 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                       contactInfo: widget.eventDetals['ContactInfo'],
                       eventId: generateID(),
                       items: selectedItems);
-                  addEvent(event);
-                  print(selectedItems);
                 },
                 onUpBtn: () {
                   Navigator.pop(context);

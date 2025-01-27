@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ScreenAddEvent extends StatefulWidget {
-  ScreenAddEvent({super.key, required this.selectedCatogory});
+  ScreenAddEvent(
+      {super.key, required this.selectedCatogory, required this.categoryName});
 
   String selectedCatogory;
+  String categoryName;
 
   @override
   State<ScreenAddEvent> createState() => _ScreenAddEventState();
@@ -30,23 +32,23 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
     );
   }
 
-  final _forkey = GlobalKey<FormState>();
-  final _timectrl = TextEditingController();
-  final _eventName = TextEditingController();
-  final _date = TextEditingController();
-  final _location = TextEditingController();
-  final _budget = TextEditingController();
-  final _clietName = TextEditingController();
-  final _contactInfo = TextEditingController();
-  final _descriptionCtrl = TextEditingController();
+  final forkey = GlobalKey<FormState>();
+  final timectrl = TextEditingController();
+  final eventName = TextEditingController();
+  final date = TextEditingController();
+  final location = TextEditingController();
+  final budget = TextEditingController();
+  final clietName = TextEditingController();
+  final contactInfo = TextEditingController();
+  final descriptionCtrl = TextEditingController();
 
-  void validateForm() {
-    if (_forkey.currentState!.validate()) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCategoryMenu(),
-      ));
-    }
-  }
+  // void validateForm() {
+  //   if (_forkey.currentState!.validate()) {
+  //     Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (context) => AddCategoryMenu(),
+  //     ));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +67,11 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                 ),
                 Form(
                   autovalidateMode: AutovalidateMode.always,
-                  key: _forkey,
+                  key: forkey,
                   child: Column(
                     children: [
                       myField(
-                        controller: _eventName,
+                        controller: eventName,
                         hint: 'Enter Event Name',
                         fieldTitle: 'Event Name',
                         validator: (value) {
@@ -80,7 +82,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         },
                       ),
                       myField(
-                        controller: _date,
+                        controller: date,
                         hint: 'Enter Enter Date',
                         fieldTitle: 'Date',
                         validator: (value) {
@@ -91,7 +93,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         },
                       ),
                       myField(
-                        controller: _timectrl,
+                        controller: timectrl,
                         hint: 'Enter Time',
                         fieldTitle: 'Time',
                         validator: (value) {
@@ -102,7 +104,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         },
                       ),
                       myField(
-                        controller: _location,
+                        controller: location,
                         hint: 'Enter Location',
                         fieldTitle: 'Location',
                         validator: (value) {
@@ -115,9 +117,9 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                       myBigField(
                           hint: 'Enter Description',
                           fieldTitle: 'Description',
-                          controller: _descriptionCtrl),
+                          controller: descriptionCtrl),
                       myField(
-                        controller: _budget,
+                        controller: budget,
                         hint: 'Enter Budget',
                         fieldTitle: 'Budget',
                         validator: (value) {
@@ -137,7 +139,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         onPressed: getImageFromGallery,
                       ),
                       myField(
-                        controller: _clietName,
+                        controller: clietName,
                         hint: 'Enter Cliet Name',
                         fieldTitle: 'Cliet Name',
                         validator: (value) {
@@ -148,7 +150,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         },
                       ),
                       myField(
-                        controller: _contactInfo,
+                        controller: contactInfo,
                         hint: 'Enter Contact Info',
                         fieldTitle: 'Contact Information',
                         validator: (value) {
@@ -166,7 +168,24 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                   rightBtn: 'Next',
                   leftBtn: 'Cancel',
                   onRightBtn: () {
-                    validateForm();
+                    // validateForm();
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddCategoryMenu(
+                        categotyId: widget.selectedCatogory,
+                        eventDetals: {
+                          'EventName': eventName.text,
+                          'Date': date.text,
+                          'Time': timectrl.text,
+                          'Location': location.text,
+                          'DescriptionCtrl': descriptionCtrl.text,
+                          'Budget': budget.text,
+                          'Image': image,
+                          'ClietName': clietName.text,
+                          'ContactInfo': contactInfo.text,
+                          'CategoryID': widget.selectedCatogory,
+                        },
+                      ),
+                    ));
                   },
                   onleftBtn: () {
                     Navigator.pop(context);

@@ -1,11 +1,12 @@
 import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/build_item_list/build_item_list.dart';
+import 'package:event_vault/costum_widgets/custom_listenable_builder/build_item_list/build_item_list.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
+import 'package:event_vault/form_validation/text_validation/text_validation.dart';
 import 'package:flutter/material.dart';
 
 class AddCategoryItems extends StatefulWidget {
@@ -57,16 +58,7 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
                 hint: 'Enter Item Name',
                 fieldTitle: 'Item Name',
                 validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Item Name cannot be empty.';
-                  }
-                  if (value.trim().length < 3) {
-                    return 'Item Name must be at least 3 characters long.';
-                  }
-                  if (value.trim().length > 50) {
-                    return 'Item Name cannot exceed 50 characters.';
-                  }
-                  return null;
+                  textValidation(value: value!);
                 },
                 controller: itemName,
               ),
@@ -75,17 +67,11 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
                   hint: 'Enter Price',
                   fieldTitle: 'Price',
                   validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Item price cannot be empty.';
-                    }
-
-                    if (value.trim().length > 7) {
-                      return 'Item Name cannot exceed 7 characters.';
-                    }
-                    return null;
+                    textValidation(value: value!);
                   },
                   controller: price),
               const SizedBox(height: 20),
+             
               addMenuBtn(
                 btnText: 'Add Item',
                 onPressed: () {

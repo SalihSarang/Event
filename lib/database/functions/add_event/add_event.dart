@@ -7,6 +7,7 @@ ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
 
 void addEvent(EventAddModal value) async {
   var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
+  print(value.time);
   await eventBox.put(value.eventId, value);
   getAllEvents();
 }
