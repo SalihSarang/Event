@@ -99,6 +99,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                 hint: 'Special Requirements',
                 fieldTitle: "Enter Custom Requests",
                 controller: specialRequirementsCtrl,
+                validator: (p0) {},
               ),
               const SizedBox(height: 20),
               saveCancelColumn(

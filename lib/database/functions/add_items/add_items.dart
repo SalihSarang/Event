@@ -24,3 +24,9 @@ void deleteItem(String value) async {
   await itemsBox.delete(value);
   getItems();
 }
+
+update(ItemModel value) async {
+  var itemBox = Hive.box<ItemModel>(ITEMS);
+  await itemBox.put(value.itemId, value);
+  getItems();
+}

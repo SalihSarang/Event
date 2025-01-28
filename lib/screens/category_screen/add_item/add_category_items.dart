@@ -6,7 +6,8 @@ import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/form_validation/text_validation/text_validation.dart';
+import 'package:event_vault/form_validation/category_details/category_item/item_name/category_item.dart';
+import 'package:event_vault/form_validation/category_details/category_item/item_price/item_price.dart';
 import 'package:flutter/material.dart';
 
 class AddCategoryItems extends StatefulWidget {
@@ -27,6 +28,8 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
     super.initState();
     getItems();
   }
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,40 +57,52 @@ class _AddCategoryItemsState extends State<AddCategoryItems> {
         child: SafeArea(
           child: Column(
             children: [
-              myField(
-                hint: 'Enter Item Name',
-                fieldTitle: 'Item Name',
-                validator: (value) {
-                  textValidation(value: value!);
-                },
-                controller: itemName,
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    myField(
+                      hint: 'Enter Item Name',
+                      fieldTitle: 'Item Name',
+                      validator: (value) => categoryItemNameValidation(value),
+                      controller: itemName,
+                    ),
+                    const SizedBox(height: 20),
+                    myField(
+                        hint: 'Enter Price',
+                        fieldTitle: 'Price',
+                        validator: (value) => itemPriceValidation(value),
+                        controller: price),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
-              myField(
-                  hint: 'Enter Price',
-                  fieldTitle: 'Price',
-                  validator: (value) {
-                    textValidation(value: value!);
-                  },
-                  controller: price),
-              const SizedBox(height: 20),
-             
               addMenuBtn(
                 btnText: 'Add Item',
                 onPressed: () {
-                  final items = ItemModel(
-                      itemName: itemName.text,
-                      itemPrice: price.text,
-                      itemId: generateID(),
-                      catogoryId: widget.categoryId);
-                  addItems(items);
+                  if (formKey.currentState!.validate()) {
+                    final items = ItemModel(
+                        itemName: itemName.text,
+                        itemPrice: price.text,
+                        itemId: generateID(),
+                        catogoryId: widget.categoryId);
+                    addItems(items);
+                    itemName.clear();
+                    price.clear();
+                  }
                 },
               ),
               Expanded(
-                child: buildItemsList(
-                    itemListener: itemListener,
-                    categoryId: widget.categoryId,
-                    context: context),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: buildItemsList(
+                      itemListener: itemListener,
+                      categoryId: widget.categoryId,
+                      context: context),
+                ),
+              ),
+              SizedBox(
+                height: 30,
               )
             ],
           ),

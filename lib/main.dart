@@ -7,7 +7,6 @@ import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
