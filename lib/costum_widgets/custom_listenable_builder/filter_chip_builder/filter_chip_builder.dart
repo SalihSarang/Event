@@ -95,6 +95,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
           child: ListView(
             children: [
               myField(
+                validationMode: AutovalidateMode.onUserInteraction,
                 hint: 'Enter Budget',
                 fieldTitle: 'Budget',
                 validator: (p0) => null,

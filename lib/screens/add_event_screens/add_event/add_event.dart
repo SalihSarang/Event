@@ -1,8 +1,10 @@
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/costum_widgets/date_select/date_theme.dart';
 import 'package:event_vault/costum_widgets/img_add_field/img_add_field.dart';
 import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
+import 'package:event_vault/costum_widgets/time_selecting/theme.dart';
 import 'package:event_vault/form_validation/event_adding/client_info/name_validation/name_validation.dart';
 import 'package:event_vault/form_validation/event_adding/client_info/number_validation/number_validation.dart';
 import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
@@ -35,24 +37,52 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   //get an image from the gallery
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
+    if (pickedFile != null) {
+      setState(() {
         image = pickedFile;
-      }
-    });
+      });
+    }
   }
 
-  //select a date
   Future<void> selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(data: dateTheme(), child: child!);
+      },
     );
     if (pickedDate != null) {
       setState(() {
         date.text = DateFormat('yyyy-MMM-dd').format(pickedDate);
+      });
+    }
+  }
+
+  TimeOfDay _selectedTime = TimeOfDay(hour: 12, minute: 0);
+  String timeString = '';
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime,
+      builder: (context, child) {
+        return Theme(
+          data: timeTheme(),
+          child: MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child!,
+          ),
+        );
+      },
+    );
+
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
+        timeString =
+            '${_selectedTime.hourOfPeriod.toString().padLeft(2, '0')}:${_selectedTime.minute.toString().padLeft(2, '0')} ${_selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}';
       });
     }
   }
@@ -71,6 +101,10 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   //validate and navigate to the next screen
   void validateForm() {
     if (forkey.currentState!.validate()) {
+      if (image == null) {
+        eventImageValidation(image, context);
+        return;
+      }
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => AddCategoryMenu(
           categotyId: widget.selectedCatogory,
@@ -93,6 +127,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
 
   @override
   Widget build(BuildContext context) {
+    timectrl.text = timeString;
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
       appBar: CustomAppBar(title: "Add Event"),
@@ -105,11 +140,11 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                 children: [
                   const SizedBox(height: 10),
                   Form(
-                    autovalidateMode: AutovalidateMode.always,
                     key: forkey,
                     child: Column(
                       children: [
                         myField(
+                          validationMode: AutovalidateMode.onUserInteraction,
                           controller: eventName,
                           hint: 'Enter Event Name',
                           fieldTitle: 'Event Name',
@@ -124,7 +159,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         ),
                         timeField(
                           onTap: () {
-                            // Add time picker logic here
+                            _selectTime(context);
                           },
                           controller: timectrl,
                           hint: 'Enter Time',
@@ -136,6 +171,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           hint: 'Enter Location',
                           fieldTitle: 'Location',
                           validator: (value) => eventLocationValidation(value),
+                          validationMode: AutovalidateMode.onUserInteraction,
                         ),
                         myBigField(
                           hint: 'Enter Description',
@@ -144,6 +180,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           validator: (value) => discription(value),
                         ),
                         myField(
+                          validationMode: AutovalidateMode.onUserInteraction,
                           controller: budget,
                           hint: 'Enter Budget',
                           fieldTitle: 'Budget',
@@ -157,12 +194,14 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           onPressed: getImageFromGallery,
                         ),
                         myField(
+                          validationMode: AutovalidateMode.onUserInteraction,
                           controller: clietName,
                           hint: 'Enter Client Name',
                           fieldTitle: 'Client Name',
                           validator: (value) => clientName(value),
                         ),
                         myField(
+                          validationMode: AutovalidateMode.onUserInteraction,
                           controller: contactInfo,
                           hint: 'Enter Contact Info',
                           fieldTitle: 'Contact Information',

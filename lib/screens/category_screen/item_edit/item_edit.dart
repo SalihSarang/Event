@@ -69,6 +69,7 @@ class _AddCategoryItemsState extends State<ItemEdit> {
                 child: Column(
                   children: [
                     myField(
+                      validationMode: AutovalidateMode.onUserInteraction,
                       hint: 'Enter Item Name',
                       fieldTitle: 'Item Name',
                       validator: (value) => categoryItemNameValidation(value),
@@ -76,6 +77,7 @@ class _AddCategoryItemsState extends State<ItemEdit> {
                     ),
                     const SizedBox(height: 20),
                     myField(
+                        validationMode: AutovalidateMode.onUserInteraction,
                         hint: 'Enter Price',
                         fieldTitle: 'Price',
                         validator: (value) => itemPriceValidation(value),

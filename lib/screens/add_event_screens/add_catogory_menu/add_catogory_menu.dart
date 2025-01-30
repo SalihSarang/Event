@@ -71,10 +71,10 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              myField(
+              myField(validationMode: AutovalidateMode.onUserInteraction,
                 hint: 'Enter Budget',
                 fieldTitle: 'Budget',
-                validator: (p0) => null,
+                validator: (value) {},
                 controller: budgetCtrl,
               ),
               const SizedBox(height: 20),
@@ -100,7 +100,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                 hint: 'Special Requirements',
                 fieldTitle: "Enter Custom Requests",
                 controller: specialRequirementsCtrl,
-                validator: (p0) {},
+                validator: (value) {},
               ),
               const SizedBox(height: 20),
               saveCancelColumn(

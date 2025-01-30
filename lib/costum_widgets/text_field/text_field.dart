@@ -8,6 +8,7 @@ Widget myField(
     required String fieldTitle,
     required String? Function(String?) validator,
     required TextEditingController controller,
+    required AutovalidateMode validationMode,
     TextInputType? keyboardType}) {
   return Column(
     children: [
@@ -26,6 +27,7 @@ Widget myField(
         height: 10,
       ),
       TextFormField(
+        autovalidateMode: validationMode,
         keyboardType: keyboardType,
         controller: controller,
         validator: validator,
