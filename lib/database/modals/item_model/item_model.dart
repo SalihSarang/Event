@@ -17,5 +17,4 @@ class ItemModel {
       required this.itemPrice,
       required this.itemId,
       required this.catogoryId});
-
 }

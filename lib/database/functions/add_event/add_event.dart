@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -7,7 +9,7 @@ ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
 
 void addEvent(EventAddModal value) async {
   var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
-  print(value.time);
+
   await eventBox.put(value.eventId, value);
   getAllEvents();
 }

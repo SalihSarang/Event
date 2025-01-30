@@ -6,7 +6,8 @@ import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/screens/category_screen/item_edit/item_edit.dart';
+import 'package:event_vault/form_validation/category_details/category_item/item_name/category_item.dart';
+import 'package:event_vault/form_validation/category_details/category_item/item_price/item_price.dart';
 import 'package:flutter/material.dart';
 
 class AddNewItem extends StatelessWidget {
@@ -19,63 +20,67 @@ class AddNewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getItems();
+    print(categoryId);
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
       appBar: CustomAppBar(title: 'Add New Menu Item'),
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Form(key: keyform,
-              child: myField( validationMode: AutovalidateMode.onUserInteraction,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Form(
+                key: keyform,
+                child: myField(
+                  validationMode: AutovalidateMode.onUserInteraction,
                   hint: 'Enter Item Name',
                   fieldTitle: 'Item Name',
-                  validator: (value) {
-                    return null;
-                  },
-                  controller: itemNameCtrl),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            myField(validationMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) => categoryItemNameValidation(value),
+                  controller: itemNameCtrl,
+                ),
+              ),
+              SizedBox(height: 20),
+              myField(
+                validationMode: AutovalidateMode.onUserInteraction,
                 hint: 'Enter Price',
                 fieldTitle: 'Price',
-                validator: (value) {
-                  return null;
-                },
-                controller: priceCtrl),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: buildItemsList(
+                validator: (value) => itemPriceValidation(value),
+                controller: priceCtrl,
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: buildItemsList(
                   itemListener: itemListener,
                   categoryId: categoryId,
-                  context: context),
-            ),
-            saveCancelRow(
-              context: context,
-              rightBtn: 'Save',
-              leftBtn: 'Cancel',
-              onRightBtn: () {if (formKey.currentState!.validate()) {
+                  context: context,
+                ),
+              ),
+              saveCancelRow(
+                context: context,
+                rightBtn: 'Save',
+                leftBtn: 'Cancel',
+                onRightBtn: () {
+                  if (keyform.currentState!.validate()) {
                     final items = ItemModel(
-                        itemName: itemName.text,
-                        itemPrice: price.text,
-                        itemId: generateID(),
-                        catogoryId:categoryId);
+                      itemName: itemNameCtrl.text,
+                      itemPrice: priceCtrl.text,
+                      itemId: generateID(),
+                      catogoryId: categoryId,
+                    );
                     addItems(items);
-                    itemName.clear();
-                    price.clear();
-                  }},
-              onleftBtn: () {
-                Navigator.pop(context);
-              },
-            )
-          ],
+                    itemNameCtrl.clear();
+                    priceCtrl.clear();
+                  }
+                },
+                onleftBtn: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

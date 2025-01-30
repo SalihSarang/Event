@@ -25,6 +25,10 @@ class EventAddModal {
   String eventId;
   @HiveField(9)
   List<ItemModel> items;
+  @HiveField(10)
+  String special;
+  @HiveField(11)
+  String image;
 
   EventAddModal(
       {required this.catogory,
@@ -36,5 +40,7 @@ class EventAddModal {
       required this.clientName,
       required this.contactInfo,
       required this.eventId,
-      required this.items});
+      required this.items,
+      required this.special,
+      required this.image});
 }

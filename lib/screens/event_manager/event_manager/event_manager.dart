@@ -1,7 +1,9 @@
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
 import 'package:event_vault/costum_widgets/catogory_dropdown/catogory_dropdown.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/costum_widgets/event_cards/event_card.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
+import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +15,7 @@ class ScreenEventManager extends StatefulWidget {
 }
 
 class _ScreenEventManagerState extends State<ScreenEventManager> {
-  List<String> dropDownList = ['All', 'Catering', 'Decoration'];
+  List<String> dropDownList = [];
   var selectedTextFieldItem = 'All';
   final searchCtrl = TextEditingController();
 
@@ -54,7 +56,31 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
                   selectedTextFieldItem = newValue!;
                 });
               },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Flexible(
+              child: ValueListenableBuilder(
+                valueListenable: eventListen,
+                builder: (context, events, child) {
+                  return ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+                      return EventCard(
+                        category: event.catogory,
+                        eventDate: event.date,
+                        eventName: event.eventName,
+                        eventTime: event.time,
+                        image: event.image,
+                      );
+                    },
+                  );
+                },
+              ),
             )
+            // EventCard(category: ,eventDate: ,eventName: ,eventTime: ,image: ,)
           ],
         ),
       ),

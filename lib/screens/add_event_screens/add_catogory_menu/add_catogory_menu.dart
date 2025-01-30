@@ -1,4 +1,3 @@
-
 import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
@@ -9,6 +8,7 @@ import 'package:event_vault/costum_widgets/unique_id/unique_id.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
 import 'package:flutter/material.dart';
 import '../../../database/modals/item_model/item_model.dart';
@@ -31,16 +31,26 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
   void initState() {
     super.initState();
     getItems();
+    updateFilteredItems();
+    itemListener.addListener(updateFilteredItems);
+  }
 
-    getItemsByCategory(widget.categotyId);
+  void updateFilteredItems() {
+    setState(() {
+      filteredItems = itemListener.value
+          .where((item) => item.catogoryId == widget.categotyId)
+          .toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    itemListener.removeListener(updateFilteredItems);
+    super.dispose();
   }
 
   void getItemsByCategory(String categotyId) {
-    final allItems = itemListener.value;
-    setState(() {
-      filteredItems =
-          allItems.where((item) => item.catogoryId == categotyId).toList();
-    });
+    updateFilteredItems();
   }
 
   void handleItemSelection(String itemId) {
@@ -60,8 +70,9 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
   Widget build(BuildContext context) {
     final budgetCtrl = TextEditingController();
     final specialRequirementsCtrl = TextEditingController();
+    final keyForm = GlobalKey<FormState>();
 
-    budgetCtrl.text = widget.eventDetals['Budget'];
+    budgetCtrl.text = widget.eventDetals['Budget'] ?? '0';
 
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
@@ -71,56 +82,91 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              myField(validationMode: AutovalidateMode.onUserInteraction,
-                hint: 'Enter Budget',
-                fieldTitle: 'Budget',
-                validator: (value) {},
-                controller: budgetCtrl,
+              Form(
+                key: keyForm,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    myField(
+                      keyboardType: TextInputType.number,
+                      validationMode: AutovalidateMode.onUserInteraction,
+                      hint: 'Enter Budget',
+                      fieldTitle: 'Budget',
+                      validator: (value) => eventBudgetValidation(value),
+                      controller: budgetCtrl,
+                    ),
+                    const SizedBox(height: 20),
+                    ItemFilterChips(
+                      filteredItems: filteredItems,
+                      selectedItems: selectedItems,
+                      onItemSelected: handleItemSelection,
+                    ),
+                    const SizedBox(height: 20),
+                    addMenuBtn(
+                      btnText: 'Add Menu Item',
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => AddNewItem(
+                                    categoryId:
+                                        widget.eventDetals['CategoryID'],
+                                  )),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    myBigField(
+                      validateMode: AutovalidateMode.disabled,
+                      hint: 'Special Requirements',
+                      fieldTitle: "Enter Custom Requests",
+                      controller: specialRequirementsCtrl,
+                      validator: (value) {},
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
-              ItemFilterChips(
-                filteredItems: filteredItems,
-                selectedItems: selectedItems,
-                onItemSelected: handleItemSelection,
-              ),
-              const SizedBox(height: 20),
-              addMenuBtn(
-                btnText: 'Add Menu Item',
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => AddNewItem(
-                              categoryId: widget.eventDetals['CategoryID'],
-                            )),
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              myBigField(
-                hint: 'Special Requirements',
-                fieldTitle: "Enter Custom Requests",
-                controller: specialRequirementsCtrl,
-                validator: (value) {},
-              ),
-              const SizedBox(height: 20),
               saveCancelColumn(
                 downBtn: 'Save',
                 upBtn: 'Cancel',
                 onDownBtn: () {
-                  // print("Selected Items: ${selectedItems}");
-                  final event = EventAddModal(
-                      catogory: widget.eventDetals['CategoryName'],
-                      eventName: widget.eventDetals['EventName'],
-                      date: widget.eventDetals['Date'],
-                      time: widget.eventDetals['Time'],
-                      location: widget.eventDetals['Location'],
-                      description: widget.eventDetals['DescriptionCtrl'],
-                      clientName: widget.eventDetals['ClietName'],
-                      contactInfo: widget.eventDetals['ContactInfo'],
+                  if (specialRequirementsCtrl.text.isEmpty) {
+                    specialRequirementsCtrl.text = 'No Special Requirements';
+                  }
+
+                  if (selectedItems.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Please select at least one item.'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return;
+                  }
+
+                  if (keyForm.currentState!.validate()) {
+                    final event = EventAddModal(
+                      image: widget.eventDetals['Image'],
+                      catogory: widget.categotyId,
+                      eventName:
+                          widget.eventDetals['EventName'] ?? 'No Event Name',
+                      date: widget.eventDetals['Date'] ?? 'No Date',
+                      time: widget.eventDetals['Time'] ?? 'No Time',
+                      location: widget.eventDetals['Location'] ?? 'No Location',
+                      description: widget.eventDetals['DescriptionCtrl'] ??
+                          'No Description',
+                      clientName:
+                          widget.eventDetals['ClietName'] ?? 'No Client Name',
+                      contactInfo: widget.eventDetals['ContactInfo'] ??
+                          'No Contact Info',
                       eventId: generateID(),
-                      items: selectedItems);
-                  addEvent(event);
-                  print(selectedItems);
+                      items: selectedItems,
+                      special: specialRequirementsCtrl.text,
+                    );
+
+                    addEvent(event);
+                    Navigator.of(context).pop();
+                  }
                 },
                 onUpBtn: () {
                   Navigator.pop(context);

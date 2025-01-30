@@ -14,6 +14,7 @@ import 'package:event_vault/form_validation/event_adding/event_image/event_image
 import 'package:event_vault/form_validation/event_adding/event_location/event_location.dart';
 import 'package:event_vault/form_validation/event_adding/event_name/event_name.dart';
 import 'package:event_vault/form_validation/event_adding/event_time/event_time.dart';
+import 'package:event_vault/image_converting/image_converting.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,6 +33,7 @@ class ScreenAddEvent extends StatefulWidget {
 
 class _ScreenAddEventState extends State<ScreenAddEvent> {
   XFile? image;
+  String newImage = '';
   final picker = ImagePicker();
 
   //get an image from the gallery
@@ -104,6 +106,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
       if (image == null) {
         eventImageValidation(image, context);
         return;
+      } else {
+        newImage = imageConvertion(image!).toString();
       }
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => AddCategoryMenu(
@@ -115,7 +119,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
             'Location': location.text,
             'DescriptionCtrl': descriptionCtrl.text,
             'Budget': budget.text,
-            'Image': image,
+            'Image': newImage,
             'ClietName': clietName.text,
             'ContactInfo': contactInfo.text,
             'CategoryID': widget.selectedCatogory,
@@ -174,12 +178,14 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           validationMode: AutovalidateMode.onUserInteraction,
                         ),
                         myBigField(
+                          validateMode: AutovalidateMode.onUserInteraction,
                           hint: 'Enter Description',
                           fieldTitle: 'Description',
                           controller: descriptionCtrl,
                           validator: (value) => discription(value),
                         ),
                         myField(
+                          keyboardType: TextInputType.number,
                           validationMode: AutovalidateMode.onUserInteraction,
                           controller: budget,
                           hint: 'Enter Budget',
@@ -201,6 +207,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           validator: (value) => clientName(value),
                         ),
                         myField(
+                          keyboardType: TextInputType.number,
+                          maxLength: 10,
                           validationMode: AutovalidateMode.onUserInteraction,
                           controller: contactInfo,
                           hint: 'Enter Contact Info',

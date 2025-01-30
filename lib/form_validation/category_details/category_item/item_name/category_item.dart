@@ -1,4 +1,4 @@
-String? categoryItemNameValidation(String? value) {
+categoryItemNameValidation(String? value) {
   if (value == null || value.isEmpty) {
     return 'Please enter a category item name';
   }

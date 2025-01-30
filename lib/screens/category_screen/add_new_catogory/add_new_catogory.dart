@@ -34,13 +34,15 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    myField(validationMode: AutovalidateMode.onUserInteraction,
+                    myField(
+                        validationMode: AutovalidateMode.onUserInteraction,
                         hint: 'Enter Category Name',
                         fieldTitle: 'Category Name',
                         validator: (value) => categotyNameValidate(value),
                         controller: categoryNameCtrl),
                     SizedBox(height: 20),
                     myBigField(
+                      validateMode: AutovalidateMode.onUserInteraction,
                       hint: 'Description',
                       fieldTitle: 'Description',
                       controller: descriptionCtrl,

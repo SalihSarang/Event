@@ -9,7 +9,8 @@ Widget myField(
     required String? Function(String?) validator,
     required TextEditingController controller,
     required AutovalidateMode validationMode,
-    TextInputType? keyboardType}) {
+    TextInputType? keyboardType,
+    int? maxLength}) {
   return Column(
     children: [
       Align(
@@ -27,6 +28,7 @@ Widget myField(
         height: 10,
       ),
       TextFormField(
+        maxLength: maxLength,
         autovalidateMode: validationMode,
         keyboardType: keyboardType,
         controller: controller,
@@ -78,7 +80,8 @@ Widget myBigField(
     {required String hint,
     required String fieldTitle,
     required TextEditingController controller,
-    required String? Function(String?) validator}) {
+    required String? Function(String?) validator,
+    required AutovalidateMode validateMode}) {
   return Column(
     children: [
       Align(
@@ -96,6 +99,7 @@ Widget myBigField(
         height: 10,
       ),
       TextFormField(
+        autovalidateMode: validateMode,
         validator: validator,
         controller: controller,
         maxLines: 5,
