@@ -3,14 +3,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget myField(
-    {required String hint,
-    required String fieldTitle,
-    required String? Function(String?) validator,
-    required TextEditingController controller,
-    required AutovalidateMode validationMode,
-    TextInputType? keyboardType,
-    int? maxLength}) {
+Widget myField({
+  required String hint,
+  required String fieldTitle,
+  required String? Function(String?) validator,
+  required TextEditingController controller,
+  required AutovalidateMode validationMode,
+  TextInputType? keyboardType,
+  int? maxLength,
+}) {
   return Column(
     children: [
       Align(

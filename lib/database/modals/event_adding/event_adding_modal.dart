@@ -29,6 +29,8 @@ class EventAddModal {
   String special;
   @HiveField(11)
   String image;
+  @HiveField(12)
+  String budget;
 
   EventAddModal(
       {required this.catogory,
@@ -42,5 +44,6 @@ class EventAddModal {
       required this.eventId,
       required this.items,
       required this.special,
-      required this.image});
+      required this.image,
+      required this.budget});
 }

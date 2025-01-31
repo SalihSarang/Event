@@ -1,3 +1,6 @@
+import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/screens/event_edit_screen/update_category/update_category.dart';
+import 'package:flutter/material.dart';
 import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/date_select/date_theme.dart';
@@ -14,23 +17,18 @@ import 'package:event_vault/form_validation/event_adding/event_image/event_image
 import 'package:event_vault/form_validation/event_adding/event_location/event_location.dart';
 import 'package:event_vault/form_validation/event_adding/event_name/event_name.dart';
 import 'package:event_vault/form_validation/event_adding/event_time/event_time.dart';
-import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-class ScreenAddEvent extends StatefulWidget {
-  ScreenAddEvent(
-      {super.key, required this.selectedCatogory, required this.categoryName});
+class EventEditScreen extends StatefulWidget {
+  EventEditScreen({super.key, required this.event});
 
-  String selectedCatogory;
-  String categoryName;
-
+  EventAddModal event;
   @override
-  State<ScreenAddEvent> createState() => _ScreenAddEventState();
+  State<EventEditScreen> createState() => _EventEditScreen();
 }
 
-class _ScreenAddEventState extends State<ScreenAddEvent> {
+class _EventEditScreen extends State<EventEditScreen> {
   XFile? image;
   String newImage = '';
   final picker = ImagePicker();
@@ -83,8 +81,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
     if (picked != null && picked != _selectedTime) {
       setState(() {
         _selectedTime = picked;
-        timeString =
-            '${_selectedTime.hourOfPeriod.toString().padLeft(2, '0')}:${_selectedTime.minute.toString().padLeft(2, '0')} ${_selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}';
+        timectrl.text =
+            "${_selectedTime.hourOfPeriod.toString().padLeft(2, '0')}:${_selectedTime.minute.toString().padLeft(2, '0')} ${_selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}";
       });
     }
   }
@@ -102,6 +100,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
 
   //validate and navigate to the next screen
   void validateForm() {
+    print(' what is  : ${widget.event.description}');
     if (forkey.currentState!.validate()) {
       if (image == null) {
         eventImageValidation(image, context);
@@ -109,8 +108,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
       }
 
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCategoryMenu(
-          categotyId: widget.selectedCatogory,
+        builder: (context) => UpdateCategory(
+          categotyId: widget.event.catogory,
           eventDetals: {
             'EventName': eventName.text,
             'Date': date.text,
@@ -121,7 +120,9 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
             'Image': newImage,
             'ClietName': clietName.text,
             'ContactInfo': contactInfo.text,
-            'CategoryID': widget.selectedCatogory,
+            'CategoryID': widget.event.catogory,
+            'EventID': widget.event.eventId,
+            'Description': widget.event.description
           },
         ),
       ));
@@ -129,10 +130,21 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    timectrl.text = widget.event.time;
+    eventName.text = widget.event.eventName;
+    date.text = widget.event.date;
+    location.text = widget.event.location;
+    budget.text = widget.event.budget;
+    clietName.text = widget.event.clientName;
+    contactInfo.text = widget.event.contactInfo;
+    descriptionCtrl.text = widget.event.description;
+    image = XFile(widget.event.image);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print(widget.selectedCatogory);
-    print(widget.categoryName);
-    timectrl.text = timeString;
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
       appBar: CustomAppBar(title: "Add Event"),

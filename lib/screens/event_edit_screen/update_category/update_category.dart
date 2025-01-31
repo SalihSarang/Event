@@ -9,23 +9,32 @@ import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
-import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
+import 'package:event_vault/screens/event_edit_screen/edit_category_item/edit_item.dart';
 import 'package:flutter/material.dart';
 import '../../../database/modals/item_model/item_model.dart';
 
-class AddCategoryMenu extends StatefulWidget {
+class UpdateCategory extends StatefulWidget {
   String categotyId;
   Map<String, dynamic> eventDetals;
-  AddCategoryMenu(
+  UpdateCategory(
       {super.key, required this.categotyId, required this.eventDetals});
 
   @override
-  State<AddCategoryMenu> createState() => _AddCategoryMenuState();
+  State<UpdateCategory> createState() => _UpdateCategory();
 }
 
-class _AddCategoryMenuState extends State<AddCategoryMenu> {
+class _UpdateCategory extends State<UpdateCategory> {
   List<ItemModel> filteredItems = [];
   List<ItemModel> selectedItems = [];
+
+  void loadSelectedItems() async {
+    final eventId = widget.eventDetals['EventID'];
+    final items = await getSelectedItems(eventId);
+
+    setState(() {
+      selectedItems = items;
+    });
+  }
 
   @override
   void initState() {
@@ -66,17 +75,15 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
     });
   }
 
-  getSelectedItem() {
-    final eventId = widget.eventDetals['EventID'];
-  }
-
   @override
   Widget build(BuildContext context) {
+    widget.eventDetals;
     final budgetCtrl = TextEditingController();
     final specialRequirementsCtrl = TextEditingController();
     final keyForm = GlobalKey<FormState>();
 
     budgetCtrl.text = widget.eventDetals['Budget'] ?? '0';
+    specialRequirementsCtrl.text = widget.eventDetals['Description'];
 
     return Scaffold(
       backgroundColor: ColorPalette.mainBg,
@@ -111,7 +118,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => AddNewItem(
+                              builder: (context) => EditItem(
                                     categoryId:
                                         widget.eventDetals['CategoryID'],
                                   )),
@@ -164,12 +171,12 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                           widget.eventDetals['ClietName'] ?? 'No Client Name',
                       contactInfo: widget.eventDetals['ContactInfo'] ??
                           'No Contact Info',
-                      eventId: generateID(),
+                      eventId: widget.eventDetals['EventID'],
                       items: selectedItems,
                       special: specialRequirementsCtrl.text,
                     );
 
-                    addEvent(event);
+                    upDateEvent(event);
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   }

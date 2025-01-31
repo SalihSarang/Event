@@ -1,6 +1,6 @@
 import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/font/app_font.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void customAlertBox(
   BuildContext context, {
@@ -35,15 +35,8 @@ void customAlertBox(
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    message,
-                    textAlign: TextAlign.start,
-                    style: GoogleFonts.roboto(
-                      color: ColorPalette.textW,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
+                  Text(message,
+                      textAlign: TextAlign.start, style: myFont(size: 20)),
                 ],
               ),
               SizedBox(height: 20),
@@ -54,14 +47,7 @@ void customAlertBox(
                     onPressed: noPressed,
                     child: Row(
                       children: [
-                        Text(
-                          'No',
-                          style: GoogleFonts.roboto(
-                            color: ColorPalette.textW,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 20,
-                          ),
-                        ),
+                        Text('No', style: myFont(size: 20)),
                       ],
                     ),
                   ),
@@ -72,14 +58,7 @@ void customAlertBox(
                     onPressed: yesPressed,
                     child: Row(
                       children: [
-                        Text(
-                          'Yes',
-                          style: GoogleFonts.roboto(
-                            color: ColorPalette.textW,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 20,
-                          ),
-                        ),
+                        Text('Yes', style: myFont(size: 20)),
                       ],
                     ),
                   ),

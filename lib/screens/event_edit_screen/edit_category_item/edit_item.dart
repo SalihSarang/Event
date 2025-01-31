@@ -10,15 +10,15 @@ import 'package:event_vault/form_validation/category_details/category_item/item_
 import 'package:event_vault/form_validation/category_details/category_item/item_price/item_price.dart';
 import 'package:flutter/material.dart';
 
-class AddNewItem extends StatefulWidget {
+class EditItem extends StatefulWidget {
   String categoryId;
-  AddNewItem({super.key, required this.categoryId});
+  EditItem({super.key, required this.categoryId});
 
   @override
-  State<AddNewItem> createState() => _AddNewItemState();
+  State<EditItem> createState() => _EditItem();
 }
 
-class _AddNewItemState extends State<AddNewItem> {
+class _EditItem extends State<EditItem> {
   final itemNameCtrl = TextEditingController();
 
   final priceCtrl = TextEditingController();

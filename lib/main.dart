@@ -14,13 +14,15 @@ void main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(EventAddModalAdapter());
-  await Hive.openBox<EventAddModal>(ADD_EVENT);
 
   Hive.registerAdapter(CatogoryModelAdapter());
-  await Hive.openBox<CatogoryModel>(CATEGORY);
 
   Hive.registerAdapter(ItemModelAdapter());
+
+  await Hive.openBox<EventAddModal>(ADD_EVENT);
+  await Hive.openBox<CatogoryModel>(CATEGORY);
   await Hive.openBox<ItemModel>(ITEMS);
+  getAllEvents();
 
   runApp(MyApp());
 }

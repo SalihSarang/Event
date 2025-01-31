@@ -4,6 +4,7 @@ import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/costum_widgets/event_cards/event_card.dart';
 import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -61,7 +62,7 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
               height: 20,
             ),
             Flexible(
-              child: ValueListenableBuilder(
+              child: ValueListenableBuilder<List<EventAddModal>>(
                 valueListenable: eventListen,
                 builder: (context, events, child) {
                   return ListView.builder(
@@ -69,18 +70,13 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
                     itemBuilder: (context, index) {
                       final event = events[index];
                       return EventCard(
-                        category: event.catogory,
-                        eventDate: event.date,
-                        eventName: event.eventName,
-                        eventTime: event.time,
-                        image: event.image,
+                        event: event,
                       );
                     },
                   );
                 },
               ),
             )
-            // EventCard(category: ,eventDate: ,eventName: ,eventTime: ,image: ,)
           ],
         ),
       ),
