@@ -1,10 +1,3 @@
-import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/costum_widgets/date_select/date_theme.dart';
-import 'package:event_vault/costum_widgets/img_add_field/img_add_field.dart';
-import 'package:event_vault/costum_widgets/save_add_btn/save_add_btn.dart';
-import 'package:event_vault/costum_widgets/text_field/text_field.dart';
-import 'package:event_vault/costum_widgets/time_selecting/theme.dart';
 import 'package:event_vault/form_validation/event_adding/client_info/name_validation/name_validation.dart';
 import 'package:event_vault/form_validation/event_adding/client_info/number_validation/number_validation.dart';
 import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
@@ -15,6 +8,13 @@ import 'package:event_vault/form_validation/event_adding/event_location/event_lo
 import 'package:event_vault/form_validation/event_adding/event_name/event_name.dart';
 import 'package:event_vault/form_validation/event_adding/event_time/event_time.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/date_select/date_theme.dart';
+import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
+import 'package:event_vault/widgets/save_add_btn/save_add_btn.dart';
+import 'package:event_vault/widgets/text_field/text_field.dart';
+import 'package:event_vault/widgets/time_selecting/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';

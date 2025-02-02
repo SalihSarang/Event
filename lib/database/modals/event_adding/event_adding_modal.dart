@@ -1,4 +1,3 @@
-import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:hive_flutter/adapters.dart';
 part 'event_adding_modal.g.dart';

@@ -1,5 +1,5 @@
 categoryDiscription(String value) {
-  if (value == null || value.isEmpty) {
+  if (value.isEmpty) {
     return 'Please enter a category description';
   }
 

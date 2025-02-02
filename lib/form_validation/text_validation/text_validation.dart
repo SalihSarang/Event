@@ -1,5 +1,5 @@
 textValidation({required String value}) {
-  if (value == null || value.trim().isEmpty) {
+  if (value.trim().isEmpty) {
     return 'Item Name cannot be empty.';
   }
   if (value.trim().length < 3) {

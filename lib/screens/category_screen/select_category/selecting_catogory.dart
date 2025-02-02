@@ -1,9 +1,9 @@
-import 'package:event_vault/costum_widgets/add_menu_btn/add_menu_btn.dart';
-import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/costum_widgets/custom_listenable_builder/category_list_view/custom_listenable_builder.dart';
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/screens/category_screen/add_new_catogory/add_new_catogory.dart';
+import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/custom_listenable_builder/category_list_view/custom_listenable_builder.dart';
 import 'package:flutter/material.dart';
 
 class SelectingCategory extends StatefulWidget {

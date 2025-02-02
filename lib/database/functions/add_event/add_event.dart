@@ -42,7 +42,7 @@ Future<List<ItemModel>> getSelectedItems(String eventId) async {
     (e) => e.eventId == eventId,
   );
 
-  return event?.items ?? [];
+  return event.items ?? [];
 }
 
 void deleteCategory(String value) async {

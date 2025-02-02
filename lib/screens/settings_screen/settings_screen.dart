@@ -1,6 +1,6 @@
-import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/costum_widgets/settings_options/settings_options.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/settings_options/settings_options.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

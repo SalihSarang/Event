@@ -1,10 +1,9 @@
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
 import 'package:event_vault/screens/category_screen/select_category/selecting_catogory.dart';
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
 import 'package:event_vault/screens/home/screen_home.dart';
 import 'package:event_vault/screens/settings_screen/settings_screen.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});

@@ -1,10 +1,10 @@
-import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/catogory_dropdown/catogory_dropdown.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/costum_widgets/event_cards/event_card.dart';
-import 'package:event_vault/costum_widgets/text_field/text_field.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/catogory_dropdown/catogory_dropdown.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/event_cards/event_card.dart';
+import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

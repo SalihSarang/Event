@@ -1,8 +1,8 @@
-import 'package:event_vault/costum_widgets/app_bar/app_bar.dart';
-import 'package:event_vault/costum_widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/costum_widgets/event_detail_screen/event_detail_page.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class EventDetails extends StatelessWidget {
