@@ -1,6 +1,6 @@
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
-import 'package:event_vault/form_validation/category_details/category_name/category_name.dart';
-import 'package:event_vault/form_validation/event_adding/event_discription/event_discription.dart';
+import 'package:event_vault/utils/validation/category_details/category_name/category_name.dart';
+import 'package:event_vault/utils/validation/event_adding/event_discription/event_discription.dart';
 import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/color%20palette/color_palette.dart';

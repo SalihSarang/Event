@@ -9,15 +9,15 @@ import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:event_vault/widgets/time_selecting/theme.dart';
 import 'package:flutter/material.dart';
 
-import 'package:event_vault/form_validation/event_adding/client_info/name_validation/name_validation.dart';
-import 'package:event_vault/form_validation/event_adding/client_info/number_validation/number_validation.dart';
-import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
-import 'package:event_vault/form_validation/event_adding/event_date/event_date.dart';
-import 'package:event_vault/form_validation/event_adding/event_discription/event_discription.dart';
-import 'package:event_vault/form_validation/event_adding/event_image/event_image.dart';
-import 'package:event_vault/form_validation/event_adding/event_location/event_location.dart';
-import 'package:event_vault/form_validation/event_adding/event_name/event_name.dart';
-import 'package:event_vault/form_validation/event_adding/event_time/event_time.dart';
+import 'package:event_vault/utils/validation/event_adding/client_info/name_validation/name_validation.dart';
+import 'package:event_vault/utils/validation/event_adding/client_info/number_validation/number_validation.dart';
+import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
+import 'package:event_vault/utils/validation/event_adding/event_date/event_date.dart';
+import 'package:event_vault/utils/validation/event_adding/event_discription/event_discription.dart';
+import 'package:event_vault/utils/validation/event_adding/event_image/event_image.dart';
+import 'package:event_vault/utils/validation/event_adding/event_location/event_location.dart';
+import 'package:event_vault/utils/validation/event_adding/event_name/event_name.dart';
+import 'package:event_vault/utils/validation/event_adding/event_time/event_time.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -123,7 +123,8 @@ class _EventEditScreen extends State<EventEditScreen> {
             'ContactInfo': contactInfo.text,
             'CategoryID': widget.event.catogory,
             'EventID': widget.event.eventId,
-            'Description': widget.event.description
+            'Description': widget.event.description,
+            'CategoryName': widget.event.categoryName
           },
         ),
       ));

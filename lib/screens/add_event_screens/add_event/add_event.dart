@@ -1,12 +1,12 @@
-import 'package:event_vault/form_validation/event_adding/client_info/name_validation/name_validation.dart';
-import 'package:event_vault/form_validation/event_adding/client_info/number_validation/number_validation.dart';
-import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
-import 'package:event_vault/form_validation/event_adding/event_date/event_date.dart';
-import 'package:event_vault/form_validation/event_adding/event_discription/event_discription.dart';
-import 'package:event_vault/form_validation/event_adding/event_image/event_image.dart';
-import 'package:event_vault/form_validation/event_adding/event_location/event_location.dart';
-import 'package:event_vault/form_validation/event_adding/event_name/event_name.dart';
-import 'package:event_vault/form_validation/event_adding/event_time/event_time.dart';
+import 'package:event_vault/utils/validation/event_adding/client_info/name_validation/name_validation.dart';
+import 'package:event_vault/utils/validation/event_adding/client_info/number_validation/number_validation.dart';
+import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
+import 'package:event_vault/utils/validation/event_adding/event_date/event_date.dart';
+import 'package:event_vault/utils/validation/event_adding/event_discription/event_discription.dart';
+import 'package:event_vault/utils/validation/event_adding/event_image/event_image.dart';
+import 'package:event_vault/utils/validation/event_adding/event_location/event_location.dart';
+import 'package:event_vault/utils/validation/event_adding/event_name/event_name.dart';
+import 'package:event_vault/utils/validation/event_adding/event_time/event_time.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/color%20palette/color_palette.dart';
@@ -122,6 +122,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
             'ClietName': clietName.text,
             'ContactInfo': contactInfo.text,
             'CategoryID': widget.selectedCatogory,
+            'CategoryName': widget.categoryName
           },
         ),
       ));

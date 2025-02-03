@@ -1,7 +1,7 @@
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
-import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
+import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
 import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
@@ -150,6 +150,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
 
                   if (keyForm.currentState!.validate()) {
                     final event = EventAddModal(
+                      categoryName: widget.eventDetals['CategoryName'],
                       budget: budgetCtrl.text,
                       image: widget.eventDetals['Image'],
                       catogory: widget.categotyId,

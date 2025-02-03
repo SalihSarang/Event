@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
-import 'package:event_vault/assets/font/app_font.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_manager/event_details/event_details.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
@@ -16,7 +16,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Image path: ${event.image}");
+    print("Image path: ${event.categoryName}");
     return SizedBox(
       height: 320,
       width: double.infinity,

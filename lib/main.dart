@@ -14,9 +14,7 @@ void main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(EventAddModalAdapter());
-
   Hive.registerAdapter(CatogoryModelAdapter());
-
   Hive.registerAdapter(ItemModelAdapter());
 
   await Hive.openBox<EventAddModal>(ADD_EVENT);

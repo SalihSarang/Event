@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/assets/font/app_font.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/color%20palette/color_palette.dart';
 import 'package:flutter/material.dart';
 

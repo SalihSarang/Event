@@ -149,10 +149,13 @@ Widget myBigField(
 }
 
 Widget searchField(
-    {required String hint, required TextEditingController controller}) {
+    {required String hint,
+    required TextEditingController controller,
+    required ValueChanged onChanged}) {
   return Column(
     children: [
       TextFormField(
+        onChanged: onChanged,
         controller: controller,
         style: TextStyle(color: ColorPalette.textW),
         decoration: InputDecoration(

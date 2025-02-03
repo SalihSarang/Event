@@ -1,7 +1,7 @@
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
-import 'package:event_vault/form_validation/event_adding/event_budget/event_budget.dart';
+import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/event_edit_screen/edit_category_item/edit_item.dart';
 import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
@@ -156,20 +156,17 @@ class _UpdateCategory extends State<UpdateCategory> {
 
                   if (keyForm.currentState!.validate()) {
                     final event = EventAddModal(
+                      categoryName: widget.eventDetals['Image'],
                       budget: budgetCtrl.text,
                       image: widget.eventDetals['Image'],
                       catogory: widget.categotyId,
-                      eventName:
-                          widget.eventDetals['EventName'] ?? 'No Event Name',
-                      date: widget.eventDetals['Date'] ?? 'No Date',
-                      time: widget.eventDetals['Time'] ?? 'No Time',
-                      location: widget.eventDetals['Location'] ?? 'No Location',
-                      description: widget.eventDetals['DescriptionCtrl'] ??
-                          'No Description',
-                      clientName:
-                          widget.eventDetals['ClietName'] ?? 'No Client Name',
-                      contactInfo: widget.eventDetals['ContactInfo'] ??
-                          'No Contact Info',
+                      eventName: widget.eventDetals['EventName'],
+                      date: widget.eventDetals['Date'],
+                      time: widget.eventDetals['Time'],
+                      location: widget.eventDetals['Location'],
+                      description: widget.eventDetals['DescriptionCtrl'],
+                      clientName: widget.eventDetals['ClietName'],
+                      contactInfo: widget.eventDetals['ContactInfo'],
                       eventId: widget.eventDetals['EventID'],
                       items: selectedItems,
                       special: specialRequirementsCtrl.text,
