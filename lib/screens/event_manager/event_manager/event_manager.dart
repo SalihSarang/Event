@@ -2,10 +2,11 @@ import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/choice_chips/choice_chips.dart';
-import 'package:event_vault/widgets/event_cards/event_card.dart';
+import 'package:event_vault/widgets/screen_event_manager/event_cards/event_card.dart';
+import 'package:event_vault/widgets/screen_event_manager/screen_event_manager.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -22,47 +23,27 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
   final searchCtrl = TextEditingController();
   List<EventAddModal> result = [];
   List<CatogoryModel> categorys = [];
+
   @override
   void initState() {
     super.initState();
     getAllCategories();
-    catogoryListener.addListener(() {
-      setState(() {
-        categorys = catogoryListener.value;
-      });
-    });
+    catogoryListener.addListener(handleCategoryUpdate);
     result = eventListen.value;
   }
 
-  searchEvent() {
-    List<EventAddModal> searchedEvents = [];
-    if (searchCtrl.text.isNotEmpty) {
-      searchedEvents = result.where((event) {
-        final eventName =
-            event.eventName.toLowerCase().contains(searchCtrl.text);
-        final eventDate = event.date.toLowerCase().contains(searchCtrl.text);
-        final eventCategory =
-            event.catogory.toLowerCase().contains(searchCtrl.text);
-        final eventLocation =
-            event.location.toLowerCase().contains(searchCtrl.text);
-        return eventName || eventDate || eventCategory || eventLocation;
-      }).toList();
-    } else {
-      searchedEvents = eventListen.value;
+  void handleCategoryUpdate() {
+    if (mounted) {
+      categorys = catogoryListener.value;
     }
-    setState(() {
-      result = searchedEvents;
-    });
   }
 
   updateUI(List<EventAddModal> newUI) {
-    setState(() {
-      if (newUI.isEmpty) {
-        result = eventListen.value;
-      } else {
-        result = newUI;
-      }
-    });
+    if (newUI.isEmpty) {
+      result = eventListen.value;
+    } else {
+      result = newUI;
+    }
   }
 
   @override
@@ -79,7 +60,11 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
               hint: 'Search events by name, date or location',
               controller: searchCtrl,
               onChanged: (value) {
-                searchEvent();
+                final searchResult = searchEvent(
+                    search: searchCtrl.text, eventList: eventListen.value);
+                setState(() {
+                  result = searchResult;
+                });
               },
             ),
             SizedBox(

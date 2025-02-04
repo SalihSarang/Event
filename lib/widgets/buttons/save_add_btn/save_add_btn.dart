@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,14 +24,14 @@ Widget saveCancelRow({
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(width: 0),
             ),
-            backgroundColor: ColorPalette.secondary,
+            backgroundColor: AppTheme.secondary,
           ),
           onPressed: onleftBtn,
           child: Center(
             child: Text(
               leftBtn,
               style: GoogleFonts.roboto(
-                color: ColorPalette.textW,
+                color: AppTheme.textW,
                 fontWeight: FontWeight.w800,
                 fontSize: screenHeight * 0.020,
               ),
@@ -49,14 +49,14 @@ Widget saveCancelRow({
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(width: 0),
             ),
-            backgroundColor: ColorPalette.secondary,
+            backgroundColor: AppTheme.secondary,
           ),
           onPressed: onRightBtn,
           child: Center(
             child: Text(
               rightBtn,
               style: GoogleFonts.roboto(
-                color: ColorPalette.textW,
+                color: AppTheme.textW,
                 fontWeight: FontWeight.w800,
                 fontSize: screenHeight * 0.020,
               ),
@@ -81,11 +81,11 @@ Widget saveCancelColumn(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 0.1,
               ),
             ),
-            backgroundColor: ColorPalette.secondary,
+            backgroundColor: AppTheme.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onUpBtn,
@@ -98,7 +98,7 @@ Widget saveCancelColumn(
               Text(
                 upBtn,
                 style: GoogleFonts.roboto(
-                  color: ColorPalette.textW,
+                  color: AppTheme.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -116,7 +116,7 @@ Widget saveCancelColumn(
                 width: 0,
               ),
             ),
-            backgroundColor: ColorPalette.hilite,
+            backgroundColor: AppTheme.hilite,
             minimumSize: Size(235, 60),
           ),
           onPressed: onDownBtn,
@@ -129,7 +129,7 @@ Widget saveCancelColumn(
               Text(
                 downBtn,
                 style: GoogleFonts.roboto(
-                  color: ColorPalette.textW,
+                  color: AppTheme.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -155,11 +155,11 @@ Widget selectCatogory(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 0.1,
               ),
             ),
-            backgroundColor: ColorPalette.secondary,
+            backgroundColor: AppTheme.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onBtn,
@@ -171,7 +171,7 @@ Widget selectCatogory(
               Text(
                 titleBtn,
                 style: GoogleFonts.roboto(
-                  color: ColorPalette.textW,
+                  color: AppTheme.textW,
                   fontWeight: FontWeight.w800,
                   fontSize: 20,
                 ),
@@ -207,7 +207,7 @@ Widget selectCatogory(
                               children: [
                                 Icon(
                                   Icons.add,
-                                  color: ColorPalette.textW,
+                                  color: AppTheme.textW,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -215,7 +215,7 @@ Widget selectCatogory(
                                 Text(
                                   'Add Item',
                                   style: GoogleFonts.roboto(
-                                    color: ColorPalette.textW,
+                                    color: AppTheme.textW,
                                     fontWeight: FontWeight.w800,
                                     fontSize: 15,
                                   ),
@@ -231,14 +231,14 @@ Widget selectCatogory(
                               onPressed: detailsBtn,
                               icon: Icon(
                                 Icons.article_outlined,
-                                color: ColorPalette.textW,
+                                color: AppTheme.textW,
                                 size: 25,
                               ),
                             ),
                             Text(
                               'Details',
                               style: GoogleFonts.roboto(
-                                color: ColorPalette.textW,
+                                color: AppTheme.textW,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 15,
                               ),
@@ -254,13 +254,13 @@ Widget selectCatogory(
                                 onPressed: updateButton,
                                 icon: Icon(
                                   Icons.edit,
-                                  color: ColorPalette.hilite,
+                                  color: AppTheme.hilite,
                                   size: 25,
                                 )),
                             Text(
                               'Edit',
                               style: GoogleFonts.roboto(
-                                color: ColorPalette.textW,
+                                color: AppTheme.textW,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 15,
                               ),
@@ -276,14 +276,14 @@ Widget selectCatogory(
                               onPressed: deleteBtn,
                               icon: Icon(
                                 Icons.delete,
-                                color: ColorPalette.delete,
+                                color: AppTheme.delete,
                                 size: 25,
                               ),
                             ),
                             Text(
                               'Delete',
                               style: GoogleFonts.roboto(
-                                color: ColorPalette.textW,
+                                color: AppTheme.textW,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 15,
                               ),
@@ -296,7 +296,7 @@ Widget selectCatogory(
                       onPressed: null,
                       icon: Icon(
                         Icons.more_vert,
-                        color: ColorPalette.textW,
+                        color: AppTheme.textW,
                         size: 25,
                       ),
                     ),

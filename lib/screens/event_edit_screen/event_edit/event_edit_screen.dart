@@ -1,12 +1,12 @@
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screens/event_edit_screen/update_category/update_category.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/widgets/date_select/date_theme.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
+import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
 import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
-import 'package:event_vault/widgets/save_add_btn/save_add_btn.dart';
+import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
-import 'package:event_vault/widgets/time_selecting/theme.dart';
+import 'package:event_vault/widgets/date_and_time/time_selecting/time_select.dart';
 import 'package:flutter/material.dart';
 
 import 'package:event_vault/utils/validation/event_adding/client_info/name_validation/name_validation.dart';
@@ -34,13 +34,13 @@ class _EventEditScreen extends State<EventEditScreen> {
   String newImage = '';
   final picker = ImagePicker();
 
-  //get an image from the gallery
+  // image from the gallery
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         image = pickedFile;
-        newImage = pickedFile.path; // Store the image path
+        newImage = pickedFile.path;
       });
     }
   }
@@ -99,7 +99,7 @@ class _EventEditScreen extends State<EventEditScreen> {
   final contactInfo = TextEditingController();
   final descriptionCtrl = TextEditingController();
 
-  //validate and navigate to the next screen
+  //validate and navigate to next screen
   void validateForm() {
     print(' what is  : ${widget.event.description}');
     if (forkey.currentState!.validate()) {
@@ -148,7 +148,7 @@ class _EventEditScreen extends State<EventEditScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: "Add Event"),
       body: SafeArea(
         child: Padding(

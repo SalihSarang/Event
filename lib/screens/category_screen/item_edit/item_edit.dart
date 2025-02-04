@@ -2,9 +2,9 @@ import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/utils/validation/category_details/category_item/item_name/category_item.dart';
 import 'package:event_vault/utils/validation/category_details/category_item/item_price/item_price.dart';
-import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
+import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class _AddCategoryItemsState extends State<ItemEdit> {
     itemName.text = widget.itemName;
     price.text = widget.itemPrice;
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(
         title: 'Add Category Item',
       ),

@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +17,7 @@ Widget categoryDetails(
                 child: Text(
                   'Category Name',
                   style: GoogleFonts.roboto(
-                    color: ColorPalette.textW,
+                    color: AppTheme.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 20,
                   ),
@@ -25,7 +25,7 @@ Widget categoryDetails(
               ),
             ),
             Card(
-              color: ColorPalette.secondary,
+              color: AppTheme.secondary,
               child: Row(
                 children: [
                   Padding(
@@ -35,7 +35,7 @@ Widget categoryDetails(
                         child: Text(
                           categoryName,
                           style: GoogleFonts.roboto(
-                            color: ColorPalette.textW,
+                            color: AppTheme.textW,
                             fontWeight: FontWeight.w800,
                             fontSize: 17,
                           ),
@@ -61,7 +61,7 @@ Widget categoryDetails(
                 child: Text(
                   'Discription',
                   style: GoogleFonts.roboto(
-                    color: ColorPalette.textW,
+                    color: AppTheme.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 20,
                   ),
@@ -69,7 +69,7 @@ Widget categoryDetails(
               ),
             ),
             Card(
-              color: ColorPalette.secondary,
+              color: AppTheme.secondary,
               child: Row(
                 children: [
                   Padding(
@@ -79,7 +79,7 @@ Widget categoryDetails(
                         child: Text(
                           categoryDiscription,
                           style: GoogleFonts.roboto(
-                            color: ColorPalette.textW,
+                            color: AppTheme.textW,
                             fontWeight: FontWeight.w800,
                             fontSize: 17,
                           ),

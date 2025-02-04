@@ -1,5 +1,5 @@
 import 'package:event_vault/utils/font/app_font.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void customAlertBox(
@@ -14,7 +14,7 @@ void customAlertBox(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-        backgroundColor: ColorPalette.secondary,
+        backgroundColor: AppTheme.secondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -30,7 +30,7 @@ void customAlertBox(
                   Center(
                     child: Icon(
                       icon,
-                      color: ColorPalette.delete,
+                      color: AppTheme.delete,
                       size: 50,
                     ),
                   ),

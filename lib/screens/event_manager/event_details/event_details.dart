@@ -1,7 +1,7 @@
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class EventDetails extends StatelessWidget {
     final eventItems = event.items;
     print(event.catogory);
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Event Name'),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -57,19 +57,19 @@ class EventDetails extends StatelessWidget {
             SizedBox(height: 20),
             PageButtons(
               btnText: 'Expense Tracker',
-              btnColor: ColorPalette.secondary,
+              btnColor: AppTheme.secondary,
               onPressed: () {},
             ),
             SizedBox(height: 10),
             PageButtons(
               btnText: 'Manage Task',
-              btnColor: ColorPalette.secondary,
+              btnColor: AppTheme.secondary,
               onPressed: () {},
             ),
             SizedBox(height: 10),
             PageButtons(
               btnText: 'Edit',
-              btnColor: ColorPalette.hilite,
+              btnColor: AppTheme.hilite,
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => EventEditScreen(

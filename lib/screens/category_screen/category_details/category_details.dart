@@ -1,7 +1,7 @@
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/category_details/category_details.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/screen_category/category_details/category_details.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/custom_listenable_builder/build_item_list/build_item_list.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Category Details'),
       body: SafeArea(
         child: Padding(

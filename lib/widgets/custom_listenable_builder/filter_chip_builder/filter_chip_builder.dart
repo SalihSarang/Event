@@ -1,5 +1,5 @@
 import 'package:event_vault/database/modals/item_model/item_model.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ItemFilterChips extends StatelessWidget {
@@ -23,15 +23,15 @@ class ItemFilterChips extends StatelessWidget {
         return FilterChip(
           label: Text(
             item.itemName,
-            style: TextStyle(color: ColorPalette.textW),
+            style: TextStyle(color: AppTheme.textW),
           ),
           selected: selectedItems
               .any((selectedItem) => selectedItem.itemId == item.itemId),
           onSelected: (isSelected) {
             onItemSelected(item.itemId);
           },
-          selectedColor: ColorPalette.hilite,
-          backgroundColor: ColorPalette.secondary,
+          selectedColor: AppTheme.hilite,
+          backgroundColor: AppTheme.secondary,
           checkmarkColor: Colors.white,
         );
       }).toList(),

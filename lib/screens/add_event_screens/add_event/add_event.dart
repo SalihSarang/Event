@@ -9,15 +9,14 @@ import 'package:event_vault/utils/validation/event_adding/event_name/event_name.
 import 'package:event_vault/utils/validation/event_adding/event_time/event_time.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_catogory_menu.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
-import 'package:event_vault/widgets/date_select/date_theme.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
+import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
 import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
-import 'package:event_vault/widgets/save_add_btn/save_add_btn.dart';
+import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
-import 'package:event_vault/widgets/time_selecting/theme.dart';
+import 'package:event_vault/widgets/date_and_time/time_selecting/time_select.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 class ScreenAddEvent extends StatefulWidget {
   ScreenAddEvent(
@@ -35,33 +34,33 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   String newImage = '';
   final picker = ImagePicker();
 
-  //get an image from the gallery
+  // pick image from the gallery
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         image = pickedFile;
-        newImage = pickedFile.path; // Store the image path
+        newImage = pickedFile.path;
       });
     }
   }
 
-  Future<void> selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-      builder: (context, child) {
-        return Theme(data: dateTheme(), child: child!);
-      },
-    );
-    if (pickedDate != null) {
-      setState(() {
-        date.text = DateFormat('yyyy-MMM-dd').format(pickedDate);
-      });
-    }
-  }
+  // Future<void> selectDate(BuildContext context) async {
+  //   DateTime? pickedDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(2000),
+  //     lastDate: DateTime(2100),
+  //     builder: (context, child) {
+  //       return Theme(data: dateTheme(), child: child!);
+  //     },
+  //   );
+  //   if (pickedDate != null) {
+  //     setState(() {
+  //       date.text = DateFormat('yyyy-MMM-dd').format(pickedDate);
+  //     });
+  //   }
+  // }
 
   TimeOfDay _selectedTime = TimeOfDay(hour: 12, minute: 0);
   String timeString = '';
@@ -135,7 +134,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
     print(widget.categoryName);
     timectrl.text = timeString;
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: "Add Event"),
       body: SafeArea(
         child: Padding(
@@ -157,7 +156,9 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           validator: (value) => eventNameValidation(value),
                         ),
                         dateField(
-                          onTap: () => selectDate(context),
+                          onTap: () async {
+                            date.text = await selectDate(context);
+                          },
                           controller: date,
                           hint: 'Enter Enter Date',
                           fieldTitle: 'Date',

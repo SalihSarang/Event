@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 ThemeData timeTheme() {
@@ -7,24 +7,24 @@ ThemeData timeTheme() {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           hourMinuteShape: const CircleBorder(),
-          backgroundColor: ColorPalette.mainBg,
+          backgroundColor: AppTheme.mainBg,
           hourMinuteColor: WidgetStateColor.resolveWith((states) =>
               states.contains(WidgetState.selected)
                   ? Color.fromARGB(255, 84, 89, 138).withValues(alpha: .5)
-                  : ColorPalette.secondary),
+                  : AppTheme.secondary),
           hourMinuteTextColor: WidgetStateColor.resolveWith((states) =>
               states.contains(WidgetState.selected)
-                  ? ColorPalette.textW
-                  : ColorPalette.textW),
-          dialHandColor: ColorPalette.hilite,
+                  ? AppTheme.textW
+                  : AppTheme.textW),
+          dialHandColor: AppTheme.hilite,
           // ignore: deprecated_member_use
           dialBackgroundColor:
               Color.fromARGB(255, 84, 89, 138).withValues(alpha: .5),
           dialTextColor: WidgetStateColor.resolveWith((states) =>
               states.contains(WidgetState.selected)
-                  ? ColorPalette.textW
-                  : ColorPalette.hint),
-          entryModeIconColor: ColorPalette.hilite),
+                  ? AppTheme.textW
+                  : AppTheme.hint),
+          entryModeIconColor: AppTheme.hilite),
       textTheme: TextTheme(
         labelSmall: TextStyle(
           color: Colors.red,
@@ -36,9 +36,8 @@ ThemeData timeTheme() {
           (states) => Color.fromARGB(255, 84, 89, 138).withValues(alpha: .5),
         ),
         foregroundColor:
-            WidgetStateColor.resolveWith((states) => ColorPalette.textW),
-        overlayColor:
-            WidgetStateColor.resolveWith((states) => ColorPalette.mainBg),
+            WidgetStateColor.resolveWith((states) => AppTheme.textW),
+        overlayColor: WidgetStateColor.resolveWith((states) => AppTheme.mainBg),
       )));
   return timeTheme;
 }

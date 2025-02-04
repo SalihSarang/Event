@@ -2,7 +2,8 @@ import 'package:event_vault/screens/category_screen/select_category/selecting_ca
 import 'package:event_vault/screens/event_manager/event_manager/event_manager.dart';
 import 'package:event_vault/screens/home/screen_home.dart';
 import 'package:event_vault/screens/settings_screen/settings_screen.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/screens/task_screen/task_screen.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -17,10 +18,7 @@ class _ScreenHomeState extends State<BottomNavigation> {
     HomeScreen(),
     ScreenEventManager(),
     SelectingCategory(),
-    Center(
-        child: Text('Task',
-            style: TextStyle(
-                color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24))),
+    TaskScreen(),
     SettingsScreen(),
   ];
   int myIndex = 0;
@@ -30,9 +28,9 @@ class _ScreenHomeState extends State<BottomNavigation> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: ColorPalette.secondary,
-        selectedItemColor: ColorPalette.hilite,
-        unselectedItemColor: ColorPalette.hint,
+        backgroundColor: AppTheme.secondary,
+        selectedItemColor: AppTheme.hilite,
+        unselectedItemColor: AppTheme.hint,
         iconSize: 30,
         onTap: (index) {
           setState(() {

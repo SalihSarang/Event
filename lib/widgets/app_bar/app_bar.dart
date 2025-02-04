@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,14 +14,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Text(
           title,
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 25,
           ),
         ),
       ),
-      backgroundColor: ColorPalette.mainBg,
-      iconTheme: const IconThemeData(color: ColorPalette.textW),
+      backgroundColor: AppTheme.mainBg,
+      iconTheme: const IconThemeData(color: AppTheme.textW),
       automaticallyImplyLeading: false,
     );
   }

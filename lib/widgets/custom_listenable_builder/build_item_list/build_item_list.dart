@@ -2,7 +2,7 @@ import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/screens/category_screen/item_edit/item_edit.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +23,7 @@ Widget buildItemsList({
         child: Text(
           'Items',
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),
@@ -56,12 +56,12 @@ Widget buildItemsList({
               itemBuilder: (context, index) {
                 final item = filteredItems[index];
                 return Card(
-                  color: ColorPalette.secondary,
+                  color: AppTheme.secondary,
                   child: ListTile(
                       title: Text(
                         item.itemName,
                         style: GoogleFonts.roboto(
-                          color: ColorPalette.textW,
+                          color: AppTheme.textW,
                           fontWeight: FontWeight.w800,
                           fontSize: 25,
                         ),
@@ -69,7 +69,7 @@ Widget buildItemsList({
                       subtitle: Text(
                         'Price : ${item.itemPrice}',
                         style: GoogleFonts.roboto(
-                          color: ColorPalette.textW,
+                          color: AppTheme.textW,
                           fontWeight: FontWeight.w800,
                           fontSize: 18,
                         ),
@@ -83,7 +83,7 @@ Widget buildItemsList({
                           IconButton(
                             icon: Icon(
                               Icons.edit,
-                              color: ColorPalette.hilite,
+                              color: AppTheme.hilite,
                               size: 30,
                             ),
                             onPressed: () {
@@ -100,7 +100,7 @@ Widget buildItemsList({
                           IconButton(
                             icon: Icon(
                               Icons.delete,
-                              color: ColorPalette.delete,
+                              color: AppTheme.delete,
                               size: 30,
                             ),
                             onPressed: () {

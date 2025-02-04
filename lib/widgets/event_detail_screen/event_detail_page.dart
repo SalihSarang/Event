@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/utils/font/app_font.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ImageContainer extends StatelessWidget {
@@ -11,12 +11,12 @@ class ImageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      color: ColorPalette.mainBg,
+      color: AppTheme.mainBg,
       child: Container(
         width: double.infinity,
         height: 320,
         decoration: BoxDecoration(
-          color: ColorPalette.secondary,
+          color: AppTheme.secondary,
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
             image: FileImage(
@@ -54,18 +54,18 @@ class EventDescription extends StatelessWidget {
             filled: true,
             fillColor: const Color.fromRGBO(32, 34, 54, 1),
             hintText: discriptionData,
-            hintStyle: const TextStyle(color: ColorPalette.hint),
+            hintStyle: const TextStyle(color: AppTheme.hint),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
@@ -97,11 +97,11 @@ class EventDetailCards extends StatelessWidget {
           children: [
             Expanded(
               child: Card(
-                color: ColorPalette.secondary,
+                color: AppTheme.secondary,
                 child: Container(
                   height: 140,
                   decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: ColorPalette.hint),
+                      border: Border.all(width: 1, color: AppTheme.hint),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(10),
@@ -111,7 +111,7 @@ class EventDetailCards extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.calendar_today_outlined,
-                          color: ColorPalette.textW,
+                          color: AppTheme.textW,
                           size: 35,
                         ),
                         Column(
@@ -137,11 +137,11 @@ class EventDetailCards extends StatelessWidget {
             SizedBox(width: 5),
             Expanded(
               child: Card(
-                color: ColorPalette.secondary,
+                color: AppTheme.secondary,
                 child: Container(
                   height: 140,
                   decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: ColorPalette.hint),
+                      border: Border.all(width: 1, color: AppTheme.hint),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(10),
@@ -151,7 +151,7 @@ class EventDetailCards extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.access_time_outlined,
-                          color: ColorPalette.textW,
+                          color: AppTheme.textW,
                           size: 35,
                         ),
                         Column(
@@ -181,11 +181,11 @@ class EventDetailCards extends StatelessWidget {
           children: [
             Expanded(
               child: Card(
-                color: ColorPalette.secondary,
+                color: AppTheme.secondary,
                 child: Container(
                   height: 140,
                   decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: ColorPalette.hint),
+                      border: Border.all(width: 1, color: AppTheme.hint),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(10),
@@ -195,7 +195,7 @@ class EventDetailCards extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.location_city,
-                          color: ColorPalette.textW,
+                          color: AppTheme.textW,
                           size: 35,
                         ),
                         Column(
@@ -249,18 +249,18 @@ class Clientinfo extends StatelessWidget {
             filled: true,
             fillColor: const Color.fromRGBO(32, 34, 54, 1),
             hintText: details,
-            hintStyle: const TextStyle(color: ColorPalette.hint),
+            hintStyle: const TextStyle(color: AppTheme.hint),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
@@ -294,18 +294,18 @@ class SpecialRequirements extends StatelessWidget {
             filled: true,
             fillColor: const Color.fromRGBO(32, 34, 54, 1),
             hintText: specialReq,
-            hintStyle: const TextStyle(color: ColorPalette.hint),
+            hintStyle: const TextStyle(color: AppTheme.hint),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
-                color: ColorPalette.hint,
+                color: AppTheme.hint,
                 width: 1,
               ),
             ),
@@ -338,7 +338,7 @@ class EventItems extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = itemList[index];
               return Card(
-                color: ColorPalette.secondary,
+                color: AppTheme.secondary,
                 child: ListTile(
                   title: Text(
                     item.itemName,

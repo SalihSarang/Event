@@ -5,8 +5,9 @@ import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_manager/event_details/event_details.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 
 class EventCard extends StatelessWidget {
   EventCard({super.key, required this.event});
@@ -16,7 +17,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Image path: ${event.categoryName}");
+    developer.log("Image path: ${event.categoryName}");
     return SizedBox(
       height: 320,
       width: double.infinity,
@@ -24,7 +25,7 @@ class EventCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            print("Tapped!");
+            developer.log("Tapped!");
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
                 image: detailPageImg!,
@@ -32,11 +33,11 @@ class EventCard extends StatelessWidget {
               ),
             ));
           },
-          splashColor: ColorPalette.hint,
+          splashColor: AppTheme.hint,
           borderRadius: BorderRadius.circular(15),
           child: Card(
             elevation: 20,
-            color: ColorPalette.secondary,
+            color: AppTheme.secondary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -50,7 +51,7 @@ class EventCard extends StatelessWidget {
                         image: _getImageProvider(event.image),
                         fit: BoxFit.cover,
                       ),
-                      color: ColorPalette.hint,
+                      color: AppTheme.hint,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(13),
                         topRight: Radius.circular(13),
@@ -77,13 +78,13 @@ class EventCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${event.date} ${event.date}',
+                            '${event.date}    ${event.time}',
                             style: myFont(size: 15),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
                           Text(
-                            event.catogory,
+                            'Category : ${event.categoryName}',
                             style: myFont(size: 15),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -91,7 +92,7 @@ class EventCard extends StatelessWidget {
                         ],
                       ),
                       trailing: PopupMenuButton(
-                        iconColor: ColorPalette.textW,
+                        iconColor: AppTheme.textW,
                         color: const Color.fromARGB(255, 55, 58, 92),
                         itemBuilder: (context) => [
                           PopupMenuItem(
@@ -105,7 +106,7 @@ class EventCard extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.edit,
-                                    color: ColorPalette.hilite,
+                                    color: AppTheme.hilite,
                                   ),
                                   SizedBox(width: 5),
                                   Text(
@@ -130,7 +131,7 @@ class EventCard extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.delete,
-                                    color: ColorPalette.delete,
+                                    color: AppTheme.delete,
                                   ),
                                   SizedBox(width: 5),
                                   Text(

@@ -4,7 +4,7 @@ import 'package:event_vault/screens/category_screen/add_item/add_category_items.
 import 'package:event_vault/screens/category_screen/category_details/category_details.dart';
 import 'package:event_vault/screens/category_screen/edit_category/edit_category.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
-import 'package:event_vault/widgets/save_add_btn/save_add_btn.dart';
+import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:flutter/material.dart';
 
 Widget buildCategoryListView({

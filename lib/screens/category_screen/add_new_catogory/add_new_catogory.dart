@@ -1,9 +1,9 @@
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/utils/validation/category_details/category_name/category_name.dart';
 import 'package:event_vault/utils/validation/event_adding/event_discription/event_discription.dart';
-import 'package:event_vault/widgets/add_menu_btn/add_menu_btn.dart';
+import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
@@ -23,7 +23,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.mainBg,
+      backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Add New Category'),
       body: SafeArea(
         child: Padding(

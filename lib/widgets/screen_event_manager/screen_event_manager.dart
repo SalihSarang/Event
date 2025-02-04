@@ -3,7 +3,7 @@ import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SearchChoiceChips extends StatefulWidget {
@@ -43,13 +43,13 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                     style: TextStyle(
                       color: selectedIndex == index
                           ? Colors.white
-                          : ColorPalette.textW,
+                          : AppTheme.textW,
                     ),
                   ),
                   side: BorderSide.none,
                   selected: selectedIndex == index,
-                  selectedColor: ColorPalette.hilite,
-                  backgroundColor: ColorPalette.secondary,
+                  selectedColor: AppTheme.hilite,
+                  backgroundColor: AppTheme.secondary,
                   onSelected: (bool selected) {
                     setState(() {
                       selectedIndex = selected ? index : -1;
@@ -64,15 +64,14 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                 label: Text(
                   categories[categoryIndex].name,
                   style: TextStyle(
-                    color: selectedIndex == index
-                        ? Colors.white
-                        : ColorPalette.textW,
+                    color:
+                        selectedIndex == index ? Colors.white : AppTheme.textW,
                   ),
                 ),
                 side: BorderSide.none,
                 selected: selectedIndex == index,
-                selectedColor: ColorPalette.hilite,
-                backgroundColor: ColorPalette.secondary,
+                selectedColor: AppTheme.hilite,
+                backgroundColor: AppTheme.secondary,
                 onSelected: (bool selected) {
                   setState(() {
                     selectedIndex = selected ? index : 0;
@@ -88,7 +87,6 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                     print(filteredEvents);
                   } else {
                     widget.onSearchResult(widget.events);
-                    // print(widget.events);
                   }
                 },
               );

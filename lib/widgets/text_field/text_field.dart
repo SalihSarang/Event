@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +19,7 @@ Widget myField({
         child: Text(
           fieldTitle,
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),
@@ -34,37 +34,37 @@ Widget myField({
         keyboardType: keyboardType,
         controller: controller,
         validator: validator,
-        style: TextStyle(color: ColorPalette.textW),
+        style: TextStyle(color: AppTheme.textW),
         decoration: InputDecoration(
           filled: true,
-          fillColor: ColorPalette.secondary,
+          fillColor: AppTheme.secondary,
           hintText: hint,
-          hintStyle: const TextStyle(color: ColorPalette.hint),
+          hintStyle: const TextStyle(color: AppTheme.hint),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 2,
             ),
           ),
@@ -90,7 +90,7 @@ Widget myBigField(
         child: Text(
           fieldTitle,
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),
@@ -105,37 +105,37 @@ Widget myBigField(
         controller: controller,
         maxLines: 5,
         minLines: 5,
-        style: TextStyle(color: ColorPalette.textW),
+        style: TextStyle(color: AppTheme.textW),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color.fromRGBO(32, 34, 54, 1),
           hintText: hint,
-          hintStyle: const TextStyle(color: ColorPalette.hint),
+          hintStyle: const TextStyle(color: AppTheme.hint),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 2,
             ),
           ),
@@ -157,42 +157,42 @@ Widget searchField(
       TextFormField(
         onChanged: onChanged,
         controller: controller,
-        style: TextStyle(color: ColorPalette.textW),
+        style: TextStyle(color: AppTheme.textW),
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.search,
-            color: ColorPalette.hint,
+            color: AppTheme.hint,
             size: 30,
           ),
           filled: true,
-          fillColor: ColorPalette.secondary,
+          fillColor: AppTheme.secondary,
           hintText: hint,
-          hintStyle: const TextStyle(color: ColorPalette.hint),
+          hintStyle: const TextStyle(color: AppTheme.hint),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 2,
             ),
           ),
@@ -219,7 +219,7 @@ Widget dateField({
         child: Text(
           fieldTitle,
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),
@@ -233,37 +233,37 @@ Widget dateField({
         onTap: onTap,
         controller: controller,
         validator: validator,
-        style: TextStyle(color: ColorPalette.textW),
+        style: TextStyle(color: AppTheme.textW),
         decoration: InputDecoration(
           filled: true,
-          fillColor: ColorPalette.secondary,
+          fillColor: AppTheme.secondary,
           hintText: hint,
-          hintStyle: const TextStyle(color: ColorPalette.hint),
+          hintStyle: const TextStyle(color: AppTheme.hint),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 2,
             ),
           ),
@@ -290,7 +290,7 @@ Widget timeField(
         child: Text(
           fieldTitle,
           style: GoogleFonts.roboto(
-            color: ColorPalette.textW,
+            color: AppTheme.textW,
             fontWeight: FontWeight.w800,
             fontSize: 20,
           ),
@@ -305,37 +305,37 @@ Widget timeField(
         keyboardType: keyboardType,
         controller: controller,
         validator: validator,
-        style: TextStyle(color: ColorPalette.textW),
+        style: TextStyle(color: AppTheme.textW),
         decoration: InputDecoration(
           filled: true,
-          fillColor: ColorPalette.secondary,
+          fillColor: AppTheme.secondary,
           hintText: hint,
-          hintStyle: const TextStyle(color: ColorPalette.hint),
+          hintStyle: const TextStyle(color: AppTheme.hint),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: ColorPalette.hint,
+              color: AppTheme.hint,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ColorPalette.delete,
+              color: AppTheme.delete,
               width: 2,
             ),
           ),

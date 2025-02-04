@@ -1,4 +1,4 @@
-import 'package:event_vault/widgets/color%20palette/color_palette.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +16,7 @@ Widget settingsOptions({
             height: 80,
             width: 80,
             decoration: BoxDecoration(
-              color: ColorPalette.secondary,
+              color: AppTheme.secondary,
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             child: leadIcon,
@@ -32,7 +32,7 @@ Widget settingsOptions({
                 Text(
                   title,
                   style: GoogleFonts.roboto(
-                    color: ColorPalette.textW,
+                    color: AppTheme.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 20,
                   ),
@@ -40,7 +40,7 @@ Widget settingsOptions({
                 Text(
                   subTitle,
                   style: GoogleFonts.roboto(
-                    color: ColorPalette.textW,
+                    color: AppTheme.textW,
                     fontWeight: FontWeight.w800,
                     fontSize: 12,
                   ),
@@ -55,7 +55,7 @@ Widget settingsOptions({
         top: 20,
         child: Icon(
           Icons.arrow_forward_ios_rounded,
-          color: ColorPalette.textW,
+          color: AppTheme.textW,
         ),
       ),
     ],
