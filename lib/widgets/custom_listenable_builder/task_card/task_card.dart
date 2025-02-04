@@ -3,8 +3,19 @@ import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/screen_task/screen_task.dart';
 import 'package:flutter/material.dart';
 
-class TaskCard extends StatelessWidget {
+class TaskCard extends StatefulWidget {
   const TaskCard({super.key});
+
+  @override
+  State<TaskCard> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
+  @override
+  void initState() {
+    super.initState();
+    getAllTask();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +35,8 @@ class TaskCard extends StatelessWidget {
             itemBuilder: (context, index) {
               final task = tasks[index];
               return taskCard(
+                  taskDescription: task.taskDescription,
+                  taskId: task.taskID,
                   taskTitle: task.taskTitle,
                   dueDate: task.dueDate,
                   image: task.image);

@@ -1,11 +1,13 @@
+import 'dart:io';
+import 'package:event_vault/database/functions/%20add_task/add_task.dart';
+import 'package:event_vault/database/modals/task_model/task_model.dart';
+import 'package:event_vault/screen_function/task/task_screen_fn.dart';
 import 'package:event_vault/screens/task_screen/add_task.dart';
+import 'package:event_vault/screens/task_screen/edit_task.dart';
 import 'package:event_vault/utils/font/app_font.dart';
-import 'package:event_vault/utils/validation/task_validation/task_validation.dart';
+import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
-import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
-import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
-import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
@@ -33,7 +35,9 @@ Widget customFloatingButton(BuildContext context) {
 Widget taskCard(
     {required String taskTitle,
     required String dueDate,
-    required String image}) {
+    required String image,
+    required String taskId,
+    required String taskDescription}) {
   return Material(
     color: Colors.transparent,
     child: InkWell(
@@ -52,6 +56,8 @@ Widget taskCard(
                 height: 85,
                 width: 85,
                 decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: FileImage(File(image)), fit: BoxFit.fill),
                     color: AppTheme.hint,
                     borderRadius: BorderRadius.circular(50)),
               ),
@@ -78,40 +84,67 @@ Widget taskCard(
                 color: AppTheme.secondary,
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                      child: Row(
-                    children: [
-                      Wrap(
-                        spacing: 20,
-                        children: [
-                          Icon(
-                            Icons.edit,
-                            color: AppTheme.hilite,
-                            size: 30,
+                      onTap: () {
+                        final task = Task(
+                            taskID: taskId,
+                            taskTitle: taskTitle,
+                            taskDescription: taskDescription,
+                            dueDate: dueDate,
+                            image: image);
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditTask(
+                            task: task,
                           ),
-                          Text(
-                            'Edit',
-                            style: myFont(size: 20),
-                          )
-                        ],
-                      ),
-                    ],
-                  )),
-                  PopupMenuItem(
+                        ));
+                      },
                       child: Row(
-                    children: [
-                      Wrap(spacing: 20, children: [
-                        Icon(
-                          Icons.delete,
-                          color: AppTheme.delete,
-                          size: 30,
-                        ),
-                        Text(
-                          'Delete',
-                          style: myFont(size: 20),
-                        )
-                      ]),
-                    ],
-                  ))
+                        children: [
+                          Wrap(
+                            spacing: 20,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: AppTheme.hilite,
+                                size: 30,
+                              ),
+                              Text(
+                                'Edit',
+                                style: myFont(size: 20),
+                              )
+                            ],
+                          ),
+                        ],
+                      )),
+                  PopupMenuItem(
+                      onTap: () => customAlertBox(
+                            context,
+                            title: 'Do you want to delete this task',
+                            message: 'Do you want to delete this task',
+                            icon: Icons.delete,
+                            noPressed: () {
+                              Navigator.pop(context);
+                            },
+                            yesPressed: () {
+                              deleteTask(taskId);
+                              Navigator.pop(context);
+                            },
+                          ),
+                      child: Row(
+                        children: [
+                          Wrap(spacing: 20, children: [
+                            Icon(
+                              Icons.delete,
+                              color: AppTheme.delete,
+                              size: 30,
+                            ),
+                            Text(
+                              'Delete',
+                              style: myFont(size: 20),
+                            )
+                          ]),
+                        ],
+                      ))
                 ],
               ),
             )
@@ -122,7 +155,14 @@ Widget taskCard(
   );
 }
 
-Widget customFloatingBtn() {
+Widget customFloatingBtn(
+    {required String taskTitle,
+    required String dueDate,
+    required String taskDescription,
+    required String image,
+    required GlobalKey<FormState> taskFormKey,
+    required BuildContext context}) {
+  String masage;
   return Padding(
     padding: const EdgeInsets.all(20),
     child: Column(
@@ -131,7 +171,17 @@ Widget customFloatingBtn() {
         saveCancelColumn(
           upBtn: 'Cancel',
           downBtn: 'Save',
-          onDownBtn: () {},
+          onDownBtn: () {
+            developer.log(image);
+            validateForm(
+              context: context,
+              taskFormKey: taskFormKey,
+              dueDate: dueDate,
+              image: image,
+              taskDescription: taskDescription,
+              taskTitle: taskTitle,
+            );
+          },
           onUpBtn: () {},
         ),
       ],
@@ -139,42 +189,36 @@ Widget customFloatingBtn() {
   );
 }
 
-customTaskForm(
-    {required TextEditingController taskTitile,
-    required TextEditingController taskDescription,
+Widget updateCustomFloatingBtn(
+    {required TextEditingController taskTitle,
     required TextEditingController dueDate,
+    required TextEditingController taskDescription,
+    required String image,
+    required GlobalKey<FormState> taskFormKey,
     required BuildContext context,
-    required Key taskFormKey}) {
-  return Form(
-    key: taskFormKey,
+    required taskID}) {
+  String masage;
+  return Padding(
+    padding: const EdgeInsets.all(20),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        myField(
-            hint: 'Enter Task Titile',
-            fieldTitle: 'Task Titile',
-            validator: (value) => taskTitleValidation(value),
-            controller: taskTitile,
-            validationMode: AutovalidateMode.onUserInteraction),
-        myBigField(
-            hint: 'Enter Task Description',
-            fieldTitle: 'Task Description',
-            controller: taskDescription,
-            validator: (value) => taskDiscription(value),
-            validateMode: AutovalidateMode.onUserInteraction),
-        dateField(
-          hint: 'Select Due Date',
-          fieldTitle: 'Due Date',
-          validator: (value) => taskDateValidation(value),
-          controller: dueDate,
-          onTap: () async {
-            dueDate.text = await selectDate(context);
-            developer.log(dueDate.text);
+        saveCancelColumn(
+          upBtn: 'Cancel',
+          downBtn: 'Save',
+          onDownBtn: () {
+            developer.log(taskTitle.text);
+
+            updateValidateForm(
+                context: context,
+                taskFormKey: taskFormKey,
+                dueDate: dueDate.text,
+                image: image,
+                taskDescription: taskDescription.text,
+                taskTitle: taskTitle.text,
+                taskID: taskID);
           },
-        ),
-        imgAddField(
-          buttonTitle: 'Add Image',
-          myIcon: Icon(Icons.add_a_photo),
-          onPressed: () {},
+          onUpBtn: () {},
         ),
       ],
     ),

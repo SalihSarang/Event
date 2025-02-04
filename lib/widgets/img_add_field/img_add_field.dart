@@ -2,13 +2,12 @@ import 'dart:io';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 
 Widget imgAddField({
   required String buttonTitle,
   required Icon myIcon,
   required VoidCallback onPressed,
-  XFile? imagePicked,
+  String? imagePicked,
 }) {
   return Column(
     children: [
@@ -55,7 +54,7 @@ Widget imgAddField({
             image: imagePicked == null
                 ? null
                 : DecorationImage(
-                    image: FileImage(File(imagePicked.path)),
+                    image: FileImage(File(imagePicked)),
                   ),
             color: AppTheme.secondary,
             borderRadius: BorderRadius.all(Radius.circular(10)),

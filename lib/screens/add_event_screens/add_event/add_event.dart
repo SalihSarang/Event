@@ -30,7 +30,6 @@ class ScreenAddEvent extends StatefulWidget {
 }
 
 class _ScreenAddEventState extends State<ScreenAddEvent> {
-  XFile? image;
   String newImage = '';
   final picker = ImagePicker();
 
@@ -39,8 +38,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        image = pickedFile;
-        newImage = pickedFile.path;
+        newImage = pickedFile.path; // Store the image path
       });
     }
   }
@@ -102,10 +100,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   //validate and navigate to the next screen
   void validateForm() {
     if (forkey.currentState!.validate()) {
-      if (image == null) {
-        eventImageValidation(image, context);
-        return;
-      }
+      eventImageValidation(newImage, context);
 
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => AddCategoryMenu(
@@ -197,7 +192,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         ),
                         const SizedBox(height: 10),
                         imgAddField(
-                          imagePicked: image,
+                          imagePicked: newImage,
                           buttonTitle: 'Add Photo',
                           myIcon: const Icon(Icons.camera_alt_outlined),
                           onPressed: getImageFromGallery,
@@ -226,7 +221,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                     rightBtn: 'Next',
                     leftBtn: 'Cancel',
                     onRightBtn: () {
-                      eventImageValidation(image, context);
+                      eventImageValidation(newImage, context);
                       validateForm();
                     },
                     onleftBtn: () {

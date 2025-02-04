@@ -17,7 +17,7 @@ class TaskScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TaskCard(),
+            Expanded(child: TaskCard()),
           ],
         ),
       ),

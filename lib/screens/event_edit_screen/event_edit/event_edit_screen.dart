@@ -30,7 +30,6 @@ class EventEditScreen extends StatefulWidget {
 }
 
 class _EventEditScreen extends State<EventEditScreen> {
-  XFile? image;
   String newImage = '';
   final picker = ImagePicker();
 
@@ -39,7 +38,6 @@ class _EventEditScreen extends State<EventEditScreen> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        image = pickedFile;
         newImage = pickedFile.path;
       });
     }
@@ -103,8 +101,8 @@ class _EventEditScreen extends State<EventEditScreen> {
   void validateForm() {
     print(' what is  : ${widget.event.description}');
     if (forkey.currentState!.validate()) {
-      if (image == null) {
-        eventImageValidation(image, context);
+      if (newImage == null) {
+        eventImageValidation(newImage, context);
         return;
       }
 
@@ -142,7 +140,7 @@ class _EventEditScreen extends State<EventEditScreen> {
     clietName.text = widget.event.clientName;
     contactInfo.text = widget.event.contactInfo;
     descriptionCtrl.text = widget.event.description;
-    image = XFile(widget.event.image);
+    newImage = widget.event.image;
   }
 
   @override
@@ -209,7 +207,7 @@ class _EventEditScreen extends State<EventEditScreen> {
                         ),
                         const SizedBox(height: 10),
                         imgAddField(
-                          imagePicked: image,
+                          imagePicked: newImage,
                           buttonTitle: 'Add Photo',
                           myIcon: const Icon(Icons.camera_alt_outlined),
                           onPressed: getImageFromGallery,
@@ -238,7 +236,7 @@ class _EventEditScreen extends State<EventEditScreen> {
                     rightBtn: 'Next',
                     leftBtn: 'Cancel',
                     onRightBtn: () {
-                      eventImageValidation(image, context);
+                      eventImageValidation(newImage, context);
                       validateForm();
                     },
                     onleftBtn: () {

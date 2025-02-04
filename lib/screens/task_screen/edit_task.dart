@@ -1,3 +1,4 @@
+import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/utils/validation/task_validation/task_validation.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
@@ -9,14 +10,15 @@ import 'dart:developer' as developer;
 
 import 'package:image_picker/image_picker.dart';
 
-class AddTask extends StatefulWidget {
-  AddTask({super.key});
+class EditTask extends StatefulWidget {
+  EditTask({super.key, required this.task});
 
+  Task task;
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<EditTask> createState() => _AddTaskState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _AddTaskState extends State<EditTask> {
   final taskTitileCtrl = TextEditingController();
   final taskDescription = TextEditingController();
   final dueDateCtrl = TextEditingController();
@@ -34,16 +36,27 @@ class _AddTaskState extends State<AddTask> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    taskTitileCtrl.text = widget.task.taskTitle;
+    taskDescription.text = widget.task.taskDescription;
+    dueDateCtrl.text = widget.task.dueDate;
+    imgPath = widget.task.image;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'Add Task'),
-      floatingActionButton: customFloatingBtn(
-          context: context,
-          taskFormKey: taskFormKey,
-          taskTitle: taskTitileCtrl.text,
-          dueDate: dueDateCtrl.text,
-          taskDescription: taskDescription.text,
-          image: imgPath),
+      floatingActionButton: updateCustomFloatingBtn(
+        taskID: widget.task.taskID,
+        context: context,
+        taskFormKey: taskFormKey,
+        taskTitle: taskTitileCtrl,
+        dueDate: dueDateCtrl,
+        taskDescription: taskDescription,
+        image: imgPath,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -76,7 +89,7 @@ class _AddTaskState extends State<AddTask> {
                     },
                   ),
                   imgAddField(
-                    imagePicked: imgPath,
+                    imagePicked: imgPath.isNotEmpty ? imgPath : null,
                     buttonTitle: 'Add Image',
                     myIcon: Icon(Icons.add_a_photo),
                     onPressed: () {

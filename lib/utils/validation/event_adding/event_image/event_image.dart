@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-eventImageValidation(XFile? image, BuildContext ctx) {
+eventImageValidation(String? image, BuildContext ctx) {
   if (image == null) {
     ScaffoldMessenger.of(ctx).showSnackBar(
       SnackBar(
