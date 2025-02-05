@@ -47,8 +47,7 @@ class EventDetails extends StatelessWidget {
             ),
             SizedBox(height: 20),
             EventDetailCards(
-              eventDate:
-                  '${event.date.day} / ${event.date.month} / ${event.date.year}',
+              eventDate: event.date,
               eventLocation: event.location,
               eventTime: event.time,
             ),

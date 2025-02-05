@@ -17,7 +17,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = '${event.date.day} / ${event.date.month} / ${event.date.year}';
+    final date = event.date;
     developer.log("Image path: ${event.categoryName}");
     return SizedBox(
       height: 320,

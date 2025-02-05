@@ -62,8 +62,9 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
               onChanged: (value) {
                 final searchResult = searchEvent(
                     search: searchCtrl.text, eventList: eventListen.value);
-
-                result = searchResult;
+                setState(() {
+                  result = searchResult;
+                });
               },
             ),
             SizedBox(

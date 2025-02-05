@@ -19,7 +19,7 @@ class EventAddModalAdapter extends TypeAdapter<EventAddModal> {
     return EventAddModal(
       catogory: fields[0] as String,
       eventName: fields[1] as String,
-      date: fields[2] as DateTime,
+      date: fields[2] as String,
       time: fields[3] as String,
       location: fields[4] as String,
       description: fields[5] as String,

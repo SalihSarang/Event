@@ -119,7 +119,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                     catogory: widget.categotyId,
                     eventName:
                         widget.eventDetals['EventName'] ?? 'No Event Name',
-                    date: parsedDate,
+                    date: parsedDate.toString(),
                     time: widget.eventDetals['Time'],
                     location: widget.eventDetals['Location'] ?? 'No Location',
                     description: widget.eventDetals['DescriptionCtrl'] ??
