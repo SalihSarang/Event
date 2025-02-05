@@ -35,6 +35,7 @@ class _TaskCardState extends State<TaskCard> {
             itemBuilder: (context, index) {
               final task = tasks[index];
               return taskCard(
+                  context: context,
                   taskDescription: task.taskDescription,
                   taskId: task.taskID,
                   taskTitle: task.taskTitle,

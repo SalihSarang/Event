@@ -50,6 +50,6 @@ updateValidateForm(
         dueDate: dueDate,
         image: image);
     updateTask(task);
-    Navigator.pop(context);
+    Navigator.pop(context, task);
   }
 }

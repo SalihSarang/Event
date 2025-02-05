@@ -4,6 +4,7 @@ import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/screen_function/task/task_screen_fn.dart';
 import 'package:event_vault/screens/task_screen/add_task.dart';
 import 'package:event_vault/screens/task_screen/edit_task.dart';
+import 'package:event_vault/screens/task_screen/task_detail.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
@@ -37,13 +38,26 @@ Widget taskCard(
     required String dueDate,
     required String image,
     required String taskId,
-    required String taskDescription}) {
+    required String taskDescription,
+    required BuildContext context}) {
   return Material(
     color: Colors.transparent,
     child: InkWell(
       borderRadius: BorderRadius.circular(15),
       splashColor: Colors.white,
-      onTap: () {},
+      onTap: () {
+        final task = Task(
+            taskID: taskId,
+            taskTitle: taskTitle,
+            taskDescription: taskDescription,
+            dueDate: dueDate,
+            image: image);
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => TaskDetail(
+            task: task,
+          ),
+        ));
+      },
       child: Card(
         elevation: 20,
         color: AppTheme.secondary,
