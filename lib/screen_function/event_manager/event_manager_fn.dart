@@ -17,12 +17,14 @@ searchEvent({required String search, required List<EventAddModal> eventList}) {
     searchedEvents = eventList.where((event) {
       final eventName = event.eventName.toLowerCase().contains(search);
       final eventDate = event.date.toString().toLowerCase().contains(search);
-      // final eventCategory = event.catogory.toLowerCase().contains(search);
-      // final eventLocation = event.location.toLowerCase().contains(search);
-      return eventName;
+      final eventCategory = event.catogory.toLowerCase().contains(search);
+      final eventLocation = event.location.toLowerCase().contains(search);
+      return eventName || eventDate || eventCategory || eventLocation;
     }).toList();
   } else {
     searchedEvents = eventListen.value;
   }
   return searchedEvents;
 }
+
+hello() {}
