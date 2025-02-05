@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:flutter/material.dart';

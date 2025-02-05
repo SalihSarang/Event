@@ -10,7 +10,7 @@ import 'dart:developer' as developer;
 import 'package:image_picker/image_picker.dart';
 
 class AddTask extends StatefulWidget {
-  AddTask({super.key});
+  const AddTask({super.key});
 
   @override
   State<AddTask> createState() => _AddTaskState();

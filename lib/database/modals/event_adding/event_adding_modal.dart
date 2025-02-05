@@ -9,7 +9,7 @@ class EventAddModal {
   @HiveField(1)
   String eventName;
   @HiveField(2)
-  String date;
+  DateTime date;
   @HiveField(3)
   String time;
   @HiveField(4)

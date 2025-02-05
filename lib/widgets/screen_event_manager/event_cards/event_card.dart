@@ -17,6 +17,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final date = '${event.date.day} / ${event.date.month} / ${event.date.year}';
     developer.log("Image path: ${event.categoryName}");
     return SizedBox(
       height: 320,
@@ -69,7 +70,7 @@ class EventCard extends StatelessWidget {
                     ),
                     child: ListTile(
                       title: Text(
-                        event.eventName,
+                        'Titile : ${event.eventName}',
                         style: myFont(size: 20),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -78,13 +79,13 @@ class EventCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${event.date}    ${event.time}',
+                            'Date : $date',
                             style: myFont(size: 15),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
                           Text(
-                            'Category : ${event.categoryName}',
+                            'Time : ${event.time}',
                             style: myFont(size: 15),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,

@@ -130,7 +130,9 @@ class _UpdateCategory extends State<UpdateCategory> {
                       hint: 'Special Requirements',
                       fieldTitle: "Enter Custom Requests",
                       controller: specialRequirementsCtrl,
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                   ],

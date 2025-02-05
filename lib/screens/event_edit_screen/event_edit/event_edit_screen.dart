@@ -101,11 +101,6 @@ class _EventEditScreen extends State<EventEditScreen> {
   void validateForm() {
     print(' what is  : ${widget.event.description}');
     if (forkey.currentState!.validate()) {
-      if (newImage == null) {
-        eventImageValidation(newImage, context);
-        return;
-      }
-
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => UpdateCategory(
           categotyId: widget.event.catogory,
@@ -134,7 +129,7 @@ class _EventEditScreen extends State<EventEditScreen> {
     super.initState();
     timectrl.text = widget.event.time;
     eventName.text = widget.event.eventName;
-    date.text = widget.event.date;
+    date.text = widget.event.date.toString();
     location.text = widget.event.location;
     budget.text = widget.event.budget;
     clietName.text = widget.event.clientName;

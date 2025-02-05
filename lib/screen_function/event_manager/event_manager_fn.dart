@@ -16,10 +16,10 @@ searchEvent({required String search, required List<EventAddModal> eventList}) {
   if (search.isNotEmpty) {
     searchedEvents = eventList.where((event) {
       final eventName = event.eventName.toLowerCase().contains(search);
-      final eventDate = event.date.toLowerCase().contains(search);
-      final eventCategory = event.catogory.toLowerCase().contains(search);
-      final eventLocation = event.location.toLowerCase().contains(search);
-      return eventName || eventDate || eventCategory || eventLocation;
+      final eventDate = event.date.toString().toLowerCase().contains(search);
+      // final eventCategory = event.catogory.toLowerCase().contains(search);
+      // final eventLocation = event.location.toLowerCase().contains(search);
+      return eventName;
     }).toList();
   } else {
     searchedEvents = eventListen.value;

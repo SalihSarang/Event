@@ -6,7 +6,7 @@ import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
-import 'package:event_vault/screens/home/bottom_nav.dart';
+import 'package:event_vault/screens/bottom_vav/bottom_nav.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';

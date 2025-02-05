@@ -1,6 +1,7 @@
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/functions/add_items/add_items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
 import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';
@@ -11,6 +12,7 @@ import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:event_vault/widgets/unique_id/unique_id.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../database/modals/item_model/item_model.dart';
 
 class AddCategoryMenu extends StatefulWidget {
@@ -25,7 +27,8 @@ class AddCategoryMenu extends StatefulWidget {
 
 class _AddCategoryMenuState extends State<AddCategoryMenu> {
   List<ItemModel> filteredItems = [];
-  List<ItemModel> selectedItems = [];
+  ValueNotifier<List<ItemModel>> selectedItems =
+      ValueNotifier<List<ItemModel>>([]);
 
   @override
   void initState() {
@@ -58,10 +61,10 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
       final selectedItem =
           filteredItems.firstWhere((item) => item.itemId == itemId);
 
-      if (selectedItems.any((item) => item.itemId == itemId)) {
-        selectedItems.removeWhere((item) => item.itemId == itemId);
+      if (selectedItems.value.any((item) => item.itemId == itemId)) {
+        selectedItems.value.removeWhere((item) => item.itemId == itemId);
       } else {
-        selectedItems.add(selectedItem);
+        selectedItems.value.add(selectedItem);
       }
     });
   }
@@ -81,6 +84,67 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
     return Scaffold(
       backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Add Items Menu'),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            saveCancelColumn(
+              downBtn: 'Save',
+              upBtn: 'Cancel',
+              onDownBtn: () {
+                if (specialRequirementsCtrl.text.isEmpty) {
+                  specialRequirementsCtrl.text = 'No Special Requirements';
+                }
+
+                if (selectedItems.value.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please select at least one item.'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
+                if (keyForm.currentState!.validate()) {
+                  final dateStr = widget.eventDetals['Date'];
+                  final parsedDate = DateFormat('yyyy-MMM-dd').parse(dateStr);
+
+                  final event = EventAddModal(
+                    categoryName: widget.eventDetals['CategoryName'],
+                    budget: budgetCtrl.text,
+                    image: widget.eventDetals['Image'],
+                    catogory: widget.categotyId,
+                    eventName:
+                        widget.eventDetals['EventName'] ?? 'No Event Name',
+                    date: parsedDate,
+                    time: widget.eventDetals['Time'],
+                    location: widget.eventDetals['Location'] ?? 'No Location',
+                    description: widget.eventDetals['DescriptionCtrl'] ??
+                        'No Description',
+                    clientName:
+                        widget.eventDetals['ClietName'] ?? 'No Client Name',
+                    contactInfo:
+                        widget.eventDetals['ContactInfo'] ?? 'No Contact Info',
+                    eventId: generateID(),
+                    items: selectedItems.value,
+                    special: specialRequirementsCtrl.text,
+                  );
+
+                  addEvent(event);
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                }
+              },
+              onUpBtn: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -102,7 +166,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                     const SizedBox(height: 20),
                     ItemFilterChips(
                       filteredItems: filteredItems,
-                      selectedItems: selectedItems,
+                      selectedItems: selectedItems.value,
                       onItemSelected: handleItemSelection,
                     ),
                     const SizedBox(height: 20),
@@ -124,61 +188,108 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                       hint: 'Special Requirements',
                       fieldTitle: "Enter Custom Requests",
                       controller: specialRequirementsCtrl,
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                   ],
                 ),
               ),
-              saveCancelColumn(
-                downBtn: 'Save',
-                upBtn: 'Cancel',
-                onDownBtn: () {
-                  if (specialRequirementsCtrl.text.isEmpty) {
-                    specialRequirementsCtrl.text = 'No Special Requirements';
-                  }
-
-                  if (selectedItems.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Please select at least one item.'),
-                        backgroundColor: Colors.red,
-                      ),
+              ValueListenableBuilder(
+                valueListenable: selectedItems,
+                builder: (context, items, child) {
+                  if (items.isEmpty) {
+                    return Center(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Selected Items', style: myFont(size: 25)),
+                        Text(
+                          'Item Not Selected',
+                          style: hintFont(),
+                        ),
+                      ],
+                    ));
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Selected Items', style: myFont(size: 25)),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 300,
+                          child: ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              final item = items[index];
+                              return Card(
+                                color: AppTheme.secondary,
+                                child: ListTile(
+                                  title: Text(item.itemName,
+                                      style: myFont(size: 25)),
+                                  subtitle: Text('Price : ${item.itemPrice}',
+                                      style: myFont(size: 18)),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     );
-                    return;
                   }
-
-                  if (keyForm.currentState!.validate()) {
-                    final event = EventAddModal(
-                      categoryName: widget.eventDetals['CategoryName'],
-                      budget: budgetCtrl.text,
-                      image: widget.eventDetals['Image'],
-                      catogory: widget.categotyId,
-                      eventName:
-                          widget.eventDetals['EventName'] ?? 'No Event Name',
-                      date: widget.eventDetals['Date'] ?? 'No Date',
-                      time: widget.eventDetals['Time'] ?? 'No Time',
-                      location: widget.eventDetals['Location'] ?? 'No Location',
-                      description: widget.eventDetals['DescriptionCtrl'] ??
-                          'No Description',
-                      clientName:
-                          widget.eventDetals['ClietName'] ?? 'No Client Name',
-                      contactInfo: widget.eventDetals['ContactInfo'] ??
-                          'No Contact Info',
-                      eventId: generateID(),
-                      items: selectedItems,
-                      special: specialRequirementsCtrl.text,
-                    );
-
-                    addEvent(event);
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                  }
-                },
-                onUpBtn: () {
-                  Navigator.pop(context);
                 },
               ),
+
+              // saveCancelColumn(
+              //   downBtn: 'Save',
+              //   upBtn: 'Cancel',
+              //   onDownBtn: () {
+              //     if (specialRequirementsCtrl.text.isEmpty) {
+              //       specialRequirementsCtrl.text = 'No Special Requirements';
+              //     }
+
+              //     if (selectedItems.isEmpty) {
+              //       ScaffoldMessenger.of(context).showSnackBar(
+              //         SnackBar(
+              //           content: Text('Please select at least one item.'),
+              //           backgroundColor: Colors.red,
+              //         ),
+              //       );
+              //       return;
+              //     }
+
+              //     if (keyForm.currentState!.validate()) {
+              //       final event = EventAddModal(
+              //         categoryName: widget.eventDetals['CategoryName'],
+              //         budget: budgetCtrl.text,
+              //         image: widget.eventDetals['Image'],
+              //         catogory: widget.categotyId,
+              //         eventName:
+              //             widget.eventDetals['EventName'] ?? 'No Event Name',
+              //         date: widget.eventDetals['Date'] ?? 'No Date',
+              //         time: widget.eventDetals['Time'] ?? 'No Time',
+              //         location: widget.eventDetals['Location'] ?? 'No Location',
+              //         description: widget.eventDetals['DescriptionCtrl'] ??
+              //             'No Description',
+              //         clientName:
+              //             widget.eventDetals['ClietName'] ?? 'No Client Name',
+              //         contactInfo: widget.eventDetals['ContactInfo'] ??
+              //             'No Contact Info',
+              //         eventId: generateID(),
+              //         items: selectedItems,
+              //         special: specialRequirementsCtrl.text,
+              //       );
+
+              //       addEvent(event);
+              //       Navigator.of(context).pop();
+              //       Navigator.of(context).pop();
+              //     }
+              //   },
+              //   onUpBtn: () {
+              //     Navigator.pop(context);
+              //   },
+              // ),
             ],
           ),
         ),
