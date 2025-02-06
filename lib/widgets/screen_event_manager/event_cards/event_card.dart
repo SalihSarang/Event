@@ -124,7 +124,7 @@ class EventCard extends StatelessWidget {
                                     icon: Icons.delete, noPressed: () {
                                   Navigator.pop(context);
                                 }, yesPressed: () {
-                                  deleteCategory(event.eventId);
+                                  deleteEvent(event.eventId);
                                   Navigator.pop(context);
                                 });
                               },
