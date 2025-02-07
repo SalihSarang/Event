@@ -20,3 +20,12 @@ TextStyle hintFont({double? size}) {
   );
   return myFontTheme;
 }
+
+TextStyle myFontColor({double? size, Color? color}) {
+  final myFontTheme = GoogleFonts.roboto(
+    color: color ?? AppTheme.textW,
+    fontWeight: FontWeight.w800,
+    fontSize: size,
+  );
+  return myFontTheme;
+}

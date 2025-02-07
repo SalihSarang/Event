@@ -4,24 +4,29 @@ import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
-import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_manager/event_details/event_details.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
+import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
-import 'package:event_vault/widgets/unique_id/unique_id.dart';
+import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
-class EventCard extends StatelessWidget {
-  EventCard({super.key, required this.event});
-  String? detailPageImg;
+class EventHistoryCard extends StatelessWidget {
+  EventHistoryCard(
+      {super.key,
+      required this.event,
+      required this.completedEvent,
+      required this.detailPageImg});
 
+  String detailPageImg;
+  Completed completedEvent;
   EventAddModal event;
 
   @override
   Widget build(BuildContext context) {
-    developer.log("Category Name: ${event.categoryName}");
     return SizedBox(
       height: 320,
       width: double.infinity,
@@ -31,9 +36,9 @@ class EventCard extends StatelessWidget {
           onTap: () {
             developer.log("Tapped!");
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => EventDetails(
-                image: detailPageImg!,
-                eventId: event.eventId,
+              builder: (context) => HistoryEventDetails(
+                event: event,
+                image: detailPageImg,
               ),
             ));
           },
@@ -100,80 +105,46 @@ class EventCard extends StatelessWidget {
                         color: const Color.fromARGB(255, 55, 58, 92),
                         itemBuilder: (context) => [
                           PopupMenuItem(
-                              onTap: () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => EventEditScreen(
-                                      event: event,
-                                    ),
-                                  )),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    color: AppTheme.hilite,
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    'Delete',
-                                    style: myFont(),
-                                  )
-                                ],
-                              )),
-                          PopupMenuItem(
                               onTap: () {
                                 customAlertBox(context,
-                                    title: "This Event is Completed",
-                                    message: "This Event is Completed",
-                                    icon: Icons.check_circle_outline_rounded,
-                                    color: AppTheme.green, noPressed: () {
+                                    title: "You Want To Delete This Event",
+                                    message: "You Want To Delete This Event",
+                                    icon: Icons.delete, noPressed: () {
                                   Navigator.pop(context);
                                 }, yesPressed: () {
-                                  final completedEvent = Completed(
-                                      completedID: generateID(), event: event);
-                                  addCompletedEvents(completedEvent);
-                                  deleteEvent(event.eventId);
+                                  final restoredEvent = EventAddModal(
+                                      budget: event.budget,
+                                      categoryName: event.categoryName,
+                                      catogory: event.catogory,
+                                      clientName: event.clientName,
+                                      contactInfo: event.contactInfo,
+                                      date: event.date,
+                                      description: event.description,
+                                      eventId: event.eventId,
+                                      eventName: event.eventName,
+                                      image: event.image,
+                                      items: event.items,
+                                      location: event.location,
+                                      special: event.special,
+                                      time: event.time);
+                                  addEvent(restoredEvent);
+                                  restoreEvent(completedEvent.completedID);
                                   Navigator.pop(context);
                                 });
                               },
                               child: Row(
                                 children: [
                                   Icon(
-                                    Icons.check_circle_outline_rounded,
-                                    color: AppTheme.green,
+                                    Icons.restore_sharp,
+                                    color: AppTheme.textW,
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    'Completed',
-                                    style: myFontColor(color: AppTheme.green),
+                                    'Restore',
+                                    style: myFont(),
                                   )
                                 ],
-                              )),
-                          PopupMenuItem(
-                            onTap: () {
-                              customAlertBox(context,
-                                  title: "You Want To Delete This Event",
-                                  message: "You Want To Delete This Event",
-                                  icon: Icons.delete, noPressed: () {
-                                Navigator.pop(context);
-                              }, yesPressed: () {
-                                deleteEvent(event.eventId);
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.delete,
-                                  color: AppTheme.delete,
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  'Delete',
-                                  style: myFont(),
-                                )
-                              ],
-                            ),
-                          )
+                              ))
                         ],
                       ),
                     ),
@@ -187,13 +158,84 @@ class EventCard extends StatelessWidget {
     );
   }
 
-  ImageProvider _getImageProvider(String imagePath) {
-    if (imagePath.isNotEmpty && File(imagePath).existsSync()) {
+  ImageProvider _getImageProvider(String? imagePath) {
+    if (imagePath != null &&
+        imagePath.isNotEmpty &&
+        File(imagePath).existsSync()) {
       detailPageImg = imagePath;
       return FileImage(File(imagePath));
     } else {
       detailPageImg = "lib/assets/download (48).jpg";
       return const AssetImage("lib/assets/download (48).jpg");
     }
+  }
+}
+
+class HistoryEventDetails extends StatelessWidget {
+  HistoryEventDetails({super.key, required this.image, required this.event});
+  String image;
+  // String eventId;
+  EventAddModal event;
+
+  @override
+  Widget build(BuildContext context) {
+    if (event == null) {
+      return Scaffold(
+        appBar: CustomAppBar(title: 'Event Name'),
+        body: Center(
+          child: Text('Event not found'),
+        ),
+      );
+    }
+    final eventItems = event.items;
+
+    return Scaffold(
+      backgroundColor: AppTheme.mainBg,
+      appBar: CustomAppBar(title: 'Event Name'),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            ImageContainer(image: event.image),
+            SizedBox(height: 20),
+            Clientinfo(
+              details: event.clientName,
+              title: 'Client Name',
+            ),
+            SizedBox(height: 20),
+            Clientinfo(
+              details: event.contactInfo,
+              title: 'Contact Information',
+            ),
+            SizedBox(height: 20),
+            EventDescription(
+              discriptionData: event.description,
+            ),
+            SizedBox(height: 20),
+            EventDetailCards(
+              eventDate: extract(event.date),
+              eventLocation: event.location,
+              eventTime: event.time,
+            ),
+            SpecialRequirements(specialReq: event.special),
+            SizedBox(height: 20),
+            EventItems(itemList: eventItems),
+            SizedBox(height: 20),
+            PageButtons(
+              btnText: 'Expense Tracker',
+              btnColor: AppTheme.secondary,
+              onPressed: () {},
+            ),
+            SizedBox(height: 10),
+            PageButtons(
+              btnText: 'Manage Task',
+              btnColor: AppTheme.secondary,
+              onPressed: () {},
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
   }
 }

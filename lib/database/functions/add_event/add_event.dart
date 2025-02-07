@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
 
 void addEvent(EventAddModal value) async {
   var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
-
   await eventBox.put(value.eventId, value);
   getAllEvents();
 }
@@ -25,7 +23,6 @@ void getAllEvents() {
 
 EventAddModal? getEventById(String eventId) {
   Box<EventAddModal> eventBox = Hive.box<EventAddModal>(ADD_EVENT);
-
   return eventBox.values.firstWhere(
     (event) => event.eventId == eventId,
   );
@@ -42,7 +39,6 @@ Future<List<ItemModel>> getSelectedItems(String eventId) async {
   final event = eventBox.values.firstWhere(
     (e) => e.eventId == eventId,
   );
-
   return event.items ?? [];
 }
 
@@ -98,9 +94,7 @@ List<EventAddModal> getUpcomingEvents() {
 
 DateTime parseDateTime(String date, String time) {
   String datePart = date.split(' ')[0];
-
   String fullDateTime = '$datePart $time';
-
   DateFormat inputFormat = DateFormat("yyyy-MM-dd hh:mm a");
   return inputFormat.parse(fullDateTime);
 }

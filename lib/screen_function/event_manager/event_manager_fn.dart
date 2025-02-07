@@ -26,3 +26,8 @@ searchEvent({required String search, required List<EventAddModal> eventList}) {
   }
   return searchedEvents;
 }
+
+String extract(String fulldate) {
+  String date = fulldate.split(' ')[0];
+  return date;
+}

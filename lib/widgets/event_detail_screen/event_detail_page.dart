@@ -334,6 +334,7 @@ class EventItems extends StatelessWidget {
         SizedBox(
           height: 400,
           child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
             itemCount: itemList.length,
             itemBuilder: (context, index) {
               final item = itemList[index];

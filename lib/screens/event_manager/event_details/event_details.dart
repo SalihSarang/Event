@@ -1,4 +1,6 @@
 import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
@@ -22,7 +24,7 @@ class EventDetails extends StatelessWidget {
       );
     }
     final eventItems = event.items;
-    print(event.catogory);
+
     return Scaffold(
       backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Event Name'),
@@ -47,7 +49,7 @@ class EventDetails extends StatelessWidget {
             ),
             SizedBox(height: 20),
             EventDetailCards(
-              eventDate: event.date,
+              eventDate: extract(event.date),
               eventLocation: event.location,
               eventTime: event.time,
             ),

@@ -9,6 +9,7 @@ void customAlertBox(
   required IconData icon,
   required VoidCallback noPressed,
   required VoidCallback yesPressed,
+  Color? color,
 }) {
   showDialog(
     context: context,
@@ -30,7 +31,7 @@ void customAlertBox(
                   Center(
                     child: Icon(
                       icon,
-                      color: AppTheme.delete,
+                      color: color ?? AppTheme.delete,
                       size: 50,
                     ),
                   ),

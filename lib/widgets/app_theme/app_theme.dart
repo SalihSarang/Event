@@ -7,4 +7,5 @@ class AppTheme {
   static const hilite = Color.fromRGBO(30, 92, 228, 1);
   static const hint = Color.fromRGBO(152, 152, 159, 1);
   static const delete = Colors.red;
+  static const green = Colors.lightGreenAccent;
 }
