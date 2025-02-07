@@ -22,7 +22,6 @@ class _EventHistoryState extends State<EventHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Event History'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),

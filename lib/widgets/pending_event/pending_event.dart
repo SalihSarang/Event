@@ -3,20 +3,26 @@ import 'package:event_vault/database/functions/add_completed/add_completed.dart'
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/database/modals/pending_model/pending_model.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
-import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_manager/event_details/event_details.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/unique_id/unique_id.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
-class EventCard extends StatelessWidget {
-  EventCard({super.key, required this.event});
-  String? detailPageImg;
+class PendingEventCard extends StatelessWidget {
+  PendingEventCard(
+      {super.key,
+      required this.event,
+      required this.pEvent,
+      required this.detailPageImg});
+  String detailPageImg;
 
+  PendingEvents pEvent;
   EventAddModal event;
 
   @override
@@ -32,7 +38,7 @@ class EventCard extends StatelessWidget {
             developer.log("Tapped!");
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
-                image: detailPageImg!,
+                image: detailPageImg,
                 eventId: event.eventId,
               ),
             ));

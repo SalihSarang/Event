@@ -8,4 +8,5 @@ class AppTheme {
   static const hint = Color.fromRGBO(152, 152, 159, 1);
   static const delete = Colors.red;
   static const green = Colors.lightGreenAccent;
+  static const pending = Colors.orange;
 }

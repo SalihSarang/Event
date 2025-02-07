@@ -1,9 +1,10 @@
-import 'package:event_vault/screens/event_history/event_history.dart';
+import 'package:event_vault/screens/event_history/event_completed/event_history.dart';
+import 'package:event_vault/screens/event_history/history_main/history_main.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-eventCompleted({required BuildContext context}) {
+Widget eventCompleted({required BuildContext context}) {
   return Container(
     width: double.infinity,
     height: 200,
@@ -23,7 +24,7 @@ eventCompleted({required BuildContext context}) {
         TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => EventHistory(),
+                builder: (context) => HistoryMain(),
               ));
             },
             child: Text(

@@ -27,17 +27,21 @@ void customAlertBox(
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Icon(
-                      icon,
-                      color: color ?? AppTheme.delete,
-                      size: 50,
+                  Icon(
+                    icon,
+                    color: color ?? AppTheme.delete,
+                    size: 50,
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      message,
+                      textAlign: TextAlign.start,
+                      style: myFont(size: 18),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(message,
-                      textAlign: TextAlign.start, style: myFont(size: 20)),
                 ],
               ),
               SizedBox(height: 20),
@@ -46,22 +50,12 @@ void customAlertBox(
                 children: [
                   TextButton(
                     onPressed: noPressed,
-                    child: Row(
-                      children: [
-                        Text('No', style: myFont(size: 20)),
-                      ],
-                    ),
+                    child: Text('No', style: myFont(size: 18)),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   TextButton(
                     onPressed: yesPressed,
-                    child: Row(
-                      children: [
-                        Text('Yes', style: myFont(size: 20)),
-                      ],
-                    ),
+                    child: Text('Yes', style: myFont(size: 18)),
                   ),
                 ],
               ),
