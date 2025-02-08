@@ -18,7 +18,7 @@ getAllPendings() {
   pendingEventsListener.notifyListeners();
 }
 
-removePendings(String id) {
-  pendingEventsBox.delete(id);
+removePendings(String id) async {
+  await pendingEventsBox.delete(id);
   getAllPendings();
 }

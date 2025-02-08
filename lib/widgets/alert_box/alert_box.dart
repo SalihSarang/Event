@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 void customAlertBox(
   BuildContext context, {
-  required String title,
   required String message,
   required IconData icon,
   required VoidCallback noPressed,

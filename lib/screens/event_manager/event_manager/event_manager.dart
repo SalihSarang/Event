@@ -34,16 +34,16 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
 
   void handleCategoryUpdate() {
     if (mounted) {
-      categorys = catogoryListener.value;
+      setState(() {
+        categorys = catogoryListener.value;
+      });
     }
   }
 
   updateUI(List<EventAddModal> newUI) {
-    if (newUI.isEmpty) {
-      result = eventListen.value;
-    } else {
-      result = newUI;
-    }
+    setState(() {
+      result = newUI.isEmpty ? eventListen.value : newUI;
+    });
   }
 
   @override

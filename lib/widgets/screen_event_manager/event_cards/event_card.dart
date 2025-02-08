@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:event_vault/database/functions/add_completed/add_completed.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/add_pending/add_pending.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/database/modals/pending_model/pending_model.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
@@ -114,15 +116,15 @@ class EventCard extends StatelessWidget {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    'Delete',
+                                    'Edit',
                                     style: myFont(),
                                   )
                                 ],
                               )),
+                          // For Completed
                           PopupMenuItem(
                               onTap: () {
                                 customAlertBox(context,
-                                    title: "This Event is Completed",
                                     message: "This Event is Completed",
                                     icon: Icons.check_circle_outline_rounded,
                                     color: AppTheme.green, noPressed: () {
@@ -148,20 +150,21 @@ class EventCard extends StatelessWidget {
                                   )
                                 ],
                               )),
+                          // For Pending
                           PopupMenuItem(
                               onTap: () {
                                 customAlertBox(context,
-                                    title:
-                                        "You want to move this event to pending",
                                     message:
                                         "You want to move this event to pending",
                                     icon: Icons.pending_actions_rounded,
                                     color: AppTheme.pending, noPressed: () {
                                   Navigator.pop(context);
                                 }, yesPressed: () {
-                                  final completedEvent = Completed(
-                                      completedID: generateID(), event: event);
-                                  addCompletedEvents(completedEvent);
+                                  final completedEvent = PendingEvents(
+                                    event: event,
+                                    pendingID: generateID(),
+                                  );
+                                  addPendingEvents(completedEvent);
                                   deleteEvent(event.eventId);
                                   Navigator.pop(context);
                                 });
@@ -174,16 +177,15 @@ class EventCard extends StatelessWidget {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    'Completed',
+                                    'Pending',
                                     style: myFontColor(color: AppTheme.pending),
                                   )
                                 ],
                               )),
+                          // For Delete
                           PopupMenuItem(
                             onTap: () {
                               customAlertBox(context,
-                                  title: "You Want To Delete "
-                                      "This Event",
                                   message: "You Want To Delete "
                                       "This Event",
                                   icon: Icons.delete, noPressed: () {

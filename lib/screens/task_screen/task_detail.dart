@@ -61,7 +61,6 @@ class _TaskDetailState extends State<TaskDetail> {
                 onleftBtn: () {
                   customAlertBox(
                     context,
-                    title: 'Do you want to delete this Task',
                     message: 'Do you want to delete this Task',
                     icon: Icons.delete,
                     noPressed: () => Navigator.pop(context),

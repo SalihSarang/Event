@@ -49,7 +49,6 @@ Widget buildCategoryListView({
                     Navigator.pop(context);
                     deleteCategory(category.catogoryId);
                   },
-                  title: 'Delete this category',
                 );
               },
               titleBtn: category.name,

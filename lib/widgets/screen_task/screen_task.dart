@@ -133,7 +133,6 @@ Widget taskCard(
                   PopupMenuItem(
                       onTap: () => customAlertBox(
                             context,
-                            title: 'Do you want to delete this task',
                             message: 'Do you want to delete this task',
                             icon: Icons.delete,
                             noPressed: () {

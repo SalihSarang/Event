@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
@@ -41,9 +43,7 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                   label: Text(
                     'All',
                     style: TextStyle(
-                      color: selectedIndex == index
-                          ? Colors.white
-                          : AppTheme.textW,
+                      color: AppTheme.textW,
                     ),
                   ),
                   side: BorderSide.none,
@@ -52,7 +52,7 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                   backgroundColor: AppTheme.secondary,
                   onSelected: (bool selected) {
                     setState(() {
-                      selectedIndex = selected ? index : -1;
+                      selectedIndex = 0;
                     });
                     widget.onSearchResult(eventListen.value);
                   },
@@ -64,8 +64,7 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                 label: Text(
                   categories[categoryIndex].name,
                   style: TextStyle(
-                    color:
-                        selectedIndex == index ? Colors.white : AppTheme.textW,
+                    color: AppTheme.textW,
                   ),
                 ),
                 side: BorderSide.none,
@@ -82,9 +81,7 @@ class _SearchChoiceChipsState extends State<SearchChoiceChips> {
                       result: widget.events,
                       search: selectedCategory.name,
                     );
-
                     widget.onSearchResult(filteredEvents);
-                    print(filteredEvents);
                   } else {
                     widget.onSearchResult(widget.events);
                   }

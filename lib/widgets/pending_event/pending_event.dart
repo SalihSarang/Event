@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:event_vault/database/functions/add_completed/add_completed.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/add_pending/add_pending.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/pending_model/pending_model.dart';
@@ -120,7 +121,7 @@ class PendingEventCard extends StatelessWidget {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    'Delete',
+                                    'Edit',
                                     style: myFont(),
                                   )
                                 ],
@@ -128,7 +129,6 @@ class PendingEventCard extends StatelessWidget {
                           PopupMenuItem(
                               onTap: () {
                                 customAlertBox(context,
-                                    title: "This Event is Completed",
                                     message: "This Event is Completed",
                                     icon: Icons.check_circle_outline_rounded,
                                     color: AppTheme.green, noPressed: () {
@@ -137,7 +137,7 @@ class PendingEventCard extends StatelessWidget {
                                   final completedEvent = Completed(
                                       completedID: generateID(), event: event);
                                   addCompletedEvents(completedEvent);
-                                  deleteEvent(event.eventId);
+                                  removePendings(pEvent.pendingID);
                                   Navigator.pop(context);
                                 });
                               },
@@ -155,59 +155,28 @@ class PendingEventCard extends StatelessWidget {
                                 ],
                               )),
                           PopupMenuItem(
-                              onTap: () {
-                                customAlertBox(context,
-                                    title:
-                                        "You want to move this event to pending",
-                                    message:
-                                        "You want to move this event to pending",
-                                    icon: Icons.pending_actions_rounded,
-                                    color: AppTheme.pending, noPressed: () {
-                                  Navigator.pop(context);
-                                }, yesPressed: () {
-                                  final completedEvent = Completed(
-                                      completedID: generateID(), event: event);
-                                  addCompletedEvents(completedEvent);
-                                  deleteEvent(event.eventId);
-                                  Navigator.pop(context);
-                                });
-                              },
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.pending_actions_rounded,
-                                    color: AppTheme.pending,
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    'Completed',
-                                    style: myFontColor(color: AppTheme.pending),
-                                  )
-                                ],
-                              )),
-                          PopupMenuItem(
                             onTap: () {
                               customAlertBox(context,
-                                  title: "You Want To Delete "
+                                  message: "You Want To Restore "
                                       "This Event",
-                                  message: "You Want To Delete "
-                                      "This Event",
-                                  icon: Icons.delete, noPressed: () {
+                                  icon: Icons.restore_page_outlined,
+                                  color: AppTheme.textW, noPressed: () {
                                 Navigator.pop(context);
                               }, yesPressed: () {
-                                deleteEvent(event.eventId);
+                                addEvent(event);
+                                removePendings(pEvent.pendingID);
                                 Navigator.pop(context);
                               });
                             },
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.delete,
-                                  color: AppTheme.delete,
+                                  Icons.restore,
+                                  color: AppTheme.textW,
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                  'Delete',
+                                  'Restore',
                                   style: myFont(),
                                 )
                               ],

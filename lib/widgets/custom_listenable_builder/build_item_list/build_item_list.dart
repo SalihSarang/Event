@@ -106,7 +106,6 @@ Widget buildItemsList({
                             onPressed: () {
                               customAlertBox(
                                 context,
-                                title: 'You want to delete this item',
                                 message: 'You want to delete this item',
                                 icon: Icons.delete,
                                 noPressed: () {

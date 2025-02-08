@@ -14,7 +14,7 @@ class HistoryMain extends StatelessWidget {
         appBar: CustomAppBarHistory(title: 'Event History'),
         body: SafeArea(
           child: TabBarView(children: [
-            EventHistory(),
+            CompletedEvents(),
             PendingScreen(),
           ]),
         ),

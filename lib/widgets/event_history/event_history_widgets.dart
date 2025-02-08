@@ -1,16 +1,16 @@
 import 'dart:io';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:event_vault/database/functions/add_completed/add_completed.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
-import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
-import 'package:event_vault/screens/event_manager/event_details/event_details.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
+import 'package:event_vault/widgets/screen_event_manager/event_cards/event_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
@@ -107,9 +107,9 @@ class EventHistoryCard extends StatelessWidget {
                           PopupMenuItem(
                               onTap: () {
                                 customAlertBox(context,
-                                    title: "You Want To Delete This Event",
-                                    message: "You Want To Delete This Event",
-                                    icon: Icons.delete, noPressed: () {
+                                    message: "You Want To Restore This Event",
+                                    icon: Icons.restore_page_outlined,
+                                    color: AppTheme.textW, noPressed: () {
                                   Navigator.pop(context);
                                 }, yesPressed: () {
                                   final restoredEvent = EventAddModal(
@@ -174,19 +174,10 @@ class EventHistoryCard extends StatelessWidget {
 class HistoryEventDetails extends StatelessWidget {
   HistoryEventDetails({super.key, required this.image, required this.event});
   String image;
-  // String eventId;
   EventAddModal event;
 
   @override
   Widget build(BuildContext context) {
-    if (event == null) {
-      return Scaffold(
-        appBar: CustomAppBar(title: 'Event Name'),
-        body: Center(
-          child: Text('Event not found'),
-        ),
-      );
-    }
     final eventItems = event.items;
 
     return Scaffold(
@@ -238,4 +229,37 @@ class HistoryEventDetails extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget tabBar(List<EventAddModal> upcomingEvents) {
+  return upcomingEvents.isEmpty
+      ? SizedBox(
+          height: 200,
+          child: Center(
+            child: Text(
+              'No Upcoming Events',
+              style: myFont(size: 25),
+            ),
+          ),
+        )
+      : CarouselSlider(
+          items: upcomingEvents.map((event) {
+            return Container(
+              margin: EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: EventCard(event: event),
+              ),
+            );
+          }).toList(),
+          options: CarouselOptions(
+            autoPlayInterval: Duration(seconds: 3),
+            autoPlayAnimationDuration: Duration(milliseconds: 2000),
+            height: 325.0,
+            autoPlay: true,
+            enlargeCenterPage: true,
+            aspectRatio: 16 / 9,
+            viewportFraction: 1,
+          ),
+        );
 }

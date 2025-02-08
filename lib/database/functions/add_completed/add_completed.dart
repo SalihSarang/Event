@@ -14,7 +14,7 @@ addCompletedEvents(Completed value) {
   getAllCompletedEvents();
 }
 
-getAllCompletedEvents() {
+void getAllCompletedEvents() {
   completedEvents.value.clear();
   completedEvents.value = completedEventsBox.values.toList();
   completedEvents.notifyListeners();

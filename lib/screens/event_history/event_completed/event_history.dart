@@ -1,22 +1,23 @@
 import 'package:event_vault/database/functions/add_completed/add_completed.dart';
 import 'package:event_vault/utils/font/app_font.dart';
-import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/event_history/event_history_widgets.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
-class EventHistory extends StatefulWidget {
-  const EventHistory({super.key});
+class CompletedEvents extends StatefulWidget {
+  const CompletedEvents({super.key});
 
   @override
-  State<EventHistory> createState() => _EventHistoryState();
+  State<CompletedEvents> createState() => _CompletedEventsState();
 }
 
-class _EventHistoryState extends State<EventHistory> {
+class _CompletedEventsState extends State<CompletedEvents> {
   @override
   void initState() {
     super.initState();
-    getAllCompletedEvents();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getAllCompletedEvents();
+    });
   }
 
   @override
