@@ -6,9 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 Widget myField({
   required String hint,
   required String fieldTitle,
-  required String? Function(String?) validator,
+  String? Function(String?)? validator,
   required TextEditingController controller,
-  required AutovalidateMode validationMode,
+  AutovalidateMode? validationMode,
   TextInputType? keyboardType,
   int? maxLength,
 }) {

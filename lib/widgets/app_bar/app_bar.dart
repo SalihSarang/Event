@@ -45,13 +45,27 @@ class CustomAppBarHistory extends StatelessWidget
       backgroundColor: AppTheme.mainBg,
       iconTheme: const IconThemeData(color: AppTheme.textW),
       automaticallyImplyLeading: false,
-      bottom: const TabBar(
-        labelStyle: TextStyle(color: AppTheme.hilite, fontSize: 25),
+      bottom: TabBar(
+        indicatorWeight: 4.0,
+        indicatorPadding: EdgeInsets.symmetric(horizontal: -20),
+        labelStyle: TextStyle(
+            color: const Color.fromARGB(255, 255, 255, 255), fontSize: 25),
         unselectedLabelStyle: TextStyle(color: AppTheme.textW, fontSize: 20),
         tabs: [
           Tab(text: 'Completed Event'),
           Tab(text: 'Pending Events'),
         ],
+        indicator: BoxDecoration(
+          color: AppTheme.secondary,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              // color: AppTheme.delete,
+              spreadRadius: 3,
+              blurRadius: 6,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 eventNameValidation(String? value) {
   if (value == null || value.isEmpty) {
-    return 'Please enter an event name';
+    return 'Please enter name';
   }
 
   RegExp regExp = RegExp(r'^[a-zA-Z0-9\s\-_]+$');

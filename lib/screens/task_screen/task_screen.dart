@@ -1,3 +1,4 @@
+import 'package:event_vault/screens/task_screen/add_task.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/custom_listenable_builder/task_card/task_card.dart';
@@ -12,7 +13,13 @@ class TaskScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Task'),
-      floatingActionButton: customFloatingButton(context),
+      floatingActionButton: customFloatingButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AddTask(),
+            ));
+          },
+          context: context),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

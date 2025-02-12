@@ -12,7 +12,8 @@ import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
-Widget customFloatingButton(BuildContext context) {
+Widget customFloatingButton(
+    {required BuildContext context, required VoidCallback onPressed}) {
   return SizedBox(
     height: 65,
     width: 65,
@@ -20,11 +21,7 @@ Widget customFloatingButton(BuildContext context) {
       elevation: 10,
       splashColor: AppTheme.secondary,
       backgroundColor: AppTheme.hilite,
-      onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AddTask(),
-        ));
-      },
+      onPressed: onPressed,
       child: Icon(
         Icons.add,
         size: 35,

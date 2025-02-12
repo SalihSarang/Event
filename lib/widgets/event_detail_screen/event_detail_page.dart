@@ -77,7 +77,7 @@ class EventDescription extends StatelessWidget {
 }
 // End Event Description
 
-// Event Date, time, Locarion, Venue Cards
+// Event Date, time, location, Venue Cards
 
 class EventDetailCards extends StatelessWidget {
   EventDetailCards(

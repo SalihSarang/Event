@@ -5,7 +5,7 @@ itemPriceValidation(String? value) {
 
   RegExp regExp = RegExp(r'^\d+(\.\d{1,2})?$');
   if (!regExp.hasMatch(value)) {
-    return 'Price must be a valid number with up to two decimal places';
+    return 'Pprice must be a valid number with u to two decimal places';
   }
 
   double? price = double.tryParse(value);
@@ -14,7 +14,7 @@ itemPriceValidation(String? value) {
     return 'Price must be greater than 0';
   }
 
-  if (price != null && price > 10000) {
+  if (price != null && price > 20000) {
     return 'Price must not exceed 10,000';
   }
 
