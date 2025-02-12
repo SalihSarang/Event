@@ -1,22 +1,27 @@
+import 'package:event_vault/database/functions/add_event_task/add_event_task.dart';
+import 'package:event_vault/database/modals/event_task_model/event_task_model.dart';
+import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/utils/validation/task_validation/task_validation.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/app_theme/app_theme.dart';
+import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
+import 'package:event_vault/widgets/event_task/event_task.dart';
 import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
-import 'package:event_vault/widgets/screen_task/screen_task.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
+import 'package:event_vault/widgets/unique_id/unique_id.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
-
 import 'package:image_picker/image_picker.dart';
 
-class AddTask extends StatefulWidget {
-  const AddTask({super.key});
-
+class EventTaskAdd extends StatefulWidget {
+  const EventTaskAdd({super.key, required this.eventID});
+  final String eventID;
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<EventTaskAdd> createState() => _AddTaskState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _AddTaskState extends State<EventTaskAdd> {
   final _taskTitileCtrl = TextEditingController();
   final _taskDescription = TextEditingController();
   final _dueDateCtrl = TextEditingController();
@@ -33,18 +38,40 @@ class _AddTaskState extends State<AddTask> {
     }
   }
 
+  _validateForm() {
+    if (_taskFormKey.currentState!.validate()) {
+      final task = Task(
+          taskID: generateID(),
+          taskTitle: _taskTitileCtrl.text,
+          taskDescription: _taskDescription.text,
+          dueDate: _dueDateCtrl.text,
+          image: imgPath);
+      final eventTask = EventTaskModel(
+          eventTaskID: generateID(), task: task, eventID: widget.eventID);
+      addEventTask(eventTask);
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'Add Task'),
-      floatingActionButton: customFloatingBtn(
-          context: context,
-          taskFormKey: _taskFormKey,
-          taskTitle: _taskTitileCtrl.text,
-          dueDate: _dueDateCtrl.text,
-          taskDescription: _taskDescription.text,
-          image: imgPath),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            saveCancelColumn(
+                saveBtnColor: AppTheme.hilite,
+                downBtn: 'Cancel',
+                upBtn: 'Save',
+                onDownBtn: () {},
+                onUpBtn: () => _validateForm()),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(

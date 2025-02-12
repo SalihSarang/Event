@@ -1,3 +1,4 @@
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,7 +73,9 @@ Widget saveCancelColumn(
     {required String downBtn,
     required String upBtn,
     required VoidCallback onDownBtn,
-    required VoidCallback onUpBtn}) {
+    required VoidCallback onUpBtn,
+    Color? saveBtnColor,
+    Color? cancelBtnColor}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -85,7 +88,7 @@ Widget saveCancelColumn(
                 width: 0.1,
               ),
             ),
-            backgroundColor: AppTheme.secondary,
+            backgroundColor: saveBtnColor ?? AppTheme.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onUpBtn,
@@ -95,14 +98,7 @@ Widget saveCancelColumn(
               SizedBox(
                 width: 10,
               ),
-              Text(
-                upBtn,
-                style: GoogleFonts.roboto(
-                  color: AppTheme.textW,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              )
+              Text(upBtn, style: myFont(size: 20))
             ],
           )),
       SizedBox(
@@ -116,7 +112,7 @@ Widget saveCancelColumn(
                 width: 0,
               ),
             ),
-            backgroundColor: AppTheme.hilite,
+            backgroundColor: cancelBtnColor ?? AppTheme.secondary,
             minimumSize: Size(235, 60),
           ),
           onPressed: onDownBtn,
@@ -126,14 +122,7 @@ Widget saveCancelColumn(
               SizedBox(
                 width: 10,
               ),
-              Text(
-                downBtn,
-                style: GoogleFonts.roboto(
-                  color: AppTheme.textW,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              )
+              Text(downBtn, style: myFont(size: 20))
             ],
           )),
     ],

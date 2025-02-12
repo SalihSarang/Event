@@ -1,10 +1,10 @@
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:flutter/material.dart';
 
-Widget emptyList({required messege}) {
+Widget emptyList({required String message}) {
   return Center(
     child: Text(
-      messege,
+      message,
       style: myFont(),
     ),
   );

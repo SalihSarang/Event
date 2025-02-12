@@ -31,7 +31,7 @@ class EventCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            developer.log("Tapped!");
+            developer.log("Event ID : ${event.eventId}");
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
                 image: detailPageImg!,

@@ -1,41 +1,20 @@
+import 'dart:developer' as developer;
 import 'dart:io';
-import 'package:event_vault/database/functions/%20add_task/add_task.dart';
+import 'package:event_vault/database/functions/add_event_task/add_event_task.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
-import 'package:event_vault/screen_function/task/task_screen_fn.dart';
-import 'package:event_vault/screens/task_screen/edit_task.dart';
+import 'package:event_vault/screens/event_task/event_task_edit.dart';
 import 'package:event_vault/screens/task_screen/task_detail.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
-import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as developer;
 
-Widget customFloatingButton(
-    {required BuildContext context, required VoidCallback onPressed}) {
-  return SizedBox(
-    height: 65,
-    width: 65,
-    child: FloatingActionButton(
-      elevation: 10,
-      splashColor: AppTheme.secondary,
-      backgroundColor: AppTheme.hilite,
-      onPressed: onPressed,
-      child: Icon(
-        Icons.add,
-        size: 35,
-      ),
-    ),
-  );
-}
+Widget eventTaskCard(
+    {required BuildContext context,
+    required Task taskDetails,
+    required String eventId}) {
+  developer.log(taskDetails.dueDate);
 
-Widget taskCard(
-    {required String taskTitle,
-    required String dueDate,
-    required String image,
-    required String taskId,
-    required String taskDescription,
-    required BuildContext context}) {
   return Material(
     color: Colors.transparent,
     child: InkWell(
@@ -43,11 +22,11 @@ Widget taskCard(
       splashColor: Colors.white,
       onTap: () {
         final task = Task(
-            taskID: taskId,
-            taskTitle: taskTitle,
-            taskDescription: taskDescription,
-            dueDate: dueDate,
-            image: image);
+            taskID: taskDetails.taskID,
+            taskTitle: taskDetails.taskTitle,
+            taskDescription: taskDetails.taskDescription,
+            dueDate: taskDetails.dueDate,
+            image: taskDetails.image);
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => TaskDetail(
             task: task,
@@ -67,7 +46,8 @@ Widget taskCard(
                 width: 85,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: FileImage(File(image)), fit: BoxFit.fill),
+                        image: FileImage(File(taskDetails.image)),
+                        fit: BoxFit.fill),
                     color: AppTheme.hint,
                     borderRadius: BorderRadius.circular(50)),
               ),
@@ -76,11 +56,11 @@ Widget taskCard(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  taskTitle,
+                  taskDetails.taskTitle,
                   style: myFont(size: 20),
                 ),
                 Text(
-                  dueDate,
+                  taskDetails.dueDate,
                   style: hintFont(),
                 )
               ],
@@ -96,14 +76,15 @@ Widget taskCard(
                   PopupMenuItem(
                       onTap: () {
                         final task = Task(
-                            taskID: taskId,
-                            taskTitle: taskTitle,
-                            taskDescription: taskDescription,
-                            dueDate: dueDate,
-                            image: image);
+                            taskID: taskDetails.taskID,
+                            taskTitle: taskDetails.taskTitle,
+                            taskDescription: taskDetails.taskDescription,
+                            dueDate: taskDetails.dueDate,
+                            image: taskDetails.image);
 
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditTask(
+                          builder: (context) => EditEventTask(
+                            eventID: eventId,
                             task: task,
                           ),
                         ));
@@ -135,7 +116,7 @@ Widget taskCard(
                               Navigator.pop(context);
                             },
                             yesPressed: () {
-                              deleteTask(taskId);
+                              deleteEventTask(taskDetails.taskID);
                               Navigator.pop(context);
                             },
                           ),
@@ -160,76 +141,6 @@ Widget taskCard(
           ],
         ),
       ),
-    ),
-  );
-}
-
-Widget customFloatingBtn(
-    {required String taskTitle,
-    required String dueDate,
-    required String taskDescription,
-    required String image,
-    required GlobalKey<FormState> taskFormKey,
-    required BuildContext context}) {
-  String masage;
-  return Padding(
-    padding: const EdgeInsets.all(20),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        saveCancelColumn(
-          upBtn: 'Cancel',
-          downBtn: 'Save',
-          onDownBtn: () {
-            developer.log(image);
-            validateForm(
-              context: context,
-              taskFormKey: taskFormKey,
-              dueDate: dueDate,
-              image: image,
-              taskDescription: taskDescription,
-              taskTitle: taskTitle,
-            );
-          },
-          onUpBtn: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-Widget updateCustomFloatingBtn(
-    {required TextEditingController taskTitle,
-    required TextEditingController dueDate,
-    required TextEditingController taskDescription,
-    required String image,
-    required GlobalKey<FormState> taskFormKey,
-    required BuildContext context,
-    required taskID}) {
-  String masage;
-  return Padding(
-    padding: const EdgeInsets.all(20),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        saveCancelColumn(
-          upBtn: 'Cancel',
-          downBtn: 'Save',
-          onDownBtn: () {
-            developer.log(taskTitle.text);
-
-            updateValidateForm(
-                context: context,
-                taskFormKey: taskFormKey,
-                dueDate: dueDate.text,
-                image: image,
-                taskDescription: taskDescription.text,
-                taskTitle: taskTitle.text,
-                taskID: taskID);
-          },
-          onUpBtn: () {},
-        ),
-      ],
     ),
   );
 }

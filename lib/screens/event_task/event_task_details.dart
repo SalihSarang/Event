@@ -1,5 +1,6 @@
 import 'package:event_vault/database/functions/%20add_task/add_task.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
+import 'package:event_vault/screens/event_task/event_task_edit.dart';
 import 'package:event_vault/screens/task_screen/edit_task.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
@@ -7,15 +8,16 @@ import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
-class TaskDetail extends StatefulWidget {
-  TaskDetail({super.key, required this.task});
+class EventTaskDetails extends StatefulWidget {
+  EventTaskDetails({super.key, required this.task, required this.eventId});
   Task task;
+  final String eventId;
 
   @override
-  State<TaskDetail> createState() => _TaskDetailState();
+  State<EventTaskDetails> createState() => _TaskDetailState();
 }
 
-class _TaskDetailState extends State<TaskDetail> {
+class _TaskDetailState extends State<EventTaskDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,14 @@ class _TaskDetailState extends State<TaskDetail> {
                 leftBtn: 'Delete',
                 onRightBtn: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EditTask(task: widget.task),
+                    builder: (context) => Row(
+                      children: [
+                        EditEventTask(
+                          task: widget.task,
+                          eventID: '',
+                        ),
+                      ],
+                    ),
                   ));
                 },
                 onleftBtn: () {

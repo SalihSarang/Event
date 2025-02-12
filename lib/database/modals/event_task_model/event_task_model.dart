@@ -8,5 +8,8 @@ class EventTaskModel {
   Task task;
   @HiveField(1)
   String eventTaskID;
-  EventTaskModel({required this.eventTaskID, required this.task});
+  @HiveField(2)
+  String eventID;
+  EventTaskModel(
+      {required this.eventTaskID, required this.task, required this.eventID});
 }

@@ -19,17 +19,20 @@ class EventTaskModelAdapter extends TypeAdapter<EventTaskModel> {
     return EventTaskModel(
       eventTaskID: fields[1] as String,
       task: fields[0] as Task,
+      eventID: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, EventTaskModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.task)
       ..writeByte(1)
-      ..write(obj.eventTaskID);
+      ..write(obj.eventTaskID)
+      ..writeByte(2)
+      ..write(obj.eventID);
   }
 
   @override
