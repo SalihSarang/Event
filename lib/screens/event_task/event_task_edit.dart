@@ -8,7 +8,6 @@ import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
 import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
-import 'package:event_vault/widgets/unique_id/unique_id.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 import 'package:image_picker/image_picker.dart';

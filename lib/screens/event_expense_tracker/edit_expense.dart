@@ -7,7 +7,6 @@ import 'package:event_vault/utils/validation/event_adding/event_name/event_name.
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
-import 'package:event_vault/widgets/unique_id/unique_id.dart';
 import 'package:flutter/material.dart';
 
 class EditExpense extends StatelessWidget {

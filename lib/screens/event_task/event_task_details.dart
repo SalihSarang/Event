@@ -17,7 +17,7 @@ class EventTaskDetails extends StatefulWidget {
   Task task;
   final String eventId;
   EventTaskModel eventTask;
-  @override
+  @override 
   State<EventTaskDetails> createState() => _TaskDetailState();
 }
 

@@ -6,7 +6,6 @@ import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
 import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
-import 'package:event_vault/widgets/event_task/event_task.dart';
 import 'package:event_vault/widgets/img_add_field/img_add_field.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:event_vault/widgets/unique_id/unique_id.dart';
@@ -66,7 +65,7 @@ class _AddTaskState extends State<EventTaskAdd> {
                 saveBtnColor: AppTheme.hilite,
                 downBtn: 'Cancel',
                 upBtn: 'Save',
-                onDownBtn: () {},
+                onDownBtn: () => Navigator.pop(context),
                 onUpBtn: () => _validateForm()),
           ],
         ),

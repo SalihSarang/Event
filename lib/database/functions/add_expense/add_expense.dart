@@ -1,4 +1,3 @@
-import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';

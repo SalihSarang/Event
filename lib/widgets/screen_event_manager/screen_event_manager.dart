@@ -1,5 +1,3 @@
-import 'dart:developer' as developer;
-
 import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
 import 'package:event_vault/database/functions/add_event/add_event.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';

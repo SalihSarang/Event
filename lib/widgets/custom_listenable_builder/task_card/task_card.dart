@@ -1,5 +1,4 @@
 import 'package:event_vault/database/functions/%20add_task/add_task.dart';
-import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/empty_list_handling/empty_list_handling.dart';
 import 'package:event_vault/widgets/screen_task/screen_task.dart';
 import 'package:flutter/material.dart';
