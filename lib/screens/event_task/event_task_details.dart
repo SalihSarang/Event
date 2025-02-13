@@ -17,7 +17,7 @@ class EventTaskDetails extends StatefulWidget {
   Task task;
   final String eventId;
   EventTaskModel eventTask;
-  @override 
+  @override
   State<EventTaskDetails> createState() => _TaskDetailState();
 }
 
@@ -46,6 +46,7 @@ class _TaskDetailState extends State<EventTaskDetails> {
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
               child: EventDescription(
+                  title: 'Task Description',
                   discriptionData: widget.task.taskDescription),
             ),
             saveCancelRow(

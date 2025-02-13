@@ -45,7 +45,12 @@ class EventDetails extends StatelessWidget {
               title: 'Contact Information',
             ),
             SizedBox(height: 20),
+            EventDescription(title: 'Budget', discriptionData: event.budget),
+            SizedBox(height: 20),
             EventDescription(
+              title: 'Description',
+              minLines: 5,
+              maxLines: 5,
               discriptionData: event.description,
             ),
             SizedBox(height: 20),

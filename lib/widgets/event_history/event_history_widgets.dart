@@ -172,9 +172,10 @@ class EventHistoryCard extends StatelessWidget {
 }
 
 class HistoryEventDetails extends StatelessWidget {
-  HistoryEventDetails({super.key, required this.image, required this.event});
-  String image;
-  EventAddModal event;
+  const HistoryEventDetails(
+      {super.key, required this.image, required this.event});
+  final String image;
+  final EventAddModal event;
 
   @override
   Widget build(BuildContext context) {
@@ -200,6 +201,7 @@ class HistoryEventDetails extends StatelessWidget {
             ),
             SizedBox(height: 20),
             EventDescription(
+              title: 'Description',
               discriptionData: event.description,
             ),
             SizedBox(height: 20),

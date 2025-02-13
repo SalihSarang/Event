@@ -40,6 +40,7 @@ class _TaskDetailState extends State<TaskDetail> {
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
               child: EventDescription(
+                  title: 'Task Description',
                   discriptionData: widget.task.taskDescription),
             ),
             saveCancelRow(

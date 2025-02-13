@@ -34,22 +34,30 @@ class ImageContainer extends StatelessWidget {
 // Event Description
 
 class EventDescription extends StatelessWidget {
-  EventDescription({super.key, required this.discriptionData});
-  String discriptionData;
+  const EventDescription(
+      {super.key,
+      required this.discriptionData,
+      this.maxLines,
+      this.minLines,
+      required this.title});
+  final String discriptionData;
+  final int? maxLines;
+  final int? minLines;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Description',
+          title,
           style: myFont(size: 20),
         ),
         SizedBox(height: 10),
         TextFormField(
           readOnly: true,
-          maxLines: 5,
-          minLines: 5,
+          maxLines: maxLines,
+          minLines: minLines,
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromRGBO(32, 34, 54, 1),
