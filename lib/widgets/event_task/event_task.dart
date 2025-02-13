@@ -1,9 +1,10 @@
 import 'dart:developer' as developer;
 import 'dart:io';
 import 'package:event_vault/database/functions/add_event_task/add_event_task.dart';
+import 'package:event_vault/database/modals/event_task_model/event_task_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
+import 'package:event_vault/screens/event_task/event_task_details.dart';
 import 'package:event_vault/screens/event_task/event_task_edit.dart';
-import 'package:event_vault/screens/task_screen/task_detail.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
@@ -12,7 +13,8 @@ import 'package:flutter/material.dart';
 Widget eventTaskCard(
     {required BuildContext context,
     required Task taskDetails,
-    required String eventId}) {
+    required String eventId,
+    required EventTaskModel eventTask}) {
   developer.log(taskDetails.dueDate);
 
   return Material(
@@ -28,8 +30,10 @@ Widget eventTaskCard(
             dueDate: taskDetails.dueDate,
             image: taskDetails.image);
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TaskDetail(
+          builder: (context) => EventTaskDetails(
+            eventTask: eventTask,
             task: task,
+            eventId: eventId,
           ),
         ));
       },
@@ -84,6 +88,7 @@ Widget eventTaskCard(
 
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EditEventTask(
+                            eventTask: eventTask,
                             eventID: eventId,
                             task: task,
                           ),

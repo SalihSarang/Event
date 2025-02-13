@@ -1,7 +1,7 @@
 import 'package:event_vault/database/functions/%20add_task/add_task.dart';
+import 'package:event_vault/database/modals/event_task_model/event_task_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/screens/event_task/event_task_edit.dart';
-import 'package:event_vault/screens/task_screen/edit_task.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/buttons/save_add_btn/save_add_btn.dart';
@@ -9,10 +9,14 @@ import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class EventTaskDetails extends StatefulWidget {
-  EventTaskDetails({super.key, required this.task, required this.eventId});
+  EventTaskDetails(
+      {super.key,
+      required this.task,
+      required this.eventId,
+      required this.eventTask});
   Task task;
   final String eventId;
-
+  EventTaskModel eventTask;
   @override
   State<EventTaskDetails> createState() => _TaskDetailState();
 }
@@ -48,16 +52,15 @@ class _TaskDetailState extends State<EventTaskDetails> {
                 rightBtn: 'Edit',
                 leftBtn: 'Delete',
                 onRightBtn: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Row(
-                      children: [
-                        EditEventTask(
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditEventTask(
+                          eventID: widget.eventId,
                           task: widget.task,
-                          eventID: '',
+                          eventTask: widget.eventTask,
                         ),
-                      ],
-                    ),
-                  ));
+                      ));
                 },
                 onleftBtn: () {
                   customAlertBox(

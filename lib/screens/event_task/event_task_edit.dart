@@ -14,9 +14,14 @@ import 'dart:developer' as developer;
 import 'package:image_picker/image_picker.dart';
 
 class EditEventTask extends StatefulWidget {
-  const EditEventTask({super.key, required this.eventID, required this.task});
+  const EditEventTask(
+      {super.key,
+      required this.eventID,
+      required this.task,
+      required this.eventTask});
   final String eventID;
   final Task task;
+  final EventTaskModel eventTask;
   @override
   State<EditEventTask> createState() => _AddTaskState();
 }
@@ -41,20 +46,28 @@ class _AddTaskState extends State<EditEventTask> {
   _validateForm() {
     if (_taskFormKey.currentState!.validate()) {
       final task = Task(
-          taskID: generateID(),
+          taskID: widget.task.taskID,
           taskTitle: _taskTitileCtrl.text,
           taskDescription: _taskDescription.text,
           dueDate: _dueDateCtrl.text,
           image: imgPath);
       final eventTask = EventTaskModel(
-          eventTaskID: generateID(), task: task, eventID: widget.eventID);
-      addEventTask(eventTask);
+          eventTaskID: widget.eventTask.eventTaskID,
+          task: task,
+          eventID: widget.eventID);
+      updateEventTask(eventTask);
       Navigator.pop(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    _taskTitileCtrl.text = widget.task.taskTitle;
+    _taskDescription.text = widget.task.taskDescription;
+    _dueDateCtrl.text = widget.task.dueDate;
+    imgPath = widget.task.image;
+    // developer.log(widget.task.dueDate);
+
     return Scaffold(
       appBar: CustomAppBar(title: 'Add Task'),
       floatingActionButton: Padding(

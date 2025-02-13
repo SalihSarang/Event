@@ -60,6 +60,7 @@ class _EventTaskState extends State<EventTask> {
                   itemBuilder: (context, index) {
                     final eventTask = taskList[index];
                     return eventTaskCard(
+                      eventTask: eventTask,
                       context: context,
                       taskDetails: eventTask.task,
                       eventId: widget.eventID,
