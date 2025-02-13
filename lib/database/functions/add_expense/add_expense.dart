@@ -35,3 +35,20 @@ updateExpense(ExpenseModel value) {
   expenseBox.put(value.expenseID, value);
   getAllExpense();
 }
+
+List<ExpenseModel> getExpenseByEventID(String eventID) {
+  return expenseBox.values
+      .where((expense) => expense.eventID == eventID)
+      .toList();
+}
+
+double getTotalExpenses(String eventID) {
+  double total = 0.0;
+  var expenses = getExpenseByEventID(eventID);
+
+  for (var expense in expenses) {
+    total += double.tryParse(expense.amount) ?? 0.0;
+  }
+
+  return total;
+}

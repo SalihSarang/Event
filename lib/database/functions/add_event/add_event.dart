@@ -7,17 +7,16 @@ import 'package:intl/intl.dart';
 
 const ADD_EVENT = 'addevent';
 ValueNotifier<List<EventAddModal>> eventListen = ValueNotifier([]);
+var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
 
 void addEvent(EventAddModal value) async {
-  var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
   await eventBox.put(value.eventId, value);
   getAllEvents();
 }
 
 void getAllEvents() {
   eventListen.value.clear();
-  var getEventBox = Hive.box<EventAddModal>(ADD_EVENT);
-  eventListen.value.addAll(getEventBox.values);
+  eventListen.value.addAll(eventBox.values);
   eventListen.notifyListeners();
 }
 
@@ -29,13 +28,11 @@ EventAddModal? getEventById(String eventId) {
 }
 
 upDateEvent(EventAddModal value) {
-  var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
   eventBox.put(value.eventId, value);
   getAllEvents();
 }
 
 Future<List<ItemModel>> getSelectedItems(String eventId) async {
-  final eventBox = Hive.box<EventAddModal>('events');
   final event = eventBox.values.firstWhere(
     (e) => e.eventId == eventId,
   );
@@ -43,14 +40,11 @@ Future<List<ItemModel>> getSelectedItems(String eventId) async {
 }
 
 void deleteEvent(String value) async {
-  var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
   await eventBox.delete(value);
   getAllEvents();
 }
 
 List<EventAddModal> getUpcomingEvents() {
-  var eventBox = Hive.box<EventAddModal>(ADD_EVENT);
-
   List<EventAddModal> events = eventBox.values.map(
     (eventData) {
       developer.log(eventData.date);

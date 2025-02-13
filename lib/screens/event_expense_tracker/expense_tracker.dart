@@ -1,6 +1,7 @@
 import 'package:event_vault/database/functions/add_expense/add_expense.dart';
 import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:event_vault/screens/event_expense_tracker/add_expense.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/empty_list_handling/empty_list_handling.dart';
 import 'package:event_vault/widgets/expense_screen/expense_screen.dart';
@@ -18,16 +19,20 @@ class ExpenseTracker extends StatefulWidget {
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
   List<ExpenseModel> expenseList = [];
+  double? expense;
 
   @override
   void initState() {
     super.initState();
-    expenseListener.addListener(getTask);
-    getTask();
+    expenseListener.addListener(getExpense);
+    getExpense();
   }
 
-  getTask() {
+  getExpense() {
     expenseList = getTaskByEvetID(widget.eventID);
+    setState(() {
+      expense = getTotalExpenses(widget.eventID);
+    });
   }
 
   @override
@@ -51,6 +56,19 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
         child: SafeArea(
           child: Column(
             children: [
+              Row(
+                children: [
+                  Text(
+                    'Total Expense',
+                    style: myFontColor(size: 30),
+                  ),
+                  Spacer(),
+                  Text(
+                    expense.toString(),
+                    style: myFontColor(size: 25),
+                  )
+                ],
+              ),
               Expanded(
                 child: ValueListenableBuilder(
                   valueListenable: expenseListener,
