@@ -5,11 +5,12 @@ import 'dart:developer' as developer;
 
 Future<String> selectDate(BuildContext context) async {
   final String date;
+  DateTime curentDate = DateTime.now();
 
   DateTime? pickedDate = await showDatePicker(
     context: context,
     initialDate: DateTime.now(),
-    firstDate: DateTime(2000),
+    firstDate: curentDate,
     lastDate: DateTime(2100),
     builder: (context, child) {
       return Theme(data: dateTheme(), child: child!);
@@ -21,7 +22,7 @@ Future<String> selectDate(BuildContext context) async {
     date = DateFormat('yyyy-MMM-dd').format(pickedDate);
     developer.log(date);
   } else {
-    date = 'No date selected'; // Default value if the user cancels
+    date = 'No date selected';
   }
 
   return date;

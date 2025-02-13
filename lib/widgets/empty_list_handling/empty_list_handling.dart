@@ -5,7 +5,7 @@ Widget emptyList({required String message}) {
   return Center(
     child: Text(
       message,
-      style: myFont(),
+      style: myFont(size: 25),
     ),
   );
 }
