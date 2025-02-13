@@ -19,7 +19,7 @@ Future<String> selectDate(BuildContext context) async {
 
   if (pickedDate != null) {
     developer.log(pickedDate.toString());
-    date = DateFormat('yyyy-MMM-dd').format(pickedDate);
+    date = DateFormat('dd/MM/yyyy').format(pickedDate);
     developer.log(date);
   } else {
     date = 'No date selected';

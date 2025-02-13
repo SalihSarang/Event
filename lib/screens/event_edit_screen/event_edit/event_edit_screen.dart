@@ -176,7 +176,8 @@ class _EventEditScreen extends State<EventEditScreen> {
                           controller: timectrl,
                           hint: 'Enter Time',
                           fieldTitle: 'Time',
-                          validator: (value) => eventTimeValidation(value),
+                          validator: (value) =>
+                              eventTimeValidation(value, date.text),
                         ),
                         myField(
                           controller: location,

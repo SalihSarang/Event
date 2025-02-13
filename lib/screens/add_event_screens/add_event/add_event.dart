@@ -166,7 +166,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                           controller: timectrl,
                           hint: 'Enter Time',
                           fieldTitle: 'Time',
-                          validator: (value) => eventTimeValidation(value),
+                          validator: (value) =>
+                              eventTimeValidation(value, date.text),
                         ),
                         myField(
                           controller: location,
