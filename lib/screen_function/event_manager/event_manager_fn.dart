@@ -11,7 +11,8 @@ List<EventAddModal> filterSearchEvent({
       .toList();
 }
 
-searchEvent({required String search, required List<EventAddModal> eventList}) {
+List<EventAddModal> searchEvent(
+    {required String search, required List<EventAddModal> eventList}) {
   List<EventAddModal> searchedEvents = [];
   if (search.isNotEmpty) {
     searchedEvents = eventList.where((event) {

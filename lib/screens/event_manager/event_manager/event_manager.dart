@@ -5,6 +5,7 @@ import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
+import 'package:event_vault/widgets/empty_list_handling/empty_list_handling.dart';
 import 'package:event_vault/widgets/screen_event_manager/event_cards/event_card.dart';
 import 'package:event_vault/widgets/screen_event_manager/screen_event_manager.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
@@ -88,22 +89,24 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
               height: 20,
             ),
             Expanded(
-              child: ValueListenableBuilder<List<EventAddModal>>(
+              child: ValueListenableBuilder(
                 valueListenable: eventListen,
                 builder: (context, events, child) {
                   if (searchCtrl.text.isEmpty && result.isEmpty) {
                     result = events;
                   }
 
-                  return ListView.builder(
-                    itemCount: result.length,
-                    itemBuilder: (context, index) {
-                      final event = result[index];
-                      return EventCard(
-                        event: event,
-                      );
-                    },
-                  );
+                  return result.isEmpty
+                      ? emptyList(message: 'No Events Found')
+                      : ListView.builder(
+                          itemCount: result.length,
+                          itemBuilder: (context, index) {
+                            final event = result[index];
+                            return EventCard(
+                              event: event,
+                            );
+                          },
+                        );
                 },
               ),
             )
