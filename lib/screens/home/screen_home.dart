@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 20),
             eventCompleted(context: context),
             SizedBox(height: 20),
-            // graph(),
+            graph(),
           ],
         ),
       ),

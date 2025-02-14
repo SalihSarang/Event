@@ -2,6 +2,7 @@ import 'package:event_vault/database/functions/add_completed/add_completed.dart'
 import 'package:event_vault/screens/event_history/history_main/history_main.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 Widget eventCompleted({required BuildContext context}) {
@@ -83,13 +84,17 @@ Widget graph() {
         width: double.infinity,
         height: 300,
         decoration: BoxDecoration(
-            color: AppTheme.secondary, borderRadius: BorderRadius.circular(15)),
-        child: Center(
-            child: Text(
-          'Graph',
-          style: myFont(size: 20),
-        )),
-      )
+          color: AppTheme.secondary,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: LineChart(
+          LineChartData(
+            lineBarsData: [
+              LineChartBarData(),
+            ],
+          ),
+        ),
+      ),
     ],
   );
 }
