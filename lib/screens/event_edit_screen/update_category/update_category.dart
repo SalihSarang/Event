@@ -1,5 +1,5 @@
-import 'package:event_vault/database/functions/add_event/add_event.dart';
-import 'package:event_vault/database/functions/add_items/add_items.dart';
+import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/functions/items/items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/event_edit_screen/edit_category_item/edit_item.dart';

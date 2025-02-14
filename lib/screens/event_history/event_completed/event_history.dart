@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_completed/add_completed.dart';
+import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/event_history/event_history_widgets.dart';
 import 'package:flutter/material.dart';

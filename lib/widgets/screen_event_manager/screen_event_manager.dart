@@ -1,5 +1,5 @@
-import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
-import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/catogory/catogory.dart';
+import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';

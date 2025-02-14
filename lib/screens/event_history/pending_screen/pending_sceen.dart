@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_pending/add_pending.dart';
+import 'package:event_vault/database/functions/pending/pending.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/pending_event/pending_event.dart';
 import 'package:flutter/material.dart';

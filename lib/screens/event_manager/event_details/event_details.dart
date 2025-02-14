@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_expense_tracker/expense_tracker.dart';

@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
+import 'package:event_vault/database/functions/catogory/catogory.dart';
 import 'package:event_vault/utils/validation/category_details/category_name/category_name.dart';
 import 'package:event_vault/utils/validation/event_adding/event_discription/event_discription.dart';
 import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';

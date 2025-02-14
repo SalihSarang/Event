@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_catogory/add_catogory.dart';
+import 'package:event_vault/database/functions/catogory/catogory.dart';
 import 'package:event_vault/screens/category_screen/add_new_catogory/add_new_catogory.dart';
 import 'package:event_vault/widgets/buttons/add_menu_btn/add_menu_btn.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';

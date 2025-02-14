@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_items/add_items.dart';
+import 'package:event_vault/database/functions/items/items.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/screens/category_screen/item_edit/item_edit.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';

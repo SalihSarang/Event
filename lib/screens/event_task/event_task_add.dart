@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_event_task/add_event_task.dart';
+import 'package:event_vault/database/functions/event_task/event_task.dart';
 import 'package:event_vault/database/modals/event_task_model/event_task_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/utils/validation/task_validation/task_validation.dart';

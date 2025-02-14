@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 
-import 'package:event_vault/database/functions/add_expense/add_expense.dart';
+import 'package:event_vault/database/functions/expense/expense.dart';
 import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:event_vault/utils/validation/category_details/category_item/item_price/item_price.dart';
 import 'package:event_vault/utils/validation/event_adding/event_name/event_name.dart';

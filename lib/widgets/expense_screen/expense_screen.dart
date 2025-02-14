@@ -1,5 +1,5 @@
 // Event Items
-import 'package:event_vault/database/functions/add_expense/add_expense.dart';
+import 'package:event_vault/database/functions/expense/expense.dart';
 import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:event_vault/screens/event_expense_tracker/edit_expense.dart';
 import 'package:event_vault/utils/font/app_font.dart';

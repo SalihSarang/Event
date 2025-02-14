@@ -1,4 +1,4 @@
-import 'package:event_vault/database/functions/add_event/add_event.dart';
+import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';

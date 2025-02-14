@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:event_vault/database/functions/add_completed/add_completed.dart';
-import 'package:event_vault/database/functions/add_event/add_event.dart';
-import 'package:event_vault/database/functions/add_pending/add_pending.dart';
+import 'package:event_vault/database/functions/completed/completed.dart';
+import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/functions/pending/pending.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/pending_model/pending_model.dart';
