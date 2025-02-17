@@ -110,7 +110,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
 
                 if (keyForm.currentState!.validate()) {
                   final dateStr = widget.eventDetals['Date'];
-                  final parsedDate = DateFormat('yyyy-MMM-dd').parse(dateStr);
+                  final parsedDate = DateFormat('dd/MMM/yyyy').parse(dateStr);
 
                   final event = EventAddModal(
                     categoryName: widget.eventDetals['CategoryName'],

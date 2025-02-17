@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screens/event_edit_screen/update_category/update_category.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
@@ -19,7 +21,6 @@ import 'package:event_vault/utils/validation/event_adding/event_location/event_l
 import 'package:event_vault/utils/validation/event_adding/event_name/event_name.dart';
 import 'package:event_vault/utils/validation/event_adding/event_time/event_time.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 class EventEditScreen extends StatefulWidget {
   EventEditScreen({super.key, required this.event});
@@ -39,23 +40,6 @@ class _EventEditScreen extends State<EventEditScreen> {
     if (pickedFile != null) {
       setState(() {
         newImage = pickedFile.path;
-      });
-    }
-  }
-
-  Future<void> selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-      builder: (context, child) {
-        return Theme(data: dateTheme(), child: child!);
-      },
-    );
-    if (pickedDate != null) {
-      setState(() {
-        date.text = DateFormat('yyyy-MMM-dd').format(pickedDate);
       });
     }
   }
@@ -99,7 +83,7 @@ class _EventEditScreen extends State<EventEditScreen> {
 
   //validate and navigate to next screen
   void validateForm() {
-    print(' what is  : ${widget.event.description}');
+    developer.log(' what is  : ${widget.event.description}');
     if (forkey.currentState!.validate()) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => UpdateCategory(
@@ -163,7 +147,9 @@ class _EventEditScreen extends State<EventEditScreen> {
                           validator: (value) => eventNameValidation(value),
                         ),
                         dateField(
-                          onTap: () => selectDate(context),
+                          onTap: () async {
+                            date.text = await selectDate(context);
+                          },
                           controller: date,
                           hint: 'Enter Enter Date',
                           fieldTitle: 'Date',

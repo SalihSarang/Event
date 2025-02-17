@@ -39,8 +39,8 @@ class PendingEventCard extends StatelessWidget {
             developer.log("Tapped!");
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
+                events: event,
                 image: detailPageImg,
-                eventId: event.eventId,
               ),
             ));
           },

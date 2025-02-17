@@ -1,0 +1,2 @@
+/home/sarang/Event/android/app/.cxx/Debug/1c3k1n3b/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/sarang/Event/android/app/.cxx/Debug/1c3k1n3b/armeabi-v7a/CMakeFiles/rebuild_cache.dir

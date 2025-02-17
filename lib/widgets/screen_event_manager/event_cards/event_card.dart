@@ -35,7 +35,7 @@ class EventCard extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
                 image: detailPageImg!,
-                eventId: event.eventId,
+                events: event,
               ),
             ));
           },

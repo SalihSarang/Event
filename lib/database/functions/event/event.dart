@@ -45,50 +45,33 @@ void deleteEvent(String value) async {
 }
 
 List<EventAddModal> getUpcomingEvents() {
-  List<EventAddModal> events = eventBox.values.map(
-    (eventData) {
-      developer.log(eventData.date);
-      return EventAddModal(
-          catogory: eventData.categoryName,
-          eventName: eventData.eventName,
-          date: eventData.date,
-          time: eventData.time,
-          location: eventData.location,
-          description: eventData.description,
-          clientName: eventData.clientName,
-          contactInfo: eventData.contactInfo,
-          eventId: eventData.eventId,
-          items: eventData.items,
-          special: eventData.special,
-          image: eventData.image,
-          budget: eventData.budget,
-          categoryName: eventData.categoryName);
-    },
-  ).toList();
+  List<EventAddModal> events = eventBox.values.toList();
 
-  DateTime now = DateTime.now();
+  DateTime now = DateFormat("dd/MMM/yyyy hh:mm a")
+      .parse(DateFormat("dd/MMM/yyyy hh:mm a").format(DateTime.now()));
 
-  List<EventAddModal> upcomingEvents = events.where(
-    (event) {
-      DateTime eventDateTime = parseDateTime(event.date, event.time);
-      return eventDateTime.isAfter(now);
-    },
-  ).toList();
+  List<EventAddModal> upcomingEvents = events.where((event) {
+    DateTime eventDateTime = parseDateTime(event.date, event.time);
+    return eventDateTime.isAfter(now);
+  }).toList();
 
-  upcomingEvents.sort(
-    (a, b) {
-      DateTime dateTimeA = parseDateTime(a.date, a.time);
-      DateTime dateTimeB = parseDateTime(b.date, b.time);
-      return dateTimeA.compareTo(dateTimeB);
-    },
-  );
+  upcomingEvents.sort((a, b) {
+    DateTime dateTimeA = parseDateTime(a.date, a.time);
+    DateTime dateTimeB = parseDateTime(b.date, b.time);
+    return dateTimeA.compareTo(dateTimeB);
+  });
 
   return upcomingEvents;
 }
 
 DateTime parseDateTime(String date, String time) {
-  String datePart = date.split(' ')[0];
-  String fullDateTime = '$datePart $time';
-  DateFormat inputFormat = DateFormat("yyyy-MM-dd hh:mm a");
-  return inputFormat.parse(fullDateTime);
+  try {
+    String fullDateTime = '$date $time';
+    developer.log("Parsing date: $fullDateTime");
+    DateFormat inputFormat = DateFormat("dd/MMM/yyyy hh:mm a");
+    return inputFormat.parse(fullDateTime);
+  } catch (e) {
+    developer.log("Error parsing date: $e");
+    return DateTime(2100); // Return a future date to prevent errors
+  }
 }

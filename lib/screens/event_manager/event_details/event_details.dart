@@ -1,4 +1,5 @@
 import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
 import 'package:event_vault/screens/event_expense_tracker/expense_tracker.dart';
@@ -9,13 +10,13 @@ import 'package:event_vault/widgets/event_detail_screen/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class EventDetails extends StatelessWidget {
-  EventDetails({super.key, required this.image, required this.eventId});
+  EventDetails({super.key, required this.image, required this.events});
   String image;
-  String eventId;
+  EventAddModal events;
 
   @override
   Widget build(BuildContext context) {
-    final event = getEventById(eventId);
+    final event = getEventById(events.eventId);
     if (event == null) {
       return Scaffold(
         appBar: CustomAppBar(title: 'Event Name'),
@@ -68,7 +69,10 @@ class EventDetails extends StatelessWidget {
               btnColor: AppTheme.secondary,
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ExpenseTracker(eventID: eventId),
+                  builder: (context) => ExpenseTracker(
+                    event: events,
+                    eventItems: eventItems,
+                  ),
                 ));
               },
             ),
@@ -81,7 +85,7 @@ class EventDetails extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => EventTask(
-                        eventID: eventId,
+                        eventID: events.eventId,
                       ),
                     ));
               },

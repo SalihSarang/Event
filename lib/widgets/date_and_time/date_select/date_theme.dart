@@ -5,12 +5,11 @@ import 'dart:developer' as developer;
 
 Future<String> selectDate(BuildContext context) async {
   final String date;
-  DateTime curentDate = DateTime.now();
 
   DateTime? pickedDate = await showDatePicker(
     context: context,
     initialDate: DateTime.now(),
-    firstDate: curentDate,
+    firstDate: DateTime.now(),
     lastDate: DateTime(2100),
     builder: (context, child) {
       return Theme(data: dateTheme(), child: child!);
@@ -18,9 +17,14 @@ Future<String> selectDate(BuildContext context) async {
   );
 
   if (pickedDate != null) {
-    developer.log(pickedDate.toString());
-    date = DateFormat('dd/MM/yyyy').format(pickedDate);
-    developer.log(date);
+    developer.log("Picked Date: ${pickedDate.toIso8601String()}");
+    DateTime validDate = DateTime(
+      pickedDate.year,
+      pickedDate.month,
+      pickedDate.day,
+    );
+    date = DateFormat('dd/MMM/yyyy').format(validDate);
+    developer.log("Formatted Date: $date");
   } else {
     date = 'No date selected';
   }
@@ -35,7 +39,6 @@ ThemeData dateTheme() {
       onSurface: AppTheme.textW,
       primary: AppTheme.hilite,
     ),
-    dialogBackgroundColor: AppTheme.mainBg,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppTheme.textW,
@@ -56,6 +59,7 @@ ThemeData dateTheme() {
         ),
       ),
     ),
+    dialogTheme: DialogThemeData(backgroundColor: AppTheme.mainBg),
   );
 
   return myDateTheme;

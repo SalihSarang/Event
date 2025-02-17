@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 
@@ -29,6 +31,12 @@ List<EventAddModal> searchEvent(
 }
 
 String extract(String fulldate) {
-  String date = fulldate.split(' ')[0];
-  return date;
+  try {
+    String date = fulldate.split(' ')[0];
+    developer.log("this is time $date");
+    return date;
+  } catch (e) {
+    developer.log('Error extracting date: $e');
+    return ''; // Return an empty string or handle the error as needed
+  }
 }

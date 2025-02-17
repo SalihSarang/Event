@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:event_vault/utils/validation/event_adding/client_info/name_validation/name_validation.dart';
 import 'package:event_vault/utils/validation/event_adding/client_info/number_validation/number_validation.dart';
 import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
@@ -33,32 +35,14 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
   String newImage = '';
   final picker = ImagePicker();
 
-  // pick image from the gallery
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        newImage = pickedFile.path; // Store the image path
+        newImage = pickedFile.path;
       });
     }
   }
-
-  // Future<void> selectDate(BuildContext context) async {
-  //   DateTime? pickedDate = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime(2100),
-  //     builder: (context, child) {
-  //       return Theme(data: dateTheme(), child: child!);
-  //     },
-  //   );
-  //   if (pickedDate != null) {
-  //     setState(() {
-  //       date.text = DateFormat('yyyy-MMM-dd').format(pickedDate);
-  //     });
-  //   }
-  // }
 
   TimeOfDay _selectedTime = TimeOfDay(hour: 12, minute: 0);
   String timeString = '';
@@ -153,6 +137,7 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
                         dateField(
                           onTap: () async {
                             date.text = await selectDate(context);
+                            developer.log(date.text);
                           },
                           controller: date,
                           hint: 'Enter Enter Date',
