@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/functions/event_profit/event_profit.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/alert_box/alert_box.dart';
@@ -19,12 +21,13 @@ class EventHistoryCard extends StatelessWidget {
       {super.key,
       required this.event,
       required this.completedEvent,
-      required this.detailPageImg});
+      required this.detailPageImg,
+      required this.profit});
 
   String detailPageImg;
   Completed completedEvent;
   EventAddModal event;
-
+  EventProfitModel profit;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -129,6 +132,7 @@ class EventHistoryCard extends StatelessWidget {
                                       time: event.time);
                                   addEvent(restoredEvent);
                                   restoreEvent(completedEvent.completedID);
+                                  deleteProfit(profit.profitId);
                                   Navigator.pop(context);
                                 });
                               },

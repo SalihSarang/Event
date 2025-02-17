@@ -25,8 +25,8 @@ class ExpenseTracker extends StatefulWidget {
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
   List<ExpenseModel> expenseList = [];
-  double? expense = 0.0;
-  double? categoryEx = 0.0;
+  double expense = 0.0;
+  double categoryEx = 0.0;
   @override
   void initState() {
     super.initState();
@@ -38,9 +38,9 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
   getExpense() {
     if (mounted) {
       setState(() {
-        expenseList = getTaskByEvetID(widget.event.eventId);
+        expenseList = getExpenseByEvetID(widget.event.eventId);
         expense = getTotalExpenses(widget.event.eventId);
-        expense = expense! + categoryEx!;
+        expense = expense + categoryEx;
       });
     }
   }
@@ -50,7 +50,7 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
         widget.eventItems.map((price) => double.parse(price.itemPrice)).reduce(
               (a, b) => a + b,
             );
-    expense = expense! + categoryEx!;
+    expense = expense + categoryEx;
     developer.log('this is expense ${categoryEx.toString()}');
   }
 
@@ -65,7 +65,8 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
               context,
               MaterialPageRoute(
                 builder: (context) => AddExpense(
-                  eventID: widget.event.eventId,
+                  eventExpense: expense,
+                  event: widget.event,
                 ),
               ));
         },
@@ -75,6 +76,21 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
         child: SafeArea(
           child: Column(
             children: [
+              if (expense >= double.parse(widget.event.budget)) ...[
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: Card(
+                    color: AppTheme.pending.shade50,
+                    child: Center(
+                      child: Text(
+                        'Warning the expense is greter than event budget',
+                        style: myFontColor(color: AppTheme.pending, size: 19),
+                      ),
+                    ),
+                  ),
+                )
+              ],
               Row(
                 children: [
                   Text(
@@ -100,19 +116,25 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
                       style: myFontColor(size: 18),
                     ),
                   )),
+              SizedBox(height: 10),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Other Expense',
+                  style: myFont(size: 25),
+                ),
+              ),
               Expanded(
                 child: ValueListenableBuilder(
-                  valueListenable: expenseListener,
-                  builder: (context, expense, child) {
-                    if (expenseList.isEmpty) {
-                      return emptyList(message: 'No Expense');
-                    } else {
+                    valueListenable: expenseListener,
+                    builder: (context, expense, child) {
+                      if (expense.isEmpty) {
+                        return emptyList(message: 'No Expense');
+                      }
                       return ExpenseCard(
                         expenseList: expenseList,
                       );
-                    }
-                  },
-                ),
+                    }),
               ),
             ],
           ),

@@ -56,7 +56,10 @@ class EditExpense extends StatelessWidget {
               btnText: 'Save Expense',
               onPressed: () {
                 if (expenseFormKey.currentState!.validate()) {
+                  developer.log(
+                      'Total expense Update screen : ${expense.totalExpense}');
                   final upexpense = ExpenseModel(
+                      totalExpense: expense.totalExpense,
                       expenseName: expenseNameCtrl.text,
                       amount: amountCtrl.text,
                       expenseID: expense.expenseID,

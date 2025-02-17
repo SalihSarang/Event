@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/functions/event_profit/event_profit.dart';
+import 'package:event_vault/database/functions/expense/expense.dart';
 import 'package:event_vault/database/functions/pending/pending.dart';
 import 'package:event_vault/database/modals/completed_events_model/completed.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/pending_model/pending_model.dart';
+import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/screens/event_edit_screen/event_edit/event_edit_screen.dart';
@@ -134,6 +137,18 @@ class EventCard extends StatelessWidget {
                                       completedID: generateID(), event: event);
                                   addCompletedEvents(completedEvent);
                                   deleteEvent(event.eventId);
+
+                                  final expense =
+                                      getExpenseForTheEvent(event.eventId);
+                                  final profit = calculateProfit(
+                                      event.budget, expense.totalExpense);
+
+                                  final eventProfit = EventProfitModel(
+                                      eventId: event.eventId,
+                                      profit: profit,
+                                      profitId: generateID());
+                                  addEventProfit(eventProfit);
+
                                   Navigator.pop(context);
                                 });
                               },

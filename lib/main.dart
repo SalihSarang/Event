@@ -2,6 +2,7 @@ import 'package:event_vault/database/functions/%20task/task.dart';
 import 'package:event_vault/database/functions/catogory/catogory.dart';
 import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/database/functions/event/event.dart';
+import 'package:event_vault/database/functions/event_profit/event_profit.dart';
 import 'package:event_vault/database/functions/event_task/event_task.dart';
 import 'package:event_vault/database/functions/expense/expense.dart';
 import 'package:event_vault/database/functions/items/items.dart';
@@ -44,6 +45,7 @@ void main() async {
   await Hive.openBox<PendingEvents>(PENDING_EVENT);
   await Hive.openBox<EventTaskModel>(EVENT_TASK_BOX);
   await Hive.openBox<ExpenseModel>(EXPENSE_BOX);
+  await Hive.openBox<EventProfitModel>(EVENT_PROFIT);
 
   getAllEvents();
 

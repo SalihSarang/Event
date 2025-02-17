@@ -11,9 +11,12 @@ class ExpenseModel {
   String expenseID;
   @HiveField(3)
   String eventID;
+  @HiveField(4)
+  String totalExpense;
   ExpenseModel(
       {required this.expenseName,
       required this.amount,
       required this.expenseID,
-      required this.eventID});
+      required this.eventID,
+      required this.totalExpense});
 }

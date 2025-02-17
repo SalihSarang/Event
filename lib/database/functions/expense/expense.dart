@@ -22,7 +22,7 @@ deleteExpense(String expenseID) {
   getAllExpense();
 }
 
-List<ExpenseModel> getTaskByEvetID(String eventID) {
+List<ExpenseModel> getExpenseByEvetID(String eventID) {
   final expense = expenseBox.values
       .where(
         (expense) => expense.eventID == eventID,
@@ -51,4 +51,8 @@ double getTotalExpenses(String eventID) {
   }
 
   return total;
+}
+
+ExpenseModel getExpenseForTheEvent(String eventID) {
+  return expenseBox.values.where((expense) => expense.eventID == eventID).first;
 }

@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 void customAlertBox(
   BuildContext context, {
   required String message,
-  required IconData icon,
+  IconData? icon,
   required VoidCallback noPressed,
   required VoidCallback yesPressed,
+  String? title,
   Color? color,
 }) {
   showDialog(
@@ -25,15 +26,25 @@ void customAlertBox(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              if (title != null && title.isNotEmpty)
+                Center(
+                  child: Text(
+                    title,
+                    style: myFontColor(color: AppTheme.pending, size: 25),
+                  ),
+                ),
+              SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    icon,
-                    color: color ?? AppTheme.delete,
-                    size: 50,
-                  ),
-                  SizedBox(width: 10),
+                  if (icon != null) ...[
+                    Icon(
+                      icon,
+                      color: color ?? AppTheme.delete,
+                      size: 50,
+                    ),
+                    SizedBox(width: 10),
+                  ],
                   Expanded(
                     child: Text(
                       message,

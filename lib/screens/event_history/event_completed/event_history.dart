@@ -1,5 +1,6 @@
 import 'package:event_vault/database/functions/completed/completed.dart';
-import 'package:event_vault/utils/font/app_font.dart';
+import 'package:event_vault/database/functions/event_profit/event_profit.dart';
+import 'package:event_vault/widgets/empty_list_handling/empty_list_handling.dart';
 import 'package:event_vault/widgets/event_history/event_history_widgets.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
@@ -31,12 +32,8 @@ class _CompletedEventsState extends State<CompletedEvents> {
             builder: (context, events, child) {
               if (events.isEmpty) {
                 return Center(
-                  child: Center(
-                    child: Text(
-                      "No Completed Events",
-                      style: myFont(size: 30),
-                    ),
-                  ),
+                  child:
+                      Center(child: emptyList(message: 'No Events Completed')),
                 );
               }
               return ListView.builder(
@@ -44,8 +41,10 @@ class _CompletedEventsState extends State<CompletedEvents> {
                 itemBuilder: (context, index) {
                   final completedEvent = events[index];
                   final event = completedEvent.event;
+                  final profit = getProfitByEventId(event.eventId);
                   developer.log(event.eventName);
                   return EventHistoryCard(
+                    profit: profit,
                     detailPageImg: event.image,
                     completedEvent: completedEvent,
                     event: event,

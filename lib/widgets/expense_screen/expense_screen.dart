@@ -16,10 +16,6 @@ class ExpenseCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Items',
-          style: myFont(size: 25),
-        ),
         Expanded(
           child: ListView.builder(
             itemCount: expenseList.length,
