@@ -109,8 +109,8 @@ class _ScreenAddEventState extends State<ScreenAddEvent> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.selectedCatogory);
-    print(widget.categoryName);
+    // print(widget.selectedCatogory);
+    // print(widget.categoryName);
     timectrl.text = timeString;
     return Scaffold(
       backgroundColor: AppTheme.mainBg,

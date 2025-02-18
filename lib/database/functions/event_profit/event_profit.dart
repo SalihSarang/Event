@@ -33,9 +33,17 @@ EventProfitModel getProfitByEventId(String eventId) {
   );
 }
 
+deleteProfitByEventId(String eventId) {
+  final profit = eventProfitBox.values.firstWhere(
+    (profit) => profit.eventId == eventId,
+  );
+  eventProfitBox.delete(profit.profitId);
+  getAllProfits();
+}
+
 String calculateProfit(String eventBudget, String eventExpense) {
-  final eventBudgetNum = double.parse(eventBudget);
-  final eventExpenseNum = double.parse(eventExpense);
+  double eventBudgetNum = double.parse(eventBudget);
+  double eventExpenseNum = double.parse(eventExpense);
   developer.log(eventBudget);
   developer.log(eventExpense);
 

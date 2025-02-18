@@ -14,7 +14,6 @@ import 'package:event_vault/database/modals/event_task_model/event_task_model.da
 import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:event_vault/database/modals/item_model/item_model.dart';
 import 'package:event_vault/database/modals/pending_model/pending_model.dart';
-import 'package:event_vault/database/modals/profit_model/daily_profit_model.dart';
 import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
 import 'package:event_vault/screens/bottom_vav/bottom_nav.dart';
@@ -26,6 +25,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
+  // Register adapters
   Hive.registerAdapter(EventAddModalAdapter());
   Hive.registerAdapter(CatogoryModelAdapter());
   Hive.registerAdapter(ItemModelAdapter());
@@ -34,9 +34,9 @@ void main() async {
   Hive.registerAdapter(PendingEventsAdapter());
   Hive.registerAdapter(EventTaskModelAdapter());
   Hive.registerAdapter(ExpenseModelAdapter());
-  Hive.registerAdapter(DailyProfitModelAdapter());
   Hive.registerAdapter(EventProfitModelAdapter());
 
+  // Open boxes
   await Hive.openBox<EventAddModal>(ADD_EVENT);
   await Hive.openBox<CatogoryModel>(CATEGORY);
   await Hive.openBox<ItemModel>(ITEMS);

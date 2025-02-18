@@ -131,8 +131,8 @@ class EventHistoryCard extends StatelessWidget {
                                       special: event.special,
                                       time: event.time);
                                   addEvent(restoredEvent);
+                                  deleteProfitByEventId(restoredEvent.eventId);
                                   restoreEvent(completedEvent.completedID);
-                                  deleteProfit(profit.profitId);
                                   Navigator.pop(context);
                                 });
                               },
