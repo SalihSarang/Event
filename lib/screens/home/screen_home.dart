@@ -38,14 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
-            Text(
-              'Upcoming Events',
-              style: myFont(size: 25),
-            ),
+            Text('Upcoming Events', style: myFont(size: 25)),
             tabBar(upcomingEvents),
             SizedBox(height: 20),
-            eventCompleted(context: context),
-            SizedBox(height: 20),
+            homeScreenCard(context: context),
+            SizedBox(height: 10),
+            profitCard()
           ],
         ),
       ),

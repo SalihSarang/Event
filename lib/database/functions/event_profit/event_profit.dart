@@ -1,5 +1,4 @@
 import 'dart:developer' as developer;
-
 import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
@@ -31,6 +30,10 @@ EventProfitModel getProfitByEventId(String eventId) {
   return eventProfitBox.values.firstWhere(
     (profit) => profit.eventId == eventId,
   );
+}
+
+double calculateTotalProfit() {
+  return eventProfitBox.values.fold(0.0, (a, b) => a + double.parse(b.profit));
 }
 
 deleteProfitByEventId(String eventId) {
