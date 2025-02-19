@@ -18,6 +18,7 @@ import 'package:event_vault/database/modals/pending_model/pending_model.dart';
 import 'package:event_vault/database/modals/profile_model/profile_model.dart';
 import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
+import 'package:event_vault/notification_fn/event_remainder.dart';
 import 'package:event_vault/screens/bottom_vav/bottom_nav.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,8 @@ import 'package:hive_flutter/adapters.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
 
+  await Hive.initFlutter();
   // Register adapters
   Hive.registerAdapter(EventAddModalAdapter());
   Hive.registerAdapter(CatogoryModelAdapter());
@@ -50,6 +51,8 @@ void main() async {
   await Hive.openBox<ExpenseModel>(EXPENSE_BOX);
   await Hive.openBox<EventProfitModel>(EVENT_PROFIT);
   await Hive.openBox<ProfileModel>(PROFILE_BOX);
+
+  await LocalNotificationService.initialize();
 
   getAllEvents();
 

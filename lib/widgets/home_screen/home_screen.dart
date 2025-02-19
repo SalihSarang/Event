@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/database/functions/event_profit/event_profit.dart';
 import 'package:event_vault/screens/event_history/history_main/history_main.dart';

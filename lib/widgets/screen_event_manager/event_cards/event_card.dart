@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:event_vault/database/functions/completed/completed.dart';
 import 'package:event_vault/database/functions/event/event.dart';
