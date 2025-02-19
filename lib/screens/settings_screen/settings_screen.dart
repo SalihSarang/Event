@@ -1,8 +1,10 @@
+import 'package:event_vault/screens/settings_screen/about_screen.dart';
+import 'package:event_vault/screens/settings_screen/profile_screen.dart';
+import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/widgets/settings_options/settings_options.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -17,25 +19,27 @@ class SettingsScreen extends StatelessWidget {
         child: SafeArea(
           child: ListView(
             children: [
-              Text(
-                "General Settings",
-                style: GoogleFonts.roboto(
-                  color: AppTheme.textW,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 30,
-                ),
-              ),
+              Text("General Settings", style: myFontColor(size: 30)),
               SizedBox(
                 height: 20,
               ),
               settingsOptions(
-                  leadIcon: Icon(
-                    Icons.notifications_none,
-                    color: Colors.white,
-                    size: 35,
-                  ),
-                  title: 'Notification',
-                  subTitle: 'Manage Notification')
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfileScreen()));
+                  },
+                  leadIcon: Icon(Icons.person, color: AppTheme.textW, size: 47),
+                  title: 'Profile'),
+              settingsOptions(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AboutScreen()));
+                  },
+                  leadIcon: Icon(Icons.info_outline_rounded,
+                      color: Colors.white, size: 40),
+                  title: 'About the app'),
             ],
           ),
         ),

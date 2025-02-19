@@ -30,6 +30,11 @@ Widget myField({
       ),
       TextFormField(
         maxLength: maxLength,
+        buildCounter: (_,
+                {required int currentLength,
+                required int? maxLength,
+                required bool isFocused}) =>
+            null,
         autovalidateMode: validationMode,
         keyboardType: keyboardType,
         controller: controller,

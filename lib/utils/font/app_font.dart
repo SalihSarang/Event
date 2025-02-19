@@ -29,3 +29,12 @@ TextStyle myFontColor({double? size, Color? color}) {
   );
   return myFontTheme;
 }
+
+TextStyle appNamefont({double? size, Color? color}) {
+  final myFontTheme = GoogleFonts.roboto(
+    color: color ?? AppTheme.textW,
+    fontWeight: FontWeight.w900,
+    fontSize: size,
+  );
+  return myFontTheme;
+}
