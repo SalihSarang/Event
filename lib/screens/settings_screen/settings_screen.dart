@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
                   },
                   leadIcon: Icon(Icons.info_outline_rounded,
                       color: Colors.white, size: 40),
-                  title: 'About the app'),
+                  title: 'About Us'),
             ],
           ),
         ),
