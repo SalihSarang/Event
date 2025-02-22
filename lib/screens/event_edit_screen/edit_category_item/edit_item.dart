@@ -35,7 +35,6 @@ class _EditItem extends State<EditItem> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.categoryId);
     return Scaffold(
       backgroundColor: AppTheme.mainBg,
       appBar: CustomAppBar(title: 'Add New Menu Item'),

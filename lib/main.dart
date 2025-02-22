@@ -53,7 +53,7 @@ void main() async {
   await Hive.openBox<EventProfitModel>(EVENT_PROFIT);
   await Hive.openBox<ProfileModel>(PROFILE_BOX);
 
-  await LocalNotificationService.init();
+  // await LocalNotificationService.init();
   getAllEvents();
 
   runApp(const MyApp());

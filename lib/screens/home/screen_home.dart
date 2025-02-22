@@ -21,16 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
   List<EventAddModal> upcomingEvents = [];
 
   Future<void> fetchUpcomingEvents() async {
-    log("fetchUpcomingEvents() started");
+    // log("fetchUpcomingEvents() started");
 
-    var status = await Permission.notification.status;
-    log("Notification permission status: $status");
+    // var status = await Permission.notification.status;
+    // log("Notification permission status: $status");
 
-    if (status.isDenied || status.isPermanentlyDenied) {
-      await Permission.notification.request();
-      log("Requesting notification permission...");
-      return;
-    }
+    // if (status.isDenied || status.isPermanentlyDenied) {
+    //   await Permission.notification.request();
+    //   log("Requesting notification permission...");
+    //   return;
+    // }
 
     List<EventAddModal> events = getUpcomingEvents();
     log("Fetched ${events.length} upcoming events");
@@ -39,46 +39,44 @@ class _HomeScreenState extends State<HomeScreen> {
       upcomingEvents = events;
     });
 
-    for (var event in events) {
-      DateTime eventDateTime = combineDateAndTime(event.date, event.time);
-      DateTime reminderTime = eventDateTime.subtract(const Duration(hours: 1));
+    // for (var event in events) {
+    //   DateTime eventDateTime = combineDateAndTime(event.date, event.time);
+    //   DateTime reminderTime = eventDateTime.subtract(const Duration(hours: 1));
 
-      if (reminderTime.isAfter(DateTime.now())) {
-        log("Scheduling notification for: ${event.eventName}");
-        LocalNotificationService.cancelNotification(int.parse(event.eventId));
-        await LocalNotificationService.scheduleNotification(
-          id: int.parse(event.eventId),
-          title: "Reminder: ${event.eventName}",
-          body: "Starts at ${event.date}",
-          scheduledTime: reminderTime,
-        );
-      }
-    }
+    //   if (reminderTime.isAfter(DateTime.now())) {
+    //     log("Scheduling notification for: ${event.eventName}");
+    //     LocalNotificationService.cancelNotification(int.parse(event.eventId));
+    //     await LocalNotificationService.scheduleNotification(
+    //       id: int.parse(event.eventId),
+    //       title: "Reminder: ${event.eventName}",
+    //       body: "Starts at ${event.date}",
+    //       scheduledTime: reminderTime,
+    //     );
+    //   }
+    // }
 
-    log("fetchUpcomingEvents() completed");
+    // log("fetchUpcomingEvents() completed");
   }
 
-  Future<void> testNotification() async {
-    var status = await Permission.notification.status;
-    if (status.isDenied || status.isPermanentlyDenied) {
-      await Permission.notification.request();
-      log("Requesting notification permission...");
-      return;
-    }
+  // Future<void> testNotification() async {
+  //   var status = await Permission.notification.status;
+  //   if (status.isDenied || status.isPermanentlyDenied) {
+  //     await Permission.notification.request();
+  //     log("Requesting notification permission...");
+  //     return;
+  //   }
 
-    await LocalNotificationService.showInstantNotification();
-    log('Test Notification Sent');
-  }
+  //   await LocalNotificationService.showInstantNotification();
+  //   log('Test Notification Sent');
+  // }
 
   @override
   void initState() {
     super.initState();
     log("HomeScreen initState() called");
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      log("Calling fetchUpcomingEvents()");
-      await fetchUpcomingEvents();
-    });
+    log("Calling fetchUpcomingEvents()");
+    fetchUpcomingEvents();
   }
 
   @override
@@ -86,10 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(25, 26, 37, 1),
       appBar: const CustomAppBar(title: "Dashboard"),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: testNotification,
-      //   child: const Icon(Icons.notification_add),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(

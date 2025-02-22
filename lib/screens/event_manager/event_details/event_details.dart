@@ -56,7 +56,7 @@ class EventDetails extends StatelessWidget {
             ),
             SizedBox(height: 20),
             EventDetailCards(
-              eventDate: extract(event.date),
+              eventDate: extract(event.date).toString(),
               eventLocation: event.location,
               eventTime: event.time,
             ),
