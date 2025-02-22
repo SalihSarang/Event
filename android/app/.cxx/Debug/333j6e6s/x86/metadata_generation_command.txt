@@ -1,0 +1,20 @@
+                        -H/home/sarang/snap/flutter/common/flutter/packages/flutter_tools/gradle/src/main/groovy
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=23
+-DANDROID_PLATFORM=android-23
+-DANDROID_ABI=x86
+-DCMAKE_ANDROID_ARCH_ABI=x86
+-DANDROID_NDK=/home/sarang/Android/Sdk/ndk/26.1.10909125
+-DCMAKE_ANDROID_NDK=/home/sarang/Android/Sdk/ndk/26.1.10909125
+-DCMAKE_TOOLCHAIN_FILE=/home/sarang/Android/Sdk/ndk/26.1.10909125/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/home/sarang/Android/Sdk/cmake/3.22.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/sarang/Event/build/app/intermediates/cxx/Debug/333j6e6s/obj/x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/sarang/Event/build/app/intermediates/cxx/Debug/333j6e6s/obj/x86
+-DCMAKE_BUILD_TYPE=Debug
+-B/home/sarang/Event/android/app/.cxx/Debug/333j6e6s/x86
+-GNinja
+-Wno-dev
+--no-warn-unused-cli
+                        Build command args: []
+                        Version: 2

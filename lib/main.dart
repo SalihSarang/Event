@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:event_vault/database/functions/%20task/task.dart';
 import 'package:event_vault/database/functions/catogory/catogory.dart';
 import 'package:event_vault/database/functions/completed/completed.dart';
@@ -8,10 +7,10 @@ import 'package:event_vault/database/functions/expense/expense.dart';
 import 'package:event_vault/database/functions/items/items.dart';
 import 'package:event_vault/database/functions/pending/pending.dart';
 import 'package:event_vault/database/functions/profile/profile.dart';
+import 'package:event_vault/notification_fn/event_remainder.dart';
 import 'package:event_vault/screens/bottom_vav/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:event_vault/notification_fn/event_remainder.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
 import 'package:event_vault/database/modals/catogory_model/catogory_model.dart';
@@ -24,6 +23,7 @@ import 'package:event_vault/database/modals/expense_model/expense_model.dart';
 import 'package:event_vault/database/modals/profit_model/event_profit_model.dart';
 import 'package:event_vault/database/modals/profile_model/profile_model.dart';
 import 'package:event_vault/database/functions/event/event.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,7 +53,8 @@ void main() async {
   await Hive.openBox<EventProfitModel>(EVENT_PROFIT);
   await Hive.openBox<ProfileModel>(PROFILE_BOX);
 
-  // await LocalNotificationService.init();
+  await NotificationService.initialize();
+
   getAllEvents();
 
   runApp(const MyApp());

@@ -1,0 +1,2 @@
+/home/sarang/Event/android/app/.cxx/Debug/333j6e6s/x86_64/CMakeFiles/edit_cache.dir
+/home/sarang/Event/android/app/.cxx/Debug/333j6e6s/x86_64/CMakeFiles/rebuild_cache.dir
