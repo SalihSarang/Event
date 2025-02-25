@@ -40,11 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(25, 26, 37, 1),
       appBar: const CustomAppBar(title: "Dashboard"),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await NotificationService.showNotification();
-        },
-      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(

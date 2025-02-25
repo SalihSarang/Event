@@ -1,6 +1,8 @@
 import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/database/functions/items/items.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
+import 'package:event_vault/notification_fn/event_remainder.dart';
+import 'package:event_vault/screen_function/event_manager/event_manager_fn.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
 import 'package:event_vault/screens/add_event_screens/add_catogory_menu/add_new_item.dart';
@@ -110,8 +112,10 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
 
                 if (keyForm.currentState!.validate()) {
                   final dateStr = widget.eventDetals['Date'];
-                  final parsedDate = DateFormat('dd/MMM/yyyy').parse(dateStr);
-
+                  final date = DateFormat('dd/MMM/yyyy').parse(dateStr);
+                  final time = widget.eventDetals['Time'];
+                  final eventDateTime =
+                      combineDateAndTime(date.toString(), time);
                   final event = EventAddModal(
                     categoryName: widget.eventDetals['CategoryName'],
                     budget: budgetCtrl.text,
@@ -119,8 +123,8 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                     catogory: widget.categotyId,
                     eventName:
                         widget.eventDetals['EventName'] ?? 'No Event Name',
-                    date: parsedDate.toString(),
-                    time: widget.eventDetals['Time'],
+                    date: date.toString(),
+                    time: time,
                     location: widget.eventDetals['Location'] ?? 'No Location',
                     description: widget.eventDetals['DescriptionCtrl'] ??
                         'No Description',
@@ -134,6 +138,7 @@ class _AddCategoryMenuState extends State<AddCategoryMenu> {
                   );
 
                   addEvent(event);
+                  NotificationService.scheduleEventNotifications(eventDateTime);
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
                 }

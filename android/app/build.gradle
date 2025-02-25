@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace "com.example.event_vault"
-    compileSdk 34
+    compileSdk 35
     ndkVersion "26.1.10909125" // Replace with actual NDK version from your SDK Manager
 
     compileOptions {
@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "com.example.event_vault"
         minSdkVersion 23  // Use a hardcoded value
-        targetSdkVersion 34  // Use a hardcoded value
+        targetSdkVersion 35  // Use a hardcoded value
         versionCode 1  // Use a hardcoded value
         versionName "1.0.0"  // Use a hardcoded value
         multiDexEnabled true
@@ -37,14 +37,14 @@ android {
         }
     }
 }
-
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'  // Updated version
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
+    implementation 'com.google.android.material:material:1.11.0' // Updated version
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4' // Updated version
 }
+
 
 flutter {
     source "../.."

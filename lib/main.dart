@@ -24,6 +24,7 @@ import 'package:event_vault/database/modals/profit_model/event_profit_model.dart
 import 'package:event_vault/database/modals/profile_model/profile_model.dart';
 import 'package:event_vault/database/functions/event/event.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +54,7 @@ void main() async {
   await Hive.openBox<EventProfitModel>(EVENT_PROFIT);
   await Hive.openBox<ProfileModel>(PROFILE_BOX);
 
+  tz.initializeTimeZones();
   await NotificationService.initialize();
 
   getAllEvents();

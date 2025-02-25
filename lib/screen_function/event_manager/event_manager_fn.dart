@@ -45,16 +45,13 @@ DateTime combineDateAndTime(String date, String time) {
   try {
     developer.log("Received date: $date and time: $time");
 
-    // Extract only the valid date part (YYYY-MM-DD)
-    String cleanedDate = date.split(" ")[0].trim(); // Remove extra spaces
+    String cleanedDate = date.split(" ")[0].trim();
 
-    // Ensure time is in correct format (hh:mm a)
-    String cleanedTime = time.trim(); // Remove any unwanted characters
+    String cleanedTime = time.trim();
 
     developer.log("Cleaned Date: $cleanedDate");
     developer.log("Cleaned Time: $cleanedTime");
 
-    // Parse date and time
     DateTime parsedDate = DateFormat("yyyy-MM-dd").parse(cleanedDate);
     DateTime parsedTime = DateFormat("hh:mm a").parse(cleanedTime);
 
@@ -71,6 +68,6 @@ DateTime combineDateAndTime(String date, String time) {
     return finalDateTime;
   } catch (e) {
     developer.log("Error parsing date and time: $e");
-    return DateTime.now(); // Prevent crash
+    return DateTime.now();
   }
 }
