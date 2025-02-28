@@ -160,7 +160,7 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      "${extract(selectedDate!.toString())}",
+                                      extract(selectedDate!.toString()),
                                       style: myFont(size: 16),
                                     ),
                                     SizedBox(width: 1),
@@ -187,7 +187,7 @@ class _ScreenEventManagerState extends State<ScreenEventManager> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ValueListenableBuilder<List<EventAddModal>>(
+              child: ValueListenableBuilder(
                 valueListenable: eventListen,
                 builder: (context, events, child) {
                   return result.isEmpty

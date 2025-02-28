@@ -19,8 +19,8 @@ import 'package:event_vault/widgets/app_theme/app_theme.dart';
 
 class EventCard extends StatelessWidget {
   EventCard({super.key, required this.event});
-  String? detailPageImg;
-  EventAddModal event;
+
+  final EventAddModal event;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class EventCard extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventDetails(
-                image: detailPageImg!,
+                image: event.image,
                 events: event,
               ),
             ));
@@ -53,7 +53,7 @@ class EventCard extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: _getImageProvider(event.image),
+                        image: FileImage(File(event.image)),
                         fit: BoxFit.cover,
                       ),
                       color: AppTheme.hint,
@@ -227,15 +227,5 @@ class EventCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  ImageProvider _getImageProvider(String imagePath) {
-    if (imagePath.isNotEmpty && File(imagePath).existsSync()) {
-      detailPageImg = imagePath;
-      return FileImage(File(imagePath));
-    } else {
-      detailPageImg = "lib/assets/download (48).jpg";
-      return const AssetImage("lib/assets/download (48).jpg");
-    }
   }
 }

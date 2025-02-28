@@ -1,3 +1,5 @@
+import 'package:event_vault/screens/settings_screen/privacy_policy.dart';
+import 'package:event_vault/screens/settings_screen/terms_and_conditions.dart';
 import 'package:event_vault/utils/font/app_font.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/app_theme/app_theme.dart';
@@ -9,6 +11,58 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      persistentFooterButtons: [
+        SizedBox(
+          height: 60,
+          child: Center(
+            child: Column(
+              children: [
+                Text(
+                  'By using this app, you agree to our',
+                  style: myFontColor(size: 15),
+                  textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PrivacyPolicyScreen(),
+                          )),
+                      child: Text(
+                        'Privacy Policy',
+                        style: myFontColor(color: AppTheme.hilite, size: 15)
+                            .copyWith(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      'and',
+                      style: myFontColor(size: 15),
+                    ),
+                    SizedBox(width: 5),
+                    InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  TermsAndConditionsScreen())),
+                      child: Text(
+                        'Terms & Conditions',
+                        style: myFontColor(color: AppTheme.hilite, size: 15)
+                            .copyWith(decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
       backgroundColor: AppTheme.secondary,
       appBar: CustomAppBar(title: 'About Us'),
       floatingActionButton: Text('Version: 1.0',

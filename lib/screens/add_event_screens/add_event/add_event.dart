@@ -1,5 +1,4 @@
 import 'dart:developer' as developer;
-
 import 'package:event_vault/utils/validation/event_adding/client_info/name_validation/name_validation.dart';
 import 'package:event_vault/utils/validation/event_adding/client_info/number_validation/number_validation.dart';
 import 'package:event_vault/utils/validation/event_adding/event_budget/event_budget.dart';
@@ -32,7 +31,7 @@ class ScreenAddEvent extends StatefulWidget {
 }
 
 class _ScreenAddEventState extends State<ScreenAddEvent> {
-  String newImage = '';
+  String? newImage;
   final picker = ImagePicker();
 
   Future<void> getImageFromGallery() async {

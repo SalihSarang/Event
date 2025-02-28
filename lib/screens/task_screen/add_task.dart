@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:event_vault/utils/validation/task_validation/task_validation.dart';
 import 'package:event_vault/widgets/app_bar/app_bar.dart';
 import 'package:event_vault/widgets/date_and_time/date_select/date_theme.dart';
@@ -6,7 +8,6 @@ import 'package:event_vault/widgets/screen_task/screen_task.dart';
 import 'package:event_vault/widgets/text_field/text_field.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
-
 import 'package:image_picker/image_picker.dart';
 
 class AddTask extends StatefulWidget {
@@ -22,9 +23,10 @@ class _AddTaskState extends State<AddTask> {
   final _dueDateCtrl = TextEditingController();
   final _taskFormKey = GlobalKey<FormState>();
 
-  String imgPath = '';
+  String? imgPath;
   final imgPicker = ImagePicker();
-  getImage() async {
+
+  Future<void> getImage() async {
     final pickedImage = await imgPicker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
@@ -43,7 +45,7 @@ class _AddTaskState extends State<AddTask> {
           taskTitle: _taskTitileCtrl.text,
           dueDate: _dueDateCtrl.text,
           taskDescription: _taskDescription.text,
-          image: imgPath),
+          image: imgPath ?? ''),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -54,8 +56,8 @@ class _AddTaskState extends State<AddTask> {
               child: Column(
                 children: [
                   myField(
-                      hint: 'Enter Task Titile',
-                      fieldTitle: 'Task Titile',
+                      hint: 'Enter Task Title',
+                      fieldTitle: 'Task Title',
                       validator: (value) => taskTitleValidation(value),
                       controller: _taskTitileCtrl,
                       validationMode: AutovalidateMode.onUserInteraction),
@@ -79,9 +81,7 @@ class _AddTaskState extends State<AddTask> {
                     imagePicked: imgPath,
                     buttonTitle: 'Add Image',
                     myIcon: Icon(Icons.add_a_photo),
-                    onPressed: () {
-                      getImage();
-                    },
+                    onPressed: getImage,
                   ),
                 ],
               ),

@@ -56,6 +56,7 @@ class _AddNewItemState extends State<AddNewItem> {
               ),
               SizedBox(height: 20),
               myField(
+                keyboardType: TextInputType.number,
                 validationMode: AutovalidateMode.onUserInteraction,
                 hint: 'Enter Price',
                 fieldTitle: 'Price',

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:event_vault/database/functions/event_task/event_task.dart';
 import 'package:event_vault/database/modals/event_task_model/event_task_model.dart';
 import 'package:event_vault/database/modals/task_model/task_model.dart';
@@ -16,6 +18,7 @@ import 'package:image_picker/image_picker.dart';
 class EventTaskAdd extends StatefulWidget {
   const EventTaskAdd({super.key, required this.eventID});
   final String eventID;
+
   @override
   State<EventTaskAdd> createState() => _AddTaskState();
 }
@@ -26,9 +29,10 @@ class _AddTaskState extends State<EventTaskAdd> {
   final _dueDateCtrl = TextEditingController();
   final _taskFormKey = GlobalKey<FormState>();
 
-  String imgPath = '';
+  String? imgPath;
   final imgPicker = ImagePicker();
-  getImage() async {
+
+  Future<void> getImage() async {
     final pickedImage = await imgPicker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
@@ -37,14 +41,14 @@ class _AddTaskState extends State<EventTaskAdd> {
     }
   }
 
-  _validateForm() {
+  void _validateForm() {
     if (_taskFormKey.currentState!.validate()) {
       final task = Task(
           taskID: generateID(),
           taskTitle: _taskTitileCtrl.text,
           taskDescription: _taskDescription.text,
           dueDate: _dueDateCtrl.text,
-          image: imgPath);
+          image: imgPath!);
       final eventTask = EventTaskModel(
           eventTaskID: generateID(), task: task, eventID: widget.eventID);
       addEventTask(eventTask);
@@ -80,8 +84,8 @@ class _AddTaskState extends State<EventTaskAdd> {
               child: Column(
                 children: [
                   myField(
-                      hint: 'Enter Task Titile',
-                      fieldTitle: 'Task Titile',
+                      hint: 'Enter Task Title',
+                      fieldTitle: 'Task Title',
                       validator: (value) => taskTitleValidation(value),
                       controller: _taskTitileCtrl,
                       validationMode: AutovalidateMode.onUserInteraction),
@@ -105,10 +109,10 @@ class _AddTaskState extends State<EventTaskAdd> {
                     imagePicked: imgPath,
                     buttonTitle: 'Add Image',
                     myIcon: Icon(Icons.add_a_photo),
-                    onPressed: () {
-                      getImage();
-                    },
+                    onPressed: getImage,
                   ),
+                  if (imgPath != null && imgPath!.isNotEmpty)
+                    Image.file(File(imgPath!)),
                 ],
               ),
             )

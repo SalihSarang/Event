@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:event_vault/notification_fn/event_remainder.dart';
 import 'package:flutter/material.dart';
 import 'package:event_vault/database/functions/event/event.dart';
 import 'package:event_vault/database/modals/event_adding/event_adding_modal.dart';
