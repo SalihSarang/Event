@@ -49,6 +49,7 @@ dependencies:
   flutter_timezone: ^4.1.0
   timezone: ^0.10.0
   file_picker: ^9.0.2
+  flutter_launcher_icons: ^0.14.3
   
 
 dev_dependencies:
@@ -67,7 +68,14 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter packages.
+# The following section is specific to Flutter packages.\
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon/app_icon.png"  # Path to your icon
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_forbackground:  # Optional for Android adaptive icon
+  
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -79,8 +87,7 @@ flutter:
   assets:
    
     - assets/images/download (48).jpg
-    - assets/images/appIcon.jpg
-
+    - assets/app_icon/app_icon.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

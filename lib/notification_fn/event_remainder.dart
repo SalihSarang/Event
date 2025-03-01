@@ -17,28 +17,16 @@ class NotificationService {
     await _notificationsPlugin.initialize(initializationSettings);
 
     tz.initializeTimeZones();
-
     String eventTimeZone = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(eventTimeZone));
     log("Current Time Zone : $eventTimeZone");
   }
 
-  static Future<void> showNotification() async {
-    const AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails(
-      'your_channel_id',
-      'Your Channel Name',
-      channelDescription: 'Your Channel Description',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidDetails);
-  }
-
   static Future<void> scheduleEventNotifications(DateTime eventDateTime) async {
     final tz.TZDateTime eventTime = tz.TZDateTime.from(eventDateTime, tz.local);
+
     final notificationId = 1;
+
     await _notificationsPlugin.zonedSchedule(
         notificationId,
         'Upcoming Event',
